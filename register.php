@@ -218,7 +218,7 @@ require 'lib.php';
                             <a class="small" href="login.php">Already have an account? Login!</a>
                         </div>
                         <div class="text-center">
-                            <a class="small" href="https://brightbeginningsfdcc.com.au/">Go back to Bright Beginnings Website</a>
+                            <a class="small" href="/">Go back to Website</a>
                         </div>
                     </div>
                 </div>

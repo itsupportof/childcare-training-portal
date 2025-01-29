@@ -151,7 +151,7 @@ require 'lib.php';
                                             <a class="small" href="register.php">Create an Account!</a>
                                         </div>
                                         <div class="text-center">
-                                            <a class="small" href="https://brightbeginningsfdcc.com.au/">Go back to Bright Beginnings Website</a>
+                                            <a class="small" href="/">Go back to Bright Beginnings Website</a>
                                         </div>
                                 </div>
                             </div>
