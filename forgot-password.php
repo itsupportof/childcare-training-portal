@@ -16,7 +16,7 @@ require 'lib.php';
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>BBFDCC - Forgot Password</title>
+    <title>ARCCC - Forgot Password</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -80,7 +80,7 @@ require 'lib.php';
                                     <a class="small" href="https://andersonroadchildcare.com.au/andersonportal/login.php">Already have an account? Login!</a>
                                 </div>
                                 <div class="text-center">
-                                    <a class="small" href="https://brightbeginningsfdcc.com.au/">Go back to Bright Beginnings Website</a>
+                                    <a class="small" href="/">Go back to Website</a>
                                 </div>
                             </div>
                         </div>

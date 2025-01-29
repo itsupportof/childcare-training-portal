@@ -39,7 +39,7 @@
     <br><br>
 
     <!-- Page Heading -->
-    <p><iframe style="height: 700px; width: 900px;" src="/portal/books/?location=<?php echo $_GET['res']?>&amp;requestfrom=bbfdcc" seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true"></iframe></p>
+    <p><iframe style="height: 700px; width: 900px;" src="/portal/books/?location=<?php echo $_GET['res']?>&amp;requestfrom=ARCCC" seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true"></iframe></p>
     <p></p>
 
 

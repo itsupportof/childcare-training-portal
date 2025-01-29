@@ -36,7 +36,7 @@ if ($count2 == 0 || $row3['token'] != $_GET['key']) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>BBFDCC - Reset Password</title>
+    <title>ARCCC - Reset Password</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -196,7 +196,7 @@ if ($count2 == 0 || $row3['token'] != $_GET['key']) {
                                     <a class="small" href="https://andersonroadchildcare.com.au/andersonportal/login.php">Already have an account? Login!</a>
                                 </div>
                                 <div class="text-center">
-                                    <a class="small" href="https://brightbeginningsfdcc.com.au/">Go back to Bright Beginnings Website</a>
+                                    <a class="small" href="./">Go back to Website</a>
                                 </div>
                             </div>
                         </div>

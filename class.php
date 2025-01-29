@@ -1361,7 +1361,7 @@ class Resources{
         </style>
         <p>
         <div class="containerIframe">
-            <iframe class="responsive-iframe" style="" src="books/index.php?location=<?php echo trim($_GET['res'])?>&amp;res=bbfdcc" seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true"></iframe>
+            <iframe class="responsive-iframe" style="" src="books/index.php?location=<?php echo trim($_GET['res'])?>&amp;res=ARCCC" seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true"></iframe>
         </div>
         </p>
         <?php
@@ -6677,7 +6677,7 @@ class Parents{
              $stmt->bindParam('submissionid', $_GET['submissionid'], PDO::PARAM_STR);
              $stmt->execute();
              echo '<div class="alert alert-success" role="alert">Your entry have been updated successfully!</div>';
-             //send email to BBFDCC AND EDUCATOR that form is successfully filled.
+             //send email to ARCCC AND EDUCATOR that form is successfully filled.
 //        try {
 //            $query = "SELECT * FROM `submissions` where `submissionid`=:subId";
 //            $stmt = $pdo->prepare($query);
@@ -6696,8 +6696,8 @@ class Parents{
 //            echo "Error : ".$e->getMessage();
 //        }
 //             //send_email($educatorname,$Email)
-//             //$email="info@bbfdcc.com.au
-//             //$name="BBFDCC"
+//             //$email="info@ARCCC.com.au
+//             //$name="ARCCC"
 //
 //             function send_email($educatorname,$Email){
 //                 $to = $Email;
@@ -6711,7 +6711,7 @@ class Parents{
 //                 $txt .= '</body></html>';
 //                 $headers = "MIME-Version: 1.0" . "\r\n";
 //                 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-//                 $headers .= "From: info@bbfdcc.com.au. \r\n";
+//                 $headers .= "From: info@ARCCC.com.au. \r\n";
 //                 mail($to,$subject,$txt,$headers);
 //             }
          }

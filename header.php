@@ -150,7 +150,7 @@ if($role==1){
         <a class="nav-link collapsed" href="https://brightbeginningsfdcc.com.au/"
            aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-globe"></i>
-            <span>BBFDCC Website</span>
+            <span>ARCCC Website</span>
         </a>
     </li>
     <!-- Divider -->
