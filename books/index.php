@@ -1,0 +1,46 @@
+<?php
+    $bookname=$_GET['location'];
+
+    //var_dump($bookname);
+//$bookname='resources/1629784276FDC-ComplianceGuide-Educator.pdf';
+?>
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Resource Reader</title>
+      <!-- Flipbook StyleSheet -->
+      <link href="css/dflip.css" rel="stylesheet" type="text/css">
+      <!-- Icons Stylesheet -->
+      <link href="css/themify-icons.css" rel="stylesheet" type="text/css">
+       <style>
+           .ti-sharethis{
+               display: none !important;
+           }
+       </style>
+   </head>
+   <body>
+     <div id="flipbookContainer"></div>
+
+      <!-- jQuery 1.9.1 or above -->
+      <script src="js/libs/jquery.min.js" type="text/javascript"></script>
+      <!-- Flipbook main Js file -->
+      <script src="js/dflip.min.js" type="text/javascript"></script>
+      <script>
+     //best to start when the document is loaded
+    jQuery(document).ready(function () {
+
+    //uses source from online(make sure the file has CORS access enabled if used in cross domain)
+    //var pdf = 'resources/1629433104Newsletter July_2020.pdf';
+    var pdf = '<?php echo $bookname; ?>';
+    //alert(pdf);
+    var options = {height: 900, duration: 800,  enableDownload: false, backgroundColor: "#32b474"};
+
+    var flipBook = $("#flipbookContainer").flipBook(pdf, options);
+
+    });
+    </script>
+
+   </body>
+</html>
