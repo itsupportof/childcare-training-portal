@@ -301,11 +301,11 @@ if ($_SESSION['currentSession'] != 1 ) {
                                 <input type="text" class="form-control form-control-user" id="userId" name="firstname" value="<?php echo $row["id"]; ?>" style="display: none;">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="text" class="form-control form-control-user" id="FirstName"
-                                           placeholder="First Name" name="firstname" value="<?php echo $row["firstname"]; ?>">
+                                           placeholder="First Name" name="firstname" value="<?php echo $row["first name"]; ?>">
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control form-control-user" id="LastName"
-                                           placeholder="Last Name" name="lastname" value="<?php echo $row["lastname"]; ?>">
+                                           placeholder="Last Name" name="lastname" value="<?php echo $row["last name"]; ?>">
                                 </div>
                             </div>
                             <div class="form-group">
