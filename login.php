@@ -20,7 +20,8 @@ require 'lib.php';
     <meta name="description" content="">
     <meta name="author" content="">
     <noscript><h1 style="text-align:center; font-size:2em; padding-bottom:100000px; color:black; background:white; padding-top:400px;">JavaScript is off. Please enable to view full site.</h1></noscript>
-    <title>BBFDC - Login</title>
+    <title>Login | Childcare Portal</title>
+    <link rel="shortcut icon" href="https://andersonroadchildcare.com.au/wp-content/uploads/2024/07/Anderson-final-favicon-150x150.png" type="image/x-icon" />
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

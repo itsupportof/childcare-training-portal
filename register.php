@@ -17,7 +17,8 @@ require 'lib.php';
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Bright Beginnings Family Day Care Centre</title>
+    <title>Sign Up| Childcare Portal</title>
+    <link rel="shortcut icon" href="https://andersonroadchildcare.com.au/wp-content/uploads/2024/07/Anderson-final-favicon-150x150.png" type="image/x-icon" />
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
