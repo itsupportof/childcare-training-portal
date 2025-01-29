@@ -305,7 +305,7 @@ if ($_SESSION['currentSession'] != 1 ) {
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control form-control-user" id="LastName"
-                                           placeholder="Last Name" name="lastname" value="<?php echo $row["last name"]; ?>">
+                                           placeholder="Last Name" name="lastname" value="<?php echo $row["lastname"]; ?>">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -332,8 +332,7 @@ if ($_SESSION['currentSession'] != 1 ) {
                                         <option value="keep">Keep same password</option>
                                         <option value="change">Change password</option>
                                     </select>
-                                    <div>
-                                        <span><b>Currently Selected Category:</b> </span> FDC Compliance                            </div>
+                                
                                 </div>
                             </div>
                             <div class="form-group row">
