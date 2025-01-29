@@ -22,7 +22,7 @@ if(isset($_SESSION['role'])){
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php" style=" background: white; padding-top: 50px !important;">
 
-    <div class="sidebar-brand-text mx-3" ><img src="https://andersonroadchildcare.com.au/wp-content/uploads/2024/08/Final-Excellent-Quality-Anderson-Logo-compressed.png" width="80px;"></div>
+    <div class="sidebar-brand-text mx-3" ><img src="https://andersonroadchildcare.com.au/wp-content/uploads/2024/08/Final-Excellent-Quality-Anderson-Logo-compressed.png"></div>
 </a>
 <div style="padding-top: 30px;background: white;"></div>
 <!-- Divider -->
