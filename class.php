@@ -305,7 +305,7 @@ if ($_SESSION['currentSession'] != 1 ) {
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control form-control-user" id="LastName"
-                                           placeholder="Last Name" name="lastname" value="<?php echo $row["lastname"]; ?>">
+                                           placeholder="Last Name" name="lastname" value="<?php echo $row["last name"]; ?>">
                                 </div>
                             </div>
                             <div class="form-group">
