@@ -30,7 +30,7 @@ if(!isset($_GET['page']) && isset($_SESSION['currentSession'])){
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Bright Beginnings Family Day Care Centre</title>
+    <title>Childcare Portal</title>
     <link rel="shortcut icon" href="https://andersonroadchildcare.com.au/wp-content/uploads/2024/07/Anderson-final-favicon-150x150.png" type="image/x-icon" />
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
