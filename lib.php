@@ -93,7 +93,7 @@ function loginlogic() {
                     $msg = "Log in Success!";
                     // var_dump($_SESSION);
                     // exit(0);
-                    $URL="./portal?page=home";
+                    $URL="./?page=home";
                     echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
                     echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
                 }
