@@ -185,7 +185,7 @@ function getAResetLink() {
     global $pdo;
     if( $_POST['email'] != "") {
         try {
-            $url="https://www.brightbeginningsfdcc.com.au/portal";
+            $url="https://andersonroadchildcare.com.au/andersonportal";
             $query = "select * from `user` where `email`=:username";
             $stmt = $pdo->prepare($query);
             $stmt->bindParam('username', $_POST['email'], PDO::PARAM_STR);

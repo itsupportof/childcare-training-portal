@@ -1458,7 +1458,7 @@ class Resources{
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Link</label>
-                            <input type="text" class="form-control" id="fileTitle" placeholder="https://www.brightbeginningsfdcc.com.au/" name="resource">
+                            <input type="text" class="form-control" id="fileTitle" placeholder="https://andersonroadchildcare.com.au/" name="resource">
                             <small id="emailHelp" class="form-text text-muted">You can add link here</small>
                         </div>
                         <div class="form-group">
@@ -6706,7 +6706,7 @@ class Parents{
 //                 $txt  = '<html><body>';
 //                 $txt .= '<h1 style="font-size:18px;">Hi,</h1>';
 //                 $txt .= '<p style="font-size:18px;">A form have been filled for'.$educatorname.' </p>';
-//                 $txt .= '<a href="https://www.brightbeginningsfdcc.com.au/portal"> <p style="color:#080;font-size:24px;">Click Here to log in to view signed form.</p></a>';
+//                 $txt .= '<a href="https://andersonroadchildcare.com.au/andersonportal"> <p style="color:#080;font-size:24px;">Click Here to log in to view signed form.</p></a>';
 //                 $txt .= '<p style="font-size:18px;">Thanks</p>';
 //                 $txt.= '<p style="font-size:18px;">Bright Beginnings Family Day Care Team</p>';
 //                 $txt .= '</body></html>';

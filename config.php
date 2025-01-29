@@ -7,6 +7,6 @@ try {
     echo "Connection failed : ". $e->getMessage();
 }
     /*** Base URL ***/
-    $url= "https://andersonroadchildcare.com.au/portal/";
+    $url= "https://andersonroadchildcare.com.au/andersonportal/";
 ?>
 

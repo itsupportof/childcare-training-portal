@@ -48,7 +48,7 @@ if ($count2 == 0 || $row3['token'] != $_GET['key']) {
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <style>
         .bg-password-image {
-            background: url(https://www.brightbeginningsfdcc.com.au/portal/img/loginpage.png) !important;
+            background: url(https://andersonroadchildcare.com.au/andersonportal/img/loginpage.png) !important;
             background-position: center;
             background-size: contain !important;
         }
@@ -190,10 +190,10 @@ if ($count2 == 0 || $row3['token'] != $_GET['key']) {
                                 </form>
                                 <hr>
                                 <div class="text-center">
-                                    <a class="small" href="https://www.brightbeginningsfdcc.com.au/portal/register.php">Create an Account!</a>
+                                    <a class="small" href="https://andersonroadchildcare.com.au/andersonportal/register.php">Create an Account!</a>
                                 </div>
                                 <div class="text-center">
-                                    <a class="small" href="https://www.brightbeginningsfdcc.com.au/portal/login.php">Already have an account? Login!</a>
+                                    <a class="small" href="https://andersonroadchildcare.com.au/andersonportal/login.php">Already have an account? Login!</a>
                                 </div>
                                 <div class="text-center">
                                     <a class="small" href="https://brightbeginningsfdcc.com.au/">Go back to Bright Beginnings Website</a>
