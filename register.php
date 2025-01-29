@@ -154,7 +154,7 @@ require 'lib.php';
                 <div class="col-lg-7">
                     <div class="p-5">
                         <div class="text-center">
-                            <div class="sidebar-brand-text mx-3" style="padding: 20px;"><img src="img/bbfdc logo.png" width="150px;"></div>
+                            <div class="sidebar-brand-text mx-3" style="padding: 20px;"><img src="https://andersonroadchildcare.com.au/wp-content/uploads/2024/08/Final-Excellent-Quality-Anderson-Logo-compressed.png" ></div>
                             <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                         </div>
                         <form class="user" id="registrationform" method="post" action="">
