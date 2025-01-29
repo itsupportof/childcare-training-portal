@@ -110,7 +110,7 @@ require 'lib.php';
                                 <div class="p-5">
                                 <form class="user" id="loginform" method="post" action="">
                                         <div class="text-center">
-                                            <div class="sidebar-brand-text mx-3" style="padding: 20px;"><img src="img/bbfdc logo.png" width="150px;"></div>
+                                            <div class="sidebar-brand-text mx-3" style="padding: 20px;"><img src="https://andersonroadchildcare.com.au/wp-content/uploads/2024/08/Final-Excellent-Quality-Anderson-Logo-compressed.png" width="150px;"></div>
 
                                             <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                         </div>
