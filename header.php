@@ -129,7 +129,7 @@ if($role==1){
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForms"
            aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Formss</span>
+            <span>Forms</span>
         </a>
         <div id="collapseForms" class="collapse" aria-labelledby="headingUtilities"
              data-parent="#accordionSidebar">
