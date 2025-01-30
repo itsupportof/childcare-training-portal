@@ -30,6 +30,31 @@ if(isset($_SESSION['role'])){
 
 
 <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#learningSubMenu"
+       aria-expanded="true" aria-controls="collapseUtilities">
+        <i class="fas fa-fw fa-book-open"></i>
+        <span>Learning Hub</span>
+    </a>
+    <div id="learningSubMenu" class="collapse" aria-labelledby="headingUtilities"
+         data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Learning Hub options:</h6>
+            <?php if($role==1 || $role==2 || $role==3){ ?>
+                <a class="collapse-item" href="?page=viewAllResources">View All</a>
+            <?php }
+            if($role==1){
+                ?>
+                <a class="collapse-item" href="?page=addNewHubResource">Add New Hub Resources</a>
+                <a class="collapse-item" href="?page=editHubResource">Update Hub Resources</a>
+                <a class="collapse-item" href="?page=deleteHubResources">Delete Hub Resources</a>
+                <?php
+            }
+            ?>
+        </div>
+    </div>
+</li>
+
+<li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#resourcesSubMenu"
        aria-expanded="true" aria-controls="collapseUtilities">
         <i class="fas fa-fw fa-folder"></i>
