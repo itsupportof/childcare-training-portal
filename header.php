@@ -40,7 +40,7 @@ if(isset($_SESSION['role'])){
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Learning Hub options:</h6>
             <?php if($role==1 || $role==2 || $role==3){ ?>
-                <a class="collapse-item" href="?page=viewAllResources">View All</a>
+                <a class="collapse-item" href="?page=viewAllHubResources">View All Hub Resources</a>
             <?php }
             if($role==1){
                 ?>

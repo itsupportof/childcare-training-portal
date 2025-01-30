@@ -113,7 +113,39 @@ if(!isset($_GET['page']) && isset($_SESSION['currentSession'])){
                     }else{
                         echo '<h1>Unauthorised access</h1>';
                     }
-                }else if($page == 'viewAllResources'){
+                }
+
+                else if($page == 'viewAllHubResources'){
+                    if($role==1 || $role==2){
+                        $hubresources=new HubResources();
+                        $hubresources->viewAllHubResources();
+                    }else{
+                        echo '<h1>Unauthorised access</h1>';
+                    }
+                }else if($page == 'addNewHubResource'){
+                    if($role==1 || $role==2){
+                        $hubresources=new HubResources();
+                        $hubresources->addNewHubResource();
+                    }else{
+                        echo '<h1>Unauthorised access</h1>';
+                    }
+                }else if($page == 'editHubResource'){
+                    if($role==1 || $role==2){
+                        $hubresources=new HubResources();
+                        $hubresources->editHubResource();
+                    }else{
+                        echo '<h1>Unauthorised access</h1>';
+                    }
+                }else if($page == 'deleteHubResources'){
+                    if($role==1 || $role==2){
+                        $hubresources=new HubResources();
+                        $hubresources->deleteHubResources();
+                    }else{
+                        echo '<h1>Unauthorised access</h1>';
+                    }
+                }
+
+                else if($page == 'viewAllResources'){
                     if($role==1 || $role==2 || $role==3){
                         $resources=new Resources();
                         $resources->viewAllResources();

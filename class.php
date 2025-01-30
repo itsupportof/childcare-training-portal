@@ -725,6 +725,1068 @@ if ($_SESSION['currentSession'] != 1 ) {
 
 }
 
+/*****************************************
+ * Learning HubResources Class
+ * ****************************************
+ */
+class HubResources{
+    ///////////////////////////////////////////
+    //////////View All Resources//////////////
+    /////////////////////////////////////////
+    public function viewAllResources(){
+        $row=getAllResources();
+        $currentRole=$_SESSION['role'];
+        //var_dump($row);
+        $resCount=count($row);
+        ?>
+        <!-- Page Heading -->
+        <style>
+            label{
+                padding: 20px;
+                background: #fff;
+                color: #999;
+                border-bottom: 2px solid #f0f0f0;
+            }
+        </style>
+        <h1 class="h3 mb-4 text-gray-800" style="text-align: center !important;">Resources</h1>
+        <?php if($resCount==0){
+
+            ?>
+            <div class="card mb-4 py-3 border-left-danger" style="padding-top:0px !important;padding-bottom:0px !important; ">
+                <div class="card-body" id="msg">
+                    Resources are not available!
+                </div>
+            </div>
+            <?php
+        }else{
+
+
+        $cat1=$cat2=$cat3=$cat4=$cat5=$cat6=$cat7=$cat8=$cat9=$cat10=$cat11=$cat12=$cat13='';
+        //echo "<pre>";
+        //print_r($row);
+        //echo "</pre>";
+        for ($i=0; $i <$resCount ; $i++) {
+
+            $resourcePolicy=$row[$i]["role"];
+
+            $currentCat=$row[$i]["category"];
+            //echo $row[$i]['category'];
+            //echo $currentCat;
+            if($currentRole==$resourcePolicy || $resourcePolicy=='23' || $currentRole=='1'){
+
+                if($row[$i]["type"]=="link"){
+
+                    $link=linkGeneration($row[$i]["title"],$row[$i]["source"]);
+                    if( strcmp($currentCat, "FDC Compliance") == 0) {
+                        $cat1 = $cat1 . $link;
+                    } elseif(strcmp($currentCat, "Frameworks") == 0) {
+                        $cat2 = $cat2 . $link;
+                    }elseif(strcmp($currentCat, "Newsletters") == 0) {
+                        $cat3 = $cat3 . $link;
+                    }elseif(strcmp($currentCat, "Fact Sheets") == 0) {
+                        $cat4 = $cat4 . $link;
+                    }elseif(strcmp($currentCat, "FDC Insurance") == 0) {
+                        $cat5 = $cat5 . $link;
+                    }elseif(strcmp($currentCat, "Child Safe Standards") == 0) {
+                        $cat6 = $cat6 . $link;
+                    }elseif(strcmp($currentCat, "Online Safety") == 0) {
+                        $cat7 = $cat7 . $link;
+                    }elseif(strcmp($currentCat, "Educator Resources") == 0 || strcmp($currentCat, "General and Legal Forms") == 0) {
+                        $cat8 = $cat8 . $link;
+                    }elseif(strcmp($currentCat, "Educational Resources") == 0) {
+                        $cat9 = $cat9 . $link;
+                    }elseif(strcmp($currentCat, "COVID-19") == 0) {
+                        $cat10 = $cat10 . $link;
+                    }elseif(strcmp($currentCat, "Resources in other languages") == 0) {
+                        $cat11 = $cat11 . $link;
+                    }elseif(strcmp($currentCat, "Reportable Conduct Scheme") == 0) {
+                        $cat12 = $cat12 . $link;
+                    }elseif(strcmp($currentCat, "Safety Data") == 0) {
+                        $cat13 = $cat13 . $link;
+                    }
+
+                } else{
+                    $file=fileGeneration($row[$i]["title"],$row[$i]["version"],$row[$i]["source"],$row[$i]["category"]);
+                    if(strcmp($currentCat, "FDC Compliance") == 0) {
+                        $cat1 = $cat1 . $file;
+                    } elseif(strcmp($currentCat, "Frameworks") == 0) {
+                        $cat2 = $cat2 . $file;
+                    }elseif(strcmp($currentCat, "Newsletters") == 0) {
+                        $cat3 = $cat3 . $file;
+                    }elseif(strcmp($currentCat, "Fact Sheets") == 0) {
+                        $cat4 = $cat4 . $file;
+                    }elseif(strcmp($currentCat, "FDC Insurance") == 0) {
+                        $cat5 = $cat5 . $file;
+                    }elseif(strcmp($currentCat, "Child Safe Standards") == 0) {
+                        $cat6 = $cat6 . $file;
+                    }elseif(strcmp($currentCat, "Online Safety") == 0) {
+                        $cat7 = $cat7 . $file;
+                    }elseif(strcmp($currentCat, "Educator Resources") == 0 || strcmp($currentCat, "General and Legal Forms") == 0) {
+                        $cat8 = $cat8 . $file;
+                    }elseif(strcmp($currentCat, "Educational Resources") == 0) {
+                        $cat9 = $cat9 . $file;
+                    }elseif(strcmp($currentCat, "COVID-19") == 0) {
+                        $cat10 = $cat10 . $file;
+                    }elseif(strcmp($currentCat, "Resources in other languages") == 0) {
+                        $cat11 = $cat11 . $file;
+                    }elseif(strcmp($currentCat, "Reportable Conduct Scheme") == 0) {
+                        $cat12 = $cat12 . $file;
+                    }elseif(strcmp($currentCat, "Safety Data") == 0) {
+                        $cat13 = $cat13 . $file;
+                    }
+                }
+
+            }
+
+        }
+        ?>
+
+        
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+        <div class="container-fluid mt-5" id="tabsforpc">
+            <div class="row">
+                <div class="col-md-12 ml-auto col-xl-12 mr-auto" >
+                    <!-- Nav tabs -->
+                    <div class="card">
+                        <div class="card-header navbar navbar-expand-lg navbar-light bg-light" style="background: linear-gradient(to right,#ff5e62,#ff9966) !important;">
+                            <ul class="nav nav-tabs justify-content-center" role="tablist" >
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#atab1" role="tab" style="color: white !important;">
+                                        <i class="fa fa-briefcase"></i> FDC Compliance
+                                    </a>
+                                </li>
+                                <li class="nav-item" >
+                                    <a class="nav-link" data-toggle="tab" href="#atab2" role="tab" style="color: white !important;">
+                                        <i class="fa fa-archive"></i> Frameworks
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#atab9" role="tab" style="color: white !important;">
+                                        <i class="fa fa-book"></i> Educational Resources
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#atab3" role="tab" style="color: white !important;">
+                                        <i class="fa fa-envelope-open"></i> Newsletters
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#atab4" role="tab" style="color: white !important;">
+                                        <i class="fa fa-window-maximize"></i> Fact Sheets
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#atab5" role="tab" style="color: white !important;">
+                                        <i class="fa fa-sticky-note"></i> FDC Insurance
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#atab6" role="tab" style="color: white !important;">
+                                        <i class="fa fa-child"></i> Child Safe Standards
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#atab12" role="tab" style="color: white !important;">
+                                        <i class="fa fa-info-circle"></i> Reportable Conduct Scheme
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#atab7" role="tab" style="color: white !important;">
+                                        <i class="fa fa-globe"></i> Online Safety
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#atab8" role="tab" style="color: white !important;">
+                                        <i class="fa fa-window-restore"></i> General and Legal Forms
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#atab10" role="tab" style="color: white !important;">
+                                        <i class="fa fa-puzzle-piece"></i> COVID-19
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#atab11" role="tab" style="color: white !important;">
+                                        <i class="fa fa-american-sign-language-interpreting"></i> Resources in other languages
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#atab13" role="tab" style="color: white !important;">
+                                        <i class="fa fa-fire-extinguisher"></i> Safety Data
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </div>
+
+                        <div class="card-body" style="background: linear-gradient(to right,#ff5e62,#ff9966) !important;">
+                            <!-- Tab panes -->
+                            <div class="tab-content text-center">
+                                <div class="tab-pane active" id="atab1" role="tabpanel">
+                                    <h3 style="color: white !important;">FDC Compliance</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat1)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat1;
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab2" role="tabpanel">
+                                    <h3 style="color: white !important;">Frameworks</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat2)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat2;
+                                        }?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab9" role="tabpanel">
+                                    <h3 style="color: white !important;">Educational Resources</h3>
+                                    <div class="row">
+                                        <?php
+                                        if(empty($cat9)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat9;
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab3" role="tabpanel">
+                                    <h3 style="color: white !important;">Newsletters</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat3)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat3;
+                                        }?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab4" role="tabpanel">
+                                    <h3 style="color: white !important;">Fact Sheets</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat4)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat4;
+                                        }?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab5" role="tabpanel">
+                                    <h3 style="color: white !important;">FDC Insurance</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat5)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat5;
+                                        }?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab6" role="tabpanel">
+                                    <h3 style="color: white !important;">Child Safe Standards</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat6)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat6;
+                                        }?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab12" role="tabpanel">
+                                    <h3 style="color: white !important;">Reportable Conduct Scheme</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat12)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat12;
+                                        }?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab7" role="tabpanel">
+                                    <h3 style="color: white !important;">Online Safety</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat7)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat7;
+                                        }?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab8" role="tabpanel">
+                                    <h3 style="color: white !important;">General and Legal Forms</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat8)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat8;
+                                        }?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab10" role="tabpanel">
+                                    <h3 style="color: white !important;">COVID-19</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat10)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat10;
+                                        }?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab11" role="tabpanel">
+                                    <h3 style="color: white !important;">Resources in other languages</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat11)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat11;
+                                        }?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab13" role="tabpanel">
+                                    <h3 style="color: white !important;">Resources in other languages</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat13)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat13;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="accordion_two_section ptb-100" id="accordinforphones">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 accordionTwo">
+                        <div class="panel-group" id="accordionTwoLeft">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftone" aria-expanded="false" class="collapsed">
+                                            FDC Compliance
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwoLeftone" class="panel-collapse collapse" aria-expanded="false" role="tablist" style="height: 0px;">
+                                    <div class="panel-body">
+                                        <?php if(empty($cat1)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat1;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftTwo" aria-expanded="false">
+                                            Frameworks
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwoLeftTwo" class="panel-collapse collapse" aria-expanded="false" role="tablist">
+                                    <div class="panel-body">
+                                        <?php if(empty($cat2)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat2;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseER" aria-expanded="false">
+                                            Educational Resources
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseER" class="panel-collapse collapse" aria-expanded="false" role="tablist">
+                                    <div class="panel-body">
+                                        <?php
+                                        if(empty($cat9)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat9;
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseNS" aria-expanded="false">
+                                            Newsletters
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseNS" class="panel-collapse collapse" aria-expanded="false" role="tablist">
+                                    <div class="panel-body">
+                                        <?php if(empty($cat3)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat3;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseFS" aria-expanded="false">
+                                            Fact Sheets
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseFS" class="panel-collapse collapse" aria-expanded="false" role="tablist">
+                                    <div class="panel-body">
+                                        <?php if(empty($cat4)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat4;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoRightone" aria-expanded="false">
+                                            FDC Insurance
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwoRightone" class="panel-collapse collapse" aria-expanded="false" role="tablist">
+                                    <div class="panel-body">
+                                        <?php if(empty($cat5)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat5;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                        </div>
+                        <!--end of /.panel-group-->
+                    </div>
+                    <!--end of /.col-sm-6-->
+                    <div class="col-sm-6 accordionTwo">
+                        <div class="panel-group" id="accordionTwoRight">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoRight" href="#collapseTwoRightTwo" aria-expanded="false">
+                                            Child Safe Standards
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwoRightTwo" class="panel-collapse collapse" aria-expanded="false" role="tablist">
+                                    <div class="panel-body">
+                                        <?php if(empty($cat6)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat6;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoRight" href="#collapseRCS" aria-expanded="false">
+                                            Reportable Conduct Scheme
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div  id="collapseRCS" class="panel-collapse collapse in" aria-expanded="false" role="tablist">
+                                    <div class="panel-body">
+                                        <?php if(empty($cat12)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat12;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed"  data-toggle="collapse" data-parent="#accordionTwoRight" href="#collapseOS" aria-expanded="false">
+                                            Online Safety
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOS" class="panel-collapse collapse in" aria-expanded="false" role="tablist">
+                                    <div class="panel-body">
+                                        <?php if(empty($cat7)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat7;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoRight" href="#collapseEduR" aria-expanded="false">
+                                            Educator Resources
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseEduR" class="panel-collapse collapse in" aria-expanded="false" role="tablist">
+                                    <div class="panel-body">
+                                        <?php if(empty($cat8)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat8;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoRight" href="#collapseroil" aria-expanded="false">
+                                            COVID-19
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapsecovid" class="panel-collapse collapse in" aria-expanded="false" role="tablist">
+                                    <div class="panel-body">
+                                        <?php if(empty($cat10)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat10;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoRight" href="#collapseroil" aria-expanded="false">
+                                            Resources in other languages
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseroil" class="panel-collapse collapse in" aria-expanded="false" role="tablist">
+                                    <div class="panel-body">
+                                        <?php if(empty($cat11)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat11;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                        </div>
+                        <!--end of /.panel-group-->
+                    </div>
+                    <!--end of /.col-sm-6-->
+                </div>
+            </div>
+            <!--end of /.container-->
+        </section>
+
+
+        <?php
+        }
+    }
+
+    ///////////////////////////////////////////
+    //////////Read Resources//////////////
+    /////////////////////////////////////////
+    public function readResource(){
+        if (isset($_GET['source'])=='home'){
+            echo '<a href="?page=home" class="btn btn-secondary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </span>
+                                        <span class="text">Go back</span>
+                                    </a>';
+        }
+        ?>
+        <style>
+            @media only screen and (max-width: 480px) {
+                .containerIframe {
+                //position: relative !important;
+                    overflow: hidden !important;
+                    width: 100% !important;
+                    padding-top: 56.25% !important; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+                }
+
+                /* Then style the iframe to fit in the container div with full height and width */
+                .responsive-iframe {
+                    position: absolute !important;
+                    top: 0 !important;
+                    left: 0 !important;
+                    bottom: 0 !important;
+                    right: 0 !important;
+                    width: 100% !important;
+                    height: 100% !important;
+                }
+            }
+            .responsive-iframe{
+                height: 1000px;
+                width: 1200px;
+            }
+        </style>
+        <p>
+        <div class="containerIframe">
+            <iframe class="responsive-iframe" style="" src="books/index.php?location=<?php echo trim($_GET['res'])?>&amp;res=ARCCC" seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true"></iframe>
+        </div>
+        </p>
+        <?php
+    }
+    ///////////////////////////////////////////
+    ///////////Add new Resources//////////////
+    /////////////////////////////////////////
+    public function addNewResource(){
+    ?>
+        <?php if(isset($_GET['message'])){?>
+            <div class="card mb-4 py-3 border-left-success" style="padding-top:0px !important;padding-bottom:0px !important; ">
+                <div class="card-body" id="msg">
+                    New Resource is added successfully!
+                </div>
+            </div>
+        <?php }
+        ?>
+        <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800" style="text-align: center; padding-top: 30px;">Add New Resources</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="jumbotron bg-gray-200 border-bottom-success">
+                    <h3 class="display-6">Upload File</h3>
+                    <form id="addFile" action="lib.php" method="post" enctype="multipart/form-data">
+                        <input type="text" class="form-control" name="page" value="addNewResource" style="display:none;">
+                        <input type="text" class="form-control" name="type" value="file" style="display:none;">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" style="display: inline-block;
+    margin-bottom: 0.5rem;box-sizing: border-box;">Resource Title</label>
+                            <input type="text" class="form-control" id="fileTitle" placeholder="Enter title" name="resTitle">
+                            <small id="emailHelp" class="form-text text-muted">This title will be shown to all of the users</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Version</label>
+                            <input type="text" class="form-control" id="fileTitle" placeholder="Enter Version e.g. v1.0, v2.1" name="version">
+                        </div>
+
+                        <div class="form-group">
+
+                            <select name="category" class="dropdown mb-4 btn btn-primary dropdown-toggle">
+
+                                <option>Select the Category</option>
+                                <option value="FDC Compliance">FDC Compliance</option>
+                                <option value="Frameworks">Frameworks</option>
+                                <option value="Educational Resources">Educational Resources</option>
+                                <option value="Safety Data">Safety Data</option>
+                                <option value="Newsletters">Newsletters</option>
+                                <option value="Fact Sheets">Fact Sheets</option>
+                                <option value="FDC Insurance">FDC Insurance</option>
+                                <option value="Child Safe Standards">Child Safe Standards</option>
+                                <option value="Reportable Conduct Scheme">Reportable Conduct Scheme</option>
+                                <option value="Online Safety">Online Safety</option>
+                                <option value="General and Legal Forms">General and Legal Forms</option>
+                                <option value="COVID-19">COVID-19</option>
+                                <option value="Resources in other languages">Resources in other languages</option>
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <select name="addResourceRole" class="dropdown mb-4 btn btn-primary dropdown-toggle">
+
+                                <option>Who can view the resource?</option>
+                                <option value="2">Educator only</option>
+                                <option value="3">Parents only</option>
+                                <option value="23">Both</option>
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Upload Resource</label>
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="resource">
+                            <small id="emailHelp" class="form-text text-muted">Make sure to upload only PDF file. System will not accpet any file other than .pdf</small>
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-success mb-2 btn-lg" class=".bg-gradient-success">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="jumbotron bg-gray-200 border-bottom-success">
+                    <h3 class="display-6">Add Resource Link</h3>
+                    <form id="addResource" action="lib.php" method="post">
+                        <input type="text" class="form-control" name="page" value="addNewResource" style="display:none;">
+                        <input type="text" class="form-control" name="type" value="link" style="display:none;">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Resource Title</label>
+                            <input type="text" class="form-control" placeholder="Enter title" name="resTitle">
+                            <small id="emailHelp" class="form-text text-muted">e.g. article,news, blog post etc. This type will be shown to all of the users</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Link</label>
+                            <input type="text" class="form-control" id="fileTitle" placeholder="https://andersonroadchildcare.com.au/" name="resource">
+                            <small id="emailHelp" class="form-text text-muted">You can add link here</small>
+                        </div>
+                        <div class="form-group">
+
+                            <select name="category" class="dropdown mb-4 btn btn-primary dropdown-toggle">
+
+                                <option>Select the Category</option>
+                                <option value="FDC Compliance">FDC Compliance</option>
+                                <option value="Frameworks">Frameworks</option>
+                                <option value="Educational Resources">Educational Resources</option>
+                                <option value="Safety Data">Safety Data</option>
+                                <option value="Newsletters">Newsletters</option>
+                                <option value="Fact Sheets">Fact Sheets</option>
+                                <option value="FDC Insurance">FDC Insurance</option>
+                                <option value="Child Safe Standards">Child Safe Standards</option>
+                                <option value="Reportable Conduct Scheme">Reportable Conduct Scheme</option>
+                                <option value="Online Safety">Online Safety</option>
+                                <option value="General and Legal Forms">General and Legal Forms</option>
+                                <option value="COVID-19">COVID-19</option>
+                                <option value="Resources in other languages">Resources in other languages</option>
+                            </select>
+
+                        </div>
+                        <div class="form-group">
+
+                            <select name="addResourceRole" class="dropdown mb-4 btn btn-primary dropdown-toggle">
+
+                                <option>Who can view the resource?</option>
+                                <option value="2">Educator only</option>
+                                <option value="3">Parents only</option>
+                                <option value="23">Both</option>
+                            </select>
+
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-success mb-2 btn-lg" class=".bg-gradient-success
+">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+<?php
+    }
+    ///////////////////////////////////////////
+    //////////Edit or delete resources //////////////
+    /////////////////////////////////////////
+    public function editordeleteResource(){
+    global $pdo;
+        try {
+            $query = "SELECT * FROM `Resources` ORDER BY `Resources`.`rid` DESC";
+            $stmt = $pdo->prepare($query);
+            $stmt->execute();
+            $row   = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $resCount=count($row);
+            //var_dump($row);
+        } catch (PDOException $e) {
+            echo "Error : ".$e->getMessage();
+        }
+if(isset($_GET['status']) && $_GET['status']=="deleted"){?>
+    <div class="card mb-4 py-3 border-left-danger" style="padding-top:0px !important;padding-bottom:0px !important; ">
+        <div class="card-body" id="msg">
+            Resource is deleted!
+        </div>
+    </div>
+<?php }elseif(isset($_GET['status'])&& $_GET['status']=="edited"){?>
+            <div class="card mb-4 py-3 border-left-success" style="padding-top:0px !important;padding-bottom:0px !important; ">
+                <div class="card-body" id="msg">
+                    Resource is edited successfully!
+                </div>
+            </div>
+        <?php }
+?>
+<h1 class="h3 mb-4 text-gray-800" style="text-align: center; padding-top: 30px;">Change Resources</h1>
+
+<!-- Page Heading -->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">You can edit,update and delete resources through this panel</h6>
+            </div>
+            <div class="card-body border-bottom-success">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th style="">Id</th>
+                            <th>Type</th>
+                            <th>Title</th>
+                            <th>Version</th>
+                            <th>Category</th>
+                            <th>Permission</th>
+                            <th>File Name/Link</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th style="">Id</th>
+                            <th>Type</th>
+                            <th>Title</th>
+                            <th>Version</th>
+                            <th>Category</th>
+                            <th>Permission</th>
+                            <th>File Name/Link</th>
+                            <th>Action</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+ <?php
+                        for ($i=0; $i <$resCount ; $i++) {
+                            ?>
+                            <tr>
+                                <td style=""><?php echo $row[$i]["rid"];?></td>
+                                <td><?php echo $row[$i]["type"];?></td>
+                                <td><?php echo $row[$i]["title"];?></td>
+                                <td><?php echo $row[$i]["version"];?></td>
+                                <td><?php echo $row[$i]["category"];?></td>
+                                <td>
+                                    <?php if($row[$i]["role"]==2){
+                                        echo 'Educator';
+                                    }elseif ($row[$i]["role"]==3){
+                                        echo 'Parent';
+                                    }elseif ($row[$i]["role"]==23){
+                                        echo 'Educators and parents';
+                                    }else{
+                                        echo 'role not assigned yet';
+                                    }?>
+
+                                </td>
+                                <td><?php echo $row[$i]["source"];?></td>
+                                <td>
+                                    <!--look in lib file for implementation of if isset($_GET['action']=='editResouce'){}-->
+                                    <a href="?page=editingResource&id=<?php echo $row[$i]["rid"];?>" class="btn btn-primary btn-circle btn-md">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+
+                                    <a href="javascript:void(0);" onclick="confirmDelete(<?php echo $row[$i]['rid']; ?>)" class="btn btn-danger btn-circle btn-md">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php }?>
+
+                        </tbody>
+                    </table>
+                    <script>
+                        function confirmDelete(sourceID) {
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                text: "You won't be able to revert this!",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#d33',
+                                cancelButtonColor: '#3085d6',
+                                confirmButtonText: 'Yes, delete it!'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    // Redirect to the deletion URL
+                                    window.location.href = `?page=deleteAResource&id=${sourceID}`;
+                                }
+                            });
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+        <?php
+
+    }
+    ///////////////////////////////////
+    /// edit a resouce///////////
+    /// ///////////////////////////
+    function editAResource(){
+        global $pdo;
+        if(isset($_GET['message'])){?>
+            <div class="card mb-4 py-3 border-left-success" style="padding-top:0px !important;padding-bottom:0px !important; ">
+                <div class="card-body" id="msg">
+                    Resource is edited successfully!
+                </div>
+            </div>
+        <?php }
+
+        $resId=$_GET['id'];
+        try {
+            $query = "select * from `Resources` where `rid`=:Id";
+            $stmt = $pdo->prepare($query);
+            $stmt->bindParam('Id', $resId, PDO::PARAM_STR);
+            $stmt->execute();
+            $row   = $stmt->fetch(PDO::FETCH_ASSOC);
+            //var_dump($row);
+        } catch (PDOException $e) {
+            echo "Error : ".$e->getMessage();
+        }
+        ?>
+        <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#keepIt').click(function(e) {
+                    $("#keepIt").css('display','none');
+                    $("#deleteNowRes").css('display','none');
+                    $("#keepItButtons").append('<p id="keepItText">Your current file will be kept. If you want to change then <span id="clickButton" onClick="ButtonClick()" style="color:blue;cursor:pointer;">click here</span></p>');
+                });
+                $('#deleteNowRes').click(function(e) {
+                    $("#fileChange").attr('value', '1');
+                    $("#uploadResource").css('display','block');
+                    $("#keepIt").css('display','none');
+                    $("#deleteNowRes").css('display','none');
+                    $("#keepItButtons").append('<p id="getMyResBack">Change of mind, Want resource back? <span id="getMyResBackBut" onClick="getMyResBack()" style="color:blue;cursor:pointer;">click here</span></p>');
+
+                });
+            });
+            function ButtonClick(){
+                $("#fileChange").attr('value', '1');
+                $('#keepItText').remove();
+                $("#getMyResBack").remove();
+                $("#uploadResource").css('display','block');
+                $("#keepItButtons").append('<p id="getMyResBack">Change of mind, Want resource back? <span id="getMyResBackBut" onClick="getMyResBack()" style="color:blue;cursor:pointer;">click here</span></p>');
+            }
+            function getMyResBack(){
+                $("#fileChange").attr('value', '0');
+                $('#getMyResBack').css('display','none');
+                $("#uploadResource").css('display','none');
+                $("keepItText").remove();
+                $("#keepItButtons").append('<p id="keepItText">Your current file will be kept. If you want to change then <span id="clickButton" onClick="ButtonClick()" style="color:blue;cursor:pointer;">click here</span></p>');
+            }
+        </script>
+        <h1 class="h3 mb-4 text-gray-800" style="text-align: center; padding-top: 30px;">Edit Resource</h1>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="jumbotron bg-gray-200 border-bottom-success">
+                    <h3 class="display-6" style="font-size:18px !important;"><span style="color:red;">Caution:</span> <p style="font-size:16px !important;">Any change made on file will result in permanent deletion.Also, System will keep current resoruce if you will not choose any of the file options.</p></h3>
+                    <form id="addFile" action="lib.php" method="post" enctype="multipart/form-data">
+                        <input type="text" class="form-control" name="page" value="updateResource" style="display:none;">
+                        <input type="text" class="form-control" name="id" value="<?php echo $row["rid"];?>" style="display:none;">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Resource Title</label>
+                            <input type="text" class="form-control" id="fileTitle" placeholder="Enter title" name="resTitle" value="<?php echo $row["title"];?>">
+                            <small id="emailHelp" class="form-text text-muted">This title will be shown to all of the users</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Version</label>
+                            <input type="text" class="form-control" id="fileTitle" placeholder="Enter Version e.g. v1.0, v2.1" name="version" value="<?php echo $row["version"];?>">
+                        </div>
+
+                        <div class="form-group">
+
+                            <select name="category" class="dropdown mb-4 btn btn-primary dropdown-toggle">
+
+                                <option>Select the Category</option>
+                                <option value="FDC Compliance">FDC Compliance</option>
+                                <option value="Frameworks">Frameworks</option>
+                                <option value="Educational Resources">Educational Resources</option>
+                                <option value="Safety Data">Safety Data</option>
+                                <option value="Newsletters">Newsletters</option>
+                                <option value="Fact Sheets">Fact Sheets</option>
+                                <option value="FDC Insurance">FDC Insurance</option>
+                                <option value="Child Safe Standards">Child Safe Standards</option>
+                                <option value="Reportable Conduct Scheme">Reportable Conduct Scheme</option>
+                                <option value="Online Safety">Online Safety</option>
+                                <option value="General and Legal Forms">General and Legal Forms</option>
+                                <option value="COVID-19">COVID-19</option>
+                                <option value="Resources in other languages">Resources in other languages</option>
+                            </select>
+                            <div>
+                                <?php echo "<span><b>Currently Selected Category:</b> </span> ".$row["category"];?>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <select name="addResourceRole" class="dropdown mb-4 btn btn-primary dropdown-toggle">
+
+                                <option>Who can view the resource?</option>
+                                <option value="2">Educator only</option>
+                                <option value="3">Parents only</option>
+                                <option value="23">Both</option>
+                            </select>
+                            <div>
+                            <?php echo "<span><b>Currently Selected Role:</b> </span> ";
+                            if($row["role"]==2){
+                                echo 'Educator';
+                            }elseif ($row["role"]==3){
+                                echo 'Parent';
+                            }elseif ($row["role"]==23){
+                                echo 'Educators and parents';
+                            }else{
+                                echo 'role not assigned yet';
+                            }?>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="keepItButtons">
+                            <div class="btn btn-success btn-icon-split" id="keepIt">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-check"></i>
+                                            </span>
+                                <span class="text">Keep Current Resource</span>
+                            </div>
+                            <div class="btn btn-danger btn-icon-split" id="deleteNowRes">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                <span class="text">Add New Resource Instead</span>
+                            </div>
+                        </div>
+
+                        <input type="text" class="form-control-file" id="fileChange" name="fileChanged" value="0" style="display:none;">
+                        <div class="form-group" id="keepResource" style=" display:none;">
+                            <input type="text" class="form-control-file" id="exampleFormControlFile1" name="keepResource" value="<?php echo $row["source"];?>">
+                        </div>
+                        <div class="form-group" id="uploadResource" style="display:none;">
+                            <label for="exampleFormControlFile1">Upload Resource</label>
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="resource">
+                            <small id="emailHelp" class="form-text text-muted">Make sure to upload only PDF file. System will not accpet any file other than .pdf</small>
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-success mb-2 btn-lg" class=".bg-gradient-success">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <?php
+    }
 
 /*****************************************
  * Resources Class
