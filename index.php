@@ -113,10 +113,10 @@ if(!isset($_GET['page']) && isset($_SESSION['currentSession'])){
                     }else{
                         echo '<h1>Unauthorised access</h1>';
                     }
-                }else if($page == 'viewAllResources'){
+                }else if($page == 'viewAllHubResources'){
                     if($role==1 || $role==2 || $role==3){
-                        $resources=new Resources();
-                        $resources->viewAllResources();
+                        $hubresources=new LearningHubResources();
+                        $hubresources->viewAllHubResources();
                     }else{
                         echo '<h1>Unauthorised access</h1>';
                     }
