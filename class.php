@@ -747,13 +747,13 @@ class LearningHubResources{
                 border-bottom: 2px solid #f0f0f0;
             }
         </style>
-        <h1 class="h3 mb-4 text-gray-800" style="text-align: center !important;"><i class="fa fa-book"></i> Learning Hub</h1>
+        <h1 class="h3 mb-4 text-gray-800" style="text-align: center !important;">Resources</h1>
         <?php if($resCount==0){
 
             ?>
             <div class="card mb-4 py-3 border-left-danger" style="padding-top:0px !important;padding-bottom:0px !important; ">
                 <div class="card-body" id="msg">
-                Learning Hub Resources are not available!
+                    Resources are not available!
                 </div>
             </div>
             <?php
@@ -1318,7 +1318,510 @@ class LearningHubResources{
         <?php
         }
     }
+
+    ///////////////////////////////////////////
+    //////////Read Resources//////////////
+    /////////////////////////////////////////
+    public function readResource(){
+        if (isset($_GET['source'])=='home'){
+            echo '<a href="?page=home" class="btn btn-secondary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </span>
+                                        <span class="text">Go back</span>
+                                    </a>';
+        }
+        ?>
+        <style>
+            @media only screen and (max-width: 480px) {
+                .containerIframe {
+                //position: relative !important;
+                    overflow: hidden !important;
+                    width: 100% !important;
+                    padding-top: 56.25% !important; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+                }
+
+                /* Then style the iframe to fit in the container div with full height and width */
+                .responsive-iframe {
+                    position: absolute !important;
+                    top: 0 !important;
+                    left: 0 !important;
+                    bottom: 0 !important;
+                    right: 0 !important;
+                    width: 100% !important;
+                    height: 100% !important;
+                }
+            }
+            .responsive-iframe{
+                height: 1000px;
+                width: 1200px;
+            }
+        </style>
+        <p>
+        <div class="containerIframe">
+            <iframe class="responsive-iframe" style="" src="books/index.php?location=<?php echo trim($_GET['res'])?>&amp;res=ARCCC" seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true"></iframe>
+        </div>
+        </p>
+        <?php
+    }
+    ///////////////////////////////////////////
+    ///////////Add new Resources//////////////
+    /////////////////////////////////////////
+    public function addNewResource(){
+    ?>
+        <?php if(isset($_GET['message'])){?>
+            <div class="card mb-4 py-3 border-left-success" style="padding-top:0px !important;padding-bottom:0px !important; ">
+                <div class="card-body" id="msg">
+                    New Resource is added successfully!
+                </div>
+            </div>
+        <?php }
+        ?>
+        <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800" style="text-align: center; padding-top: 30px;">Add New Resources</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="jumbotron bg-gray-200 border-bottom-success">
+                    <h3 class="display-6">Upload File</h3>
+                    <form id="addFile" action="lib.php" method="post" enctype="multipart/form-data">
+                        <input type="text" class="form-control" name="page" value="addNewResource" style="display:none;">
+                        <input type="text" class="form-control" name="type" value="file" style="display:none;">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" style="display: inline-block;
+    margin-bottom: 0.5rem;box-sizing: border-box;">Resource Title</label>
+                            <input type="text" class="form-control" id="fileTitle" placeholder="Enter title" name="resTitle">
+                            <small id="emailHelp" class="form-text text-muted">This title will be shown to all of the users</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Version</label>
+                            <input type="text" class="form-control" id="fileTitle" placeholder="Enter Version e.g. v1.0, v2.1" name="version">
+                        </div>
+
+                        <div class="form-group">
+
+                            <select name="category" class="dropdown mb-4 btn btn-primary dropdown-toggle">
+
+                                <option>Select the Category</option>
+                                <option value="FDC Compliance">FDC Compliance</option>
+                                <option value="Frameworks">Frameworks</option>
+                                <option value="Educational Resources">Educational Resources</option>
+                                <option value="Safety Data">Safety Data</option>
+                                <option value="Newsletters">Newsletters</option>
+                                <option value="Fact Sheets">Fact Sheets</option>
+                                <option value="FDC Insurance">FDC Insurance</option>
+                                <option value="Child Safe Standards">Child Safe Standards</option>
+                                <option value="Reportable Conduct Scheme">Reportable Conduct Scheme</option>
+                                <option value="Online Safety">Online Safety</option>
+                                <option value="General and Legal Forms">General and Legal Forms</option>
+                                <option value="COVID-19">COVID-19</option>
+                                <option value="Resources in other languages">Resources in other languages</option>
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <select name="addResourceRole" class="dropdown mb-4 btn btn-primary dropdown-toggle">
+
+                                <option>Who can view the resource?</option>
+                                <option value="2">Educator only</option>
+                                <option value="3">Parents only</option>
+                                <option value="23">Both</option>
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Upload Resource</label>
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="resource">
+                            <small id="emailHelp" class="form-text text-muted">Make sure to upload only PDF file. System will not accpet any file other than .pdf</small>
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-success mb-2 btn-lg" class=".bg-gradient-success">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="jumbotron bg-gray-200 border-bottom-success">
+                    <h3 class="display-6">Add Resource Link</h3>
+                    <form id="addResource" action="lib.php" method="post">
+                        <input type="text" class="form-control" name="page" value="addNewResource" style="display:none;">
+                        <input type="text" class="form-control" name="type" value="link" style="display:none;">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Resource Title</label>
+                            <input type="text" class="form-control" placeholder="Enter title" name="resTitle">
+                            <small id="emailHelp" class="form-text text-muted">e.g. article,news, blog post etc. This type will be shown to all of the users</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Link</label>
+                            <input type="text" class="form-control" id="fileTitle" placeholder="https://andersonroadchildcare.com.au/" name="resource">
+                            <small id="emailHelp" class="form-text text-muted">You can add link here</small>
+                        </div>
+                        <div class="form-group">
+
+                            <select name="category" class="dropdown mb-4 btn btn-primary dropdown-toggle">
+
+                                <option>Select the Category</option>
+                                <option value="FDC Compliance">FDC Compliance</option>
+                                <option value="Frameworks">Frameworks</option>
+                                <option value="Educational Resources">Educational Resources</option>
+                                <option value="Safety Data">Safety Data</option>
+                                <option value="Newsletters">Newsletters</option>
+                                <option value="Fact Sheets">Fact Sheets</option>
+                                <option value="FDC Insurance">FDC Insurance</option>
+                                <option value="Child Safe Standards">Child Safe Standards</option>
+                                <option value="Reportable Conduct Scheme">Reportable Conduct Scheme</option>
+                                <option value="Online Safety">Online Safety</option>
+                                <option value="General and Legal Forms">General and Legal Forms</option>
+                                <option value="COVID-19">COVID-19</option>
+                                <option value="Resources in other languages">Resources in other languages</option>
+                            </select>
+
+                        </div>
+                        <div class="form-group">
+
+                            <select name="addResourceRole" class="dropdown mb-4 btn btn-primary dropdown-toggle">
+
+                                <option>Who can view the resource?</option>
+                                <option value="2">Educator only</option>
+                                <option value="3">Parents only</option>
+                                <option value="23">Both</option>
+                            </select>
+
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-success mb-2 btn-lg" class=".bg-gradient-success
+">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+<?php
+    }
+    ///////////////////////////////////////////
+    //////////Edit or delete resources //////////////
+    /////////////////////////////////////////
+    public function editordeleteResource(){
+    global $pdo;
+        try {
+            $query = "SELECT * FROM `Resources` ORDER BY `Resources`.`rid` DESC";
+            $stmt = $pdo->prepare($query);
+            $stmt->execute();
+            $row   = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $resCount=count($row);
+            //var_dump($row);
+        } catch (PDOException $e) {
+            echo "Error : ".$e->getMessage();
+        }
+if(isset($_GET['status']) && $_GET['status']=="deleted"){?>
+    <div class="card mb-4 py-3 border-left-danger" style="padding-top:0px !important;padding-bottom:0px !important; ">
+        <div class="card-body" id="msg">
+            Resource is deleted!
+        </div>
+    </div>
+<?php }elseif(isset($_GET['status'])&& $_GET['status']=="edited"){?>
+            <div class="card mb-4 py-3 border-left-success" style="padding-top:0px !important;padding-bottom:0px !important; ">
+                <div class="card-body" id="msg">
+                    Resource is edited successfully!
+                </div>
+            </div>
+        <?php }
+?>
+<h1 class="h3 mb-4 text-gray-800" style="text-align: center; padding-top: 30px;">Change Resources</h1>
+
+<!-- Page Heading -->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">You can edit,update and delete resources through this panel</h6>
+            </div>
+            <div class="card-body border-bottom-success">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th style="">Id</th>
+                            <th>Type</th>
+                            <th>Title</th>
+                            <th>Version</th>
+                            <th>Category</th>
+                            <th>Permission</th>
+                            <th>File Name/Link</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th style="">Id</th>
+                            <th>Type</th>
+                            <th>Title</th>
+                            <th>Version</th>
+                            <th>Category</th>
+                            <th>Permission</th>
+                            <th>File Name/Link</th>
+                            <th>Action</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+ <?php
+                        for ($i=0; $i <$resCount ; $i++) {
+                            ?>
+                            <tr>
+                                <td style=""><?php echo $row[$i]["rid"];?></td>
+                                <td><?php echo $row[$i]["type"];?></td>
+                                <td><?php echo $row[$i]["title"];?></td>
+                                <td><?php echo $row[$i]["version"];?></td>
+                                <td><?php echo $row[$i]["category"];?></td>
+                                <td>
+                                    <?php if($row[$i]["role"]==2){
+                                        echo 'Educator';
+                                    }elseif ($row[$i]["role"]==3){
+                                        echo 'Parent';
+                                    }elseif ($row[$i]["role"]==23){
+                                        echo 'Educators and parents';
+                                    }else{
+                                        echo 'role not assigned yet';
+                                    }?>
+
+                                </td>
+                                <td><?php echo $row[$i]["source"];?></td>
+                                <td>
+                                    <!--look in lib file for implementation of if isset($_GET['action']=='editResouce'){}-->
+                                    <a href="?page=editingResource&id=<?php echo $row[$i]["rid"];?>" class="btn btn-primary btn-circle btn-md">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+
+                                    <a href="javascript:void(0);" onclick="confirmDelete(<?php echo $row[$i]['rid']; ?>)" class="btn btn-danger btn-circle btn-md">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php }?>
+
+                        </tbody>
+                    </table>
+                    <script>
+                        function confirmDelete(sourceID) {
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                text: "You won't be able to revert this!",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#d33',
+                                cancelButtonColor: '#3085d6',
+                                confirmButtonText: 'Yes, delete it!'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    // Redirect to the deletion URL
+                                    window.location.href = `?page=deleteAResource&id=${sourceID}`;
+                                }
+                            });
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+        <?php
+
+    }
+    ///////////////////////////////////
+    /// edit a resouce///////////
+    /// ///////////////////////////
+    function editAResource(){
+        global $pdo;
+        if(isset($_GET['message'])){?>
+            <div class="card mb-4 py-3 border-left-success" style="padding-top:0px !important;padding-bottom:0px !important; ">
+                <div class="card-body" id="msg">
+                    Resource is edited successfully!
+                </div>
+            </div>
+        <?php }
+
+        $resId=$_GET['id'];
+        try {
+            $query = "select * from `Resources` where `rid`=:Id";
+            $stmt = $pdo->prepare($query);
+            $stmt->bindParam('Id', $resId, PDO::PARAM_STR);
+            $stmt->execute();
+            $row   = $stmt->fetch(PDO::FETCH_ASSOC);
+            //var_dump($row);
+        } catch (PDOException $e) {
+            echo "Error : ".$e->getMessage();
+        }
+        ?>
+        <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#keepIt').click(function(e) {
+                    $("#keepIt").css('display','none');
+                    $("#deleteNowRes").css('display','none');
+                    $("#keepItButtons").append('<p id="keepItText">Your current file will be kept. If you want to change then <span id="clickButton" onClick="ButtonClick()" style="color:blue;cursor:pointer;">click here</span></p>');
+                });
+                $('#deleteNowRes').click(function(e) {
+                    $("#fileChange").attr('value', '1');
+                    $("#uploadResource").css('display','block');
+                    $("#keepIt").css('display','none');
+                    $("#deleteNowRes").css('display','none');
+                    $("#keepItButtons").append('<p id="getMyResBack">Change of mind, Want resource back? <span id="getMyResBackBut" onClick="getMyResBack()" style="color:blue;cursor:pointer;">click here</span></p>');
+
+                });
+            });
+            function ButtonClick(){
+                $("#fileChange").attr('value', '1');
+                $('#keepItText').remove();
+                $("#getMyResBack").remove();
+                $("#uploadResource").css('display','block');
+                $("#keepItButtons").append('<p id="getMyResBack">Change of mind, Want resource back? <span id="getMyResBackBut" onClick="getMyResBack()" style="color:blue;cursor:pointer;">click here</span></p>');
+            }
+            function getMyResBack(){
+                $("#fileChange").attr('value', '0');
+                $('#getMyResBack').css('display','none');
+                $("#uploadResource").css('display','none');
+                $("keepItText").remove();
+                $("#keepItButtons").append('<p id="keepItText">Your current file will be kept. If you want to change then <span id="clickButton" onClick="ButtonClick()" style="color:blue;cursor:pointer;">click here</span></p>');
+            }
+        </script>
+        <h1 class="h3 mb-4 text-gray-800" style="text-align: center; padding-top: 30px;">Edit Resource</h1>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="jumbotron bg-gray-200 border-bottom-success">
+                    <h3 class="display-6" style="font-size:18px !important;"><span style="color:red;">Caution:</span> <p style="font-size:16px !important;">Any change made on file will result in permanent deletion.Also, System will keep current resoruce if you will not choose any of the file options.</p></h3>
+                    <form id="addFile" action="lib.php" method="post" enctype="multipart/form-data">
+                        <input type="text" class="form-control" name="page" value="updateResource" style="display:none;">
+                        <input type="text" class="form-control" name="id" value="<?php echo $row["rid"];?>" style="display:none;">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Resource Title</label>
+                            <input type="text" class="form-control" id="fileTitle" placeholder="Enter title" name="resTitle" value="<?php echo $row["title"];?>">
+                            <small id="emailHelp" class="form-text text-muted">This title will be shown to all of the users</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Version</label>
+                            <input type="text" class="form-control" id="fileTitle" placeholder="Enter Version e.g. v1.0, v2.1" name="version" value="<?php echo $row["version"];?>">
+                        </div>
+
+                        <div class="form-group">
+
+                            <select name="category" class="dropdown mb-4 btn btn-primary dropdown-toggle">
+
+                                <option>Select the Category</option>
+                                <option value="FDC Compliance">FDC Compliance</option>
+                                <option value="Frameworks">Frameworks</option>
+                                <option value="Educational Resources">Educational Resources</option>
+                                <option value="Safety Data">Safety Data</option>
+                                <option value="Newsletters">Newsletters</option>
+                                <option value="Fact Sheets">Fact Sheets</option>
+                                <option value="FDC Insurance">FDC Insurance</option>
+                                <option value="Child Safe Standards">Child Safe Standards</option>
+                                <option value="Reportable Conduct Scheme">Reportable Conduct Scheme</option>
+                                <option value="Online Safety">Online Safety</option>
+                                <option value="General and Legal Forms">General and Legal Forms</option>
+                                <option value="COVID-19">COVID-19</option>
+                                <option value="Resources in other languages">Resources in other languages</option>
+                            </select>
+                            <div>
+                                <?php echo "<span><b>Currently Selected Category:</b> </span> ".$row["category"];?>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <select name="addResourceRole" class="dropdown mb-4 btn btn-primary dropdown-toggle">
+
+                                <option>Who can view the resource?</option>
+                                <option value="2">Educator only</option>
+                                <option value="3">Parents only</option>
+                                <option value="23">Both</option>
+                            </select>
+                            <div>
+                            <?php echo "<span><b>Currently Selected Role:</b> </span> ";
+                            if($row["role"]==2){
+                                echo 'Educator';
+                            }elseif ($row["role"]==3){
+                                echo 'Parent';
+                            }elseif ($row["role"]==23){
+                                echo 'Educators and parents';
+                            }else{
+                                echo 'role not assigned yet';
+                            }?>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="keepItButtons">
+                            <div class="btn btn-success btn-icon-split" id="keepIt">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-check"></i>
+                                            </span>
+                                <span class="text">Keep Current Resource</span>
+                            </div>
+                            <div class="btn btn-danger btn-icon-split" id="deleteNowRes">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                <span class="text">Add New Resource Instead</span>
+                            </div>
+                        </div>
+
+                        <input type="text" class="form-control-file" id="fileChange" name="fileChanged" value="0" style="display:none;">
+                        <div class="form-group" id="keepResource" style=" display:none;">
+                            <input type="text" class="form-control-file" id="exampleFormControlFile1" name="keepResource" value="<?php echo $row["source"];?>">
+                        </div>
+                        <div class="form-group" id="uploadResource" style="display:none;">
+                            <label for="exampleFormControlFile1">Upload Resource</label>
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="resource">
+                            <small id="emailHelp" class="form-text text-muted">Make sure to upload only PDF file. System will not accpet any file other than .pdf</small>
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-success mb-2 btn-lg" class=".bg-gradient-success">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <?php
+    }
+
+    ///////////////////////////////////
+    /// delete resouce///////////
+    /// ///////////////////////////
+    public function deleteAResource($resId){
+        global $pdo;
+        try {
+            $query = "SELECT * FROM `Resources` where `rid`=:rId";
+            $stmt = $pdo->prepare($query);
+            $stmt->bindParam('rId', $resId, PDO::PARAM_STR);
+            $stmt->execute();
+            $row   = $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error : ".$e->getMessage();
+        }
+        if($row["type"]=="file"){
+            $file=$row["source"];
+            unlink("books/".$file);
+        }
+
+        try {
+            $sql = "Delete from `Resources` WHERE rid=?";
+            $stmt= $pdo->prepare($sql);
+            $stmt->execute([$resId]);
+
+        } catch (PDOException $e) {
+            echo "Error : ".$e->getMessage();
+        }
+        $URL="?page=deleteResources&status=deleted";
+        echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+        echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
+    }
+
 }
+
+
 
 /*****************************************
  * Resources Class
