@@ -747,7 +747,7 @@ class LearningHubResources{
                 border-bottom: 2px solid #f0f0f0;
             }
         </style>
-        <h1 class="h3 mb-4 text-gray-800" style="text-align: center !important;">Resources</h1>
+        <h1 class="h3 mb-4 text-gray-800" style="text-align: center !important;"><i class="fa fa-window-restore"></i> Learning Hub Resources</h1>
         <?php if($resCount==0){
 
             ?>
