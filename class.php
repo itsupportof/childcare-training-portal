@@ -2476,6 +2476,17 @@ class Resources{
             </div>
         <?php }
         ?>
+        <div class="row">
+            <div class="col-xs-3">
+                <div class="card" style="">
+                    <img class="card-img-top" src="img_avatar1.png" alt="Card image" style="width:100%">
+                    <div class="card-body">
+                    <h4 class="card-title">John Doe</h4>
+                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+                    <a href="#" class="btn btn-primary">See Profile</a>
+                </div>
+            </div>
+        </div>
         <!-- Page Heading -->
         <h1 class="h3 mb-4 text-gray-800" style="text-align: center; padding-top: 30px;">Add New Learning Hub Resource</h1>
         <div class="row">
