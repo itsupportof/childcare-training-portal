@@ -724,7 +724,601 @@ if ($_SESSION['currentSession'] != 1 ) {
      }
 
 }
+/*****************************************
+ * Learning Hub Class
+ * ****************************************
+ */
+class LearningHubResources{
+    ///////////////////////////////////////////
+    //////////View All Resources//////////////
+    /////////////////////////////////////////
+    public function viewAllHubResources(){
+        $row=getAllResources();
+        $currentRole=$_SESSION['role'];
+        //var_dump($row);
+        $resCount=count($row);
+        ?>
+        <!-- Page Heading -->
+        <style>
+            label{
+                padding: 20px;
+                background: #fff;
+                color: #999;
+                border-bottom: 2px solid #f0f0f0;
+            }
+        </style>
+        <h1 class="h3 mb-4 text-gray-800" style="text-align: center !important;"><i class="fa fa-book"></i> Learning Hub</h1>
+        <?php if($resCount==0){
 
+            ?>
+            <div class="card mb-4 py-3 border-left-danger" style="padding-top:0px !important;padding-bottom:0px !important; ">
+                <div class="card-body" id="msg">
+                Learning Hub Resources are not available!
+                </div>
+            </div>
+            <?php
+        }else{
+
+
+        $cat1=$cat2=$cat3=$cat4=$cat5=$cat6=$cat7=$cat8=$cat9=$cat10=$cat11=$cat12=$cat13='';
+        //echo "<pre>";
+        //print_r($row);
+        //echo "</pre>";
+        for ($i=0; $i <$resCount ; $i++) {
+
+            $resourcePolicy=$row[$i]["role"];
+
+            $currentCat=$row[$i]["category"];
+            //echo $row[$i]['category'];
+            //echo $currentCat;
+            if($currentRole==$resourcePolicy || $resourcePolicy=='23' || $currentRole=='1'){
+
+                if($row[$i]["type"]=="link"){
+
+                    $link=linkGeneration($row[$i]["title"],$row[$i]["source"]);
+                    if( strcmp($currentCat, "FDC Compliance") == 0) {
+                        $cat1 = $cat1 . $link;
+                    } elseif(strcmp($currentCat, "Frameworks") == 0) {
+                        $cat2 = $cat2 . $link;
+                    }elseif(strcmp($currentCat, "Newsletters") == 0) {
+                        $cat3 = $cat3 . $link;
+                    }elseif(strcmp($currentCat, "Fact Sheets") == 0) {
+                        $cat4 = $cat4 . $link;
+                    }elseif(strcmp($currentCat, "FDC Insurance") == 0) {
+                        $cat5 = $cat5 . $link;
+                    }elseif(strcmp($currentCat, "Child Safe Standards") == 0) {
+                        $cat6 = $cat6 . $link;
+                    }elseif(strcmp($currentCat, "Online Safety") == 0) {
+                        $cat7 = $cat7 . $link;
+                    }elseif(strcmp($currentCat, "Educator Resources") == 0 || strcmp($currentCat, "General and Legal Forms") == 0) {
+                        $cat8 = $cat8 . $link;
+                    }elseif(strcmp($currentCat, "Educational Resources") == 0) {
+                        $cat9 = $cat9 . $link;
+                    }elseif(strcmp($currentCat, "COVID-19") == 0) {
+                        $cat10 = $cat10 . $link;
+                    }elseif(strcmp($currentCat, "Resources in other languages") == 0) {
+                        $cat11 = $cat11 . $link;
+                    }elseif(strcmp($currentCat, "Reportable Conduct Scheme") == 0) {
+                        $cat12 = $cat12 . $link;
+                    }elseif(strcmp($currentCat, "Safety Data") == 0) {
+                        $cat13 = $cat13 . $link;
+                    }
+
+                } else{
+                    $file=fileGeneration($row[$i]["title"],$row[$i]["version"],$row[$i]["source"],$row[$i]["category"]);
+                    if(strcmp($currentCat, "FDC Compliance") == 0) {
+                        $cat1 = $cat1 . $file;
+                    } elseif(strcmp($currentCat, "Frameworks") == 0) {
+                        $cat2 = $cat2 . $file;
+                    }elseif(strcmp($currentCat, "Newsletters") == 0) {
+                        $cat3 = $cat3 . $file;
+                    }elseif(strcmp($currentCat, "Fact Sheets") == 0) {
+                        $cat4 = $cat4 . $file;
+                    }elseif(strcmp($currentCat, "FDC Insurance") == 0) {
+                        $cat5 = $cat5 . $file;
+                    }elseif(strcmp($currentCat, "Child Safe Standards") == 0) {
+                        $cat6 = $cat6 . $file;
+                    }elseif(strcmp($currentCat, "Online Safety") == 0) {
+                        $cat7 = $cat7 . $file;
+                    }elseif(strcmp($currentCat, "Educator Resources") == 0 || strcmp($currentCat, "General and Legal Forms") == 0) {
+                        $cat8 = $cat8 . $file;
+                    }elseif(strcmp($currentCat, "Educational Resources") == 0) {
+                        $cat9 = $cat9 . $file;
+                    }elseif(strcmp($currentCat, "COVID-19") == 0) {
+                        $cat10 = $cat10 . $file;
+                    }elseif(strcmp($currentCat, "Resources in other languages") == 0) {
+                        $cat11 = $cat11 . $file;
+                    }elseif(strcmp($currentCat, "Reportable Conduct Scheme") == 0) {
+                        $cat12 = $cat12 . $file;
+                    }elseif(strcmp($currentCat, "Safety Data") == 0) {
+                        $cat13 = $cat13 . $file;
+                    }
+                }
+
+            }
+
+        }
+        ?>
+
+        
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+        <div class="container-fluid mt-5" id="tabsforpc">
+            <div class="row">
+                <div class="col-md-12 ml-auto col-xl-12 mr-auto" >
+                    <!-- Nav tabs -->
+                    <div class="card">
+                        <div class="card-header navbar navbar-expand-lg navbar-light bg-light" style="background: linear-gradient(to right,#ff5e62,#ff9966) !important;">
+                            <ul class="nav nav-tabs justify-content-center" role="tablist" >
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#atab1" role="tab" style="color: white !important;">
+                                        <i class="fa fa-briefcase"></i> FDC Compliance
+                                    </a>
+                                </li>
+                                <li class="nav-item" >
+                                    <a class="nav-link" data-toggle="tab" href="#atab2" role="tab" style="color: white !important;">
+                                        <i class="fa fa-archive"></i> Frameworks
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#atab9" role="tab" style="color: white !important;">
+                                        <i class="fa fa-book"></i> Educational Resources
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#atab3" role="tab" style="color: white !important;">
+                                        <i class="fa fa-envelope-open"></i> Newsletters
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#atab4" role="tab" style="color: white !important;">
+                                        <i class="fa fa-window-maximize"></i> Fact Sheets
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#atab5" role="tab" style="color: white !important;">
+                                        <i class="fa fa-sticky-note"></i> FDC Insurance
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#atab6" role="tab" style="color: white !important;">
+                                        <i class="fa fa-child"></i> Child Safe Standards
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#atab12" role="tab" style="color: white !important;">
+                                        <i class="fa fa-info-circle"></i> Reportable Conduct Scheme
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#atab7" role="tab" style="color: white !important;">
+                                        <i class="fa fa-globe"></i> Online Safety
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#atab8" role="tab" style="color: white !important;">
+                                        <i class="fa fa-window-restore"></i> General and Legal Forms
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#atab10" role="tab" style="color: white !important;">
+                                        <i class="fa fa-puzzle-piece"></i> COVID-19
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#atab11" role="tab" style="color: white !important;">
+                                        <i class="fa fa-american-sign-language-interpreting"></i> Resources in other languages
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#atab13" role="tab" style="color: white !important;">
+                                        <i class="fa fa-fire-extinguisher"></i> Safety Data
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </div>
+
+                        <div class="card-body" style="background: linear-gradient(to right,#ff5e62,#ff9966) !important;">
+                            <!-- Tab panes -->
+                            <div class="tab-content text-center">
+                                <div class="tab-pane active" id="atab1" role="tabpanel">
+                                    <h3 style="color: white !important;">FDC Compliance</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat1)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat1;
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab2" role="tabpanel">
+                                    <h3 style="color: white !important;">Frameworks</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat2)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat2;
+                                        }?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab9" role="tabpanel">
+                                    <h3 style="color: white !important;">Educational Resources</h3>
+                                    <div class="row">
+                                        <?php
+                                        if(empty($cat9)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat9;
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab3" role="tabpanel">
+                                    <h3 style="color: white !important;">Newsletters</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat3)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat3;
+                                        }?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab4" role="tabpanel">
+                                    <h3 style="color: white !important;">Fact Sheets</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat4)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat4;
+                                        }?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab5" role="tabpanel">
+                                    <h3 style="color: white !important;">FDC Insurance</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat5)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat5;
+                                        }?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab6" role="tabpanel">
+                                    <h3 style="color: white !important;">Child Safe Standards</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat6)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat6;
+                                        }?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab12" role="tabpanel">
+                                    <h3 style="color: white !important;">Reportable Conduct Scheme</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat12)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat12;
+                                        }?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab7" role="tabpanel">
+                                    <h3 style="color: white !important;">Online Safety</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat7)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat7;
+                                        }?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab8" role="tabpanel">
+                                    <h3 style="color: white !important;">General and Legal Forms</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat8)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat8;
+                                        }?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab10" role="tabpanel">
+                                    <h3 style="color: white !important;">COVID-19</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat10)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat10;
+                                        }?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab11" role="tabpanel">
+                                    <h3 style="color: white !important;">Resources in other languages</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat11)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat11;
+                                        }?>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="atab13" role="tabpanel">
+                                    <h3 style="color: white !important;">Resources in other languages</h3>
+                                    <div class="row">
+                                        <?php if(empty($cat13)){
+                                            echo '<h4 style="color: white !important;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat13;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="accordion_two_section ptb-100" id="accordinforphones">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 accordionTwo">
+                        <div class="panel-group" id="accordionTwoLeft">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftone" aria-expanded="false" class="collapsed">
+                                            FDC Compliance
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwoLeftone" class="panel-collapse collapse" aria-expanded="false" role="tablist" style="height: 0px;">
+                                    <div class="panel-body">
+                                        <?php if(empty($cat1)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat1;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoLeftTwo" aria-expanded="false">
+                                            Frameworks
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwoLeftTwo" class="panel-collapse collapse" aria-expanded="false" role="tablist">
+                                    <div class="panel-body">
+                                        <?php if(empty($cat2)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat2;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseER" aria-expanded="false">
+                                            Educational Resources
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseER" class="panel-collapse collapse" aria-expanded="false" role="tablist">
+                                    <div class="panel-body">
+                                        <?php
+                                        if(empty($cat9)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat9;
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseNS" aria-expanded="false">
+                                            Newsletters
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseNS" class="panel-collapse collapse" aria-expanded="false" role="tablist">
+                                    <div class="panel-body">
+                                        <?php if(empty($cat3)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat3;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseFS" aria-expanded="false">
+                                            Fact Sheets
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseFS" class="panel-collapse collapse" aria-expanded="false" role="tablist">
+                                    <div class="panel-body">
+                                        <?php if(empty($cat4)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat4;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoLeft" href="#collapseTwoRightone" aria-expanded="false">
+                                            FDC Insurance
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwoRightone" class="panel-collapse collapse" aria-expanded="false" role="tablist">
+                                    <div class="panel-body">
+                                        <?php if(empty($cat5)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat5;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                        </div>
+                        <!--end of /.panel-group-->
+                    </div>
+                    <!--end of /.col-sm-6-->
+                    <div class="col-sm-6 accordionTwo">
+                        <div class="panel-group" id="accordionTwoRight">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoRight" href="#collapseTwoRightTwo" aria-expanded="false">
+                                            Child Safe Standards
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwoRightTwo" class="panel-collapse collapse" aria-expanded="false" role="tablist">
+                                    <div class="panel-body">
+                                        <?php if(empty($cat6)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat6;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoRight" href="#collapseRCS" aria-expanded="false">
+                                            Reportable Conduct Scheme
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div  id="collapseRCS" class="panel-collapse collapse in" aria-expanded="false" role="tablist">
+                                    <div class="panel-body">
+                                        <?php if(empty($cat12)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat12;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed"  data-toggle="collapse" data-parent="#accordionTwoRight" href="#collapseOS" aria-expanded="false">
+                                            Online Safety
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOS" class="panel-collapse collapse in" aria-expanded="false" role="tablist">
+                                    <div class="panel-body">
+                                        <?php if(empty($cat7)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat7;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoRight" href="#collapseEduR" aria-expanded="false">
+                                            Educator Resources
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseEduR" class="panel-collapse collapse in" aria-expanded="false" role="tablist">
+                                    <div class="panel-body">
+                                        <?php if(empty($cat8)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat8;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoRight" href="#collapseroil" aria-expanded="false">
+                                            COVID-19
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapsecovid" class="panel-collapse collapse in" aria-expanded="false" role="tablist">
+                                    <div class="panel-body">
+                                        <?php if(empty($cat10)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat10;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionTwoRight" href="#collapseroil" aria-expanded="false">
+                                            Resources in other languages
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseroil" class="panel-collapse collapse in" aria-expanded="false" role="tablist">
+                                    <div class="panel-body">
+                                        <?php if(empty($cat11)){
+                                            echo '<h4 style="color: orange;">Resources are not available for this category.</h4>';
+                                        }else{
+                                            echo $cat11;
+                                        }?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-default -->
+                        </div>
+                        <!--end of /.panel-group-->
+                    </div>
+                    <!--end of /.col-sm-6-->
+                </div>
+            </div>
+            <!--end of /.container-->
+        </section>
+
+
+        <?php
+        }
+    }
+}
 
 /*****************************************
  * Resources Class
