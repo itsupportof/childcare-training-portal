@@ -1367,7 +1367,7 @@ class LearningHubResources{
     ///////////////////////////////////////////
     ///////////Add new Resources//////////////
     /////////////////////////////////////////
-    public function addNewResource(){
+    public function addNewHubResource(){
     ?>
         <?php if(isset($_GET['message'])){?>
             <div class="card mb-4 py-3 border-left-success" style="padding-top:0px !important;padding-bottom:0px !important; ">
@@ -1633,7 +1633,7 @@ if(isset($_GET['status']) && $_GET['status']=="deleted"){?>
     ///////////////////////////////////
     /// edit a resouce///////////
     /// ///////////////////////////
-    function editAResource(){
+    function editHubResource(){
         global $pdo;
         if(isset($_GET['message'])){?>
             <div class="card mb-4 py-3 border-left-success" style="padding-top:0px !important;padding-bottom:0px !important; ">
@@ -1790,7 +1790,7 @@ if(isset($_GET['status']) && $_GET['status']=="deleted"){?>
     ///////////////////////////////////
     /// delete resouce///////////
     /// ///////////////////////////
-    public function deleteAResource($resId){
+    public function deleteHubResources($resId){
         global $pdo;
         try {
             $query = "SELECT * FROM `Resources` where `rid`=:rId";
