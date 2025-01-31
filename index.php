@@ -120,7 +120,32 @@ if(!isset($_GET['page']) && isset($_SESSION['currentSession'])){
                     }else{
                         echo '<h1>Unauthorised access</h1>';
                     }
+                }else if($page == 'addNewHubResource'){
+                    if($role==1 || $role==2 || $role==3){
+                        $hubresources=new LearningHubResources();
+                        $hubresources->addNewHubResource();
+                    }else{
+                        echo '<h1>Unauthorised access</h1>';
+                    }
+                }else if($page == 'editHubResource'){
+                    if($role==1 || $role==2 || $role==3){
+                        $hubresources=new LearningHubResources();
+                        $hubresources->editHubResource();
+                    }else{
+                        echo '<h1>Unauthorised access</h1>';
+                    }
+                }else if($page == 'deleteHubResources'){
+                    if($role==1 || $role==2 || $role==3){
+                        $hubresources=new LearningHubResources();
+                        $hubresources->deleteHubResources();
+                    }else{
+                        echo '<h1>Unauthorised access</h1>';
+                    }
                 }
+
+
+
+
                 /*-/////////////////-----v1.0 changes for calender//////////----*/
                 elseif($page == 'viewResource'){
                     if($role==1 || $role==2 || $role==3){
