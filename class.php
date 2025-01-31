@@ -2477,7 +2477,7 @@ class Resources{
         <?php }
         ?>
         <div class="row">
-            <div class="col-xs-3">
+            <div class="col-xs-2">
                 <div class="card" style="">
                     <img class="card-img-top" src="img_avatar1.png" alt="Card image" style="width:100%">
                     <div class="card-body">
