@@ -2486,12 +2486,17 @@ class Resources{
                         <input type="text" class="form-control" name="page" value="addNewHubResource" style="display:none;">
                         <input type="text" class="form-control" name="type" value="file" style="display:none;">
                         <div class="form-group">
+                            <label for="exampleFormControlFile1">Thumbnail</label>
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="thumbnail">
+                            <small id="emailHelp" class="form-text text-muted">Make sure to upload only png/jpg file. System will not accpet any other file type.</small>
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputEmail1" style="display: inline-block;
     margin-bottom: 0.5rem;box-sizing: border-box;">Title</label>
                             <input type="text" class="form-control" id="fileTitle" placeholder="Enter title" name="resTitle">
                             <small id="emailHelp" class="form-text text-muted">This title will be shown to all of the users</small>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Summary</label>
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
