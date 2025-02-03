@@ -753,8 +753,8 @@ class LearningHubResources{
                 <div class="card" style="">
                     <img class="card-img-top" src="img_avatar1.png" alt="Card image" style="width:100%">
                     <div class="card-body">
-                        <h4 class="card-title">John Doe</h4>
-                        <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+                        <h6 class="card-title" style="font-size:16px;">John Doe</h6>
+                        <p class="card-text" style="font-size:14px;">Some example text some example text. John Doe is an architect and engineer</p>
                         <a href="#" class="btn btn-primary">See Profile</a>
                     </div>
                 </div>
