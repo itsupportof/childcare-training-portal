@@ -759,7 +759,7 @@ class LearningHubResources{
                                 <h6 class="card-title" style="font-size:16px;">John Doe</h6>
                             </div>
                             <div class="col-lg-4">
-                                <span class="badge badge-success">Link</span>
+                                <h6 class="badge badge-success">Link</h6>
                             </div>
                         </div>
 
