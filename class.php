@@ -781,7 +781,7 @@ class LearningHubResources{
                                 <h6 class="card-title" style="font-size:16px;">John Doe</h6>
                             </div>
                             <div class="col-lg-4">
-                                <h6 class="badge badge-success">Link</h6>
+                                <h6 class="badge badge-success">Video</h6>
                             </div>
                         </div>
                         <p class="card-text" style="font-size:14px;">Some example text some example text. John Doe is an architect and engineer</p>
@@ -803,7 +803,7 @@ class LearningHubResources{
                             <h6 class="card-title" style="font-size:16px;">John Doe</h6>
                         </div>
                         <div class="col-lg-4">
-                            <h6 class="badge badge-success">Link</h6>
+                            <h6 class="badge badge-danger">PDF</h6>
                         </div>
                     </div>
                     <p class="card-text" style="font-size:14px;">Some example text some example text. John Doe is an architect and engineer</p>
