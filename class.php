@@ -735,7 +735,7 @@ class LearningHubResources{
     public function viewAllHubResources(){
         $row=getAllResources();
         $currentRole=$_SESSION['role'];
-        var_dump($row);
+        //var_dump($row);
         $resCount=count($row);
         //exit(0);
         ?>
@@ -759,13 +759,12 @@ class LearningHubResources{
             </div>
             <?php
         }else{
-            $cat1=$cat2=$cat3='';
+
             echo "<pre>";
             print_r($row);
             echo "</pre>";
-
-            for ($i=0; $i <$resCount ; $i++) {
-                $currentCat=$row[$i]["type"];
+            foreach ($row as $record) {
+                echo $record["title"];
             }
 
         }
