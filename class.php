@@ -755,7 +755,15 @@ class LearningHubResources{
                     <div class="card-body">
                         <h6 class="card-title" style="font-size:16px;">John Doe</h6>
                         <p class="card-text" style="font-size:14px;">Some example text some example text. John Doe is an architect and engineer</p>
-                        <a href="#" class="btn btn-primary">☝️ click here</a>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <a href="#" class="btn btn-primary">☝️ click here</a>
+                            </div>
+                            <div class="col-lg-4">
+                                <span class="badge badge-success">Link</span>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
