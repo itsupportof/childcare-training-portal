@@ -737,6 +737,7 @@ class LearningHubResources{
         $currentRole=$_SESSION['role'];
         var_dump($row);
         $resCount=count($row);
+        exit(0);
         ?>
         
         <style>
@@ -814,7 +815,7 @@ class LearningHubResources{
         </div>
     </div>
         <?php 
-        exit(0);
+        
         if($resCount==0){
 
             ?>
