@@ -737,7 +737,7 @@ class LearningHubResources{
         $currentRole=$_SESSION['role'];
         var_dump($row);
         $resCount=count($row);
-        exit(0);
+        //exit(0);
         ?>
         
         <style>
@@ -817,7 +817,6 @@ class LearningHubResources{
         <?php 
         
         if($resCount==0){
-
             ?>
             <div class="card mb-4 py-3 border-left-danger" style="padding-top:0px !important;padding-bottom:0px !important; ">
                 <div class="card-body" id="msg">
@@ -826,83 +825,13 @@ class LearningHubResources{
             </div>
             <?php
         }else{
+            $cat1=$cat2=$cat3='';
+            echo "<pre>";
+            print_r($row);
+            echo "</pre>";
 
-
-        $cat1=$cat2=$cat3=$cat4=$cat5=$cat6=$cat7=$cat8=$cat9=$cat10=$cat11=$cat12=$cat13='';
-        //echo "<pre>";
-        //print_r($row);
-        //echo "</pre>";
-        for ($i=0; $i <$resCount ; $i++) {
-
-            $resourcePolicy=$row[$i]["role"];
-
-            $currentCat=$row[$i]["category"];
-            //echo $row[$i]['category'];
-            //echo $currentCat;
-            if($currentRole==$resourcePolicy || $resourcePolicy=='23' || $currentRole=='1'){
-
-                if($row[$i]["type"]=="link"){
-
-                    $link=linkGeneration($row[$i]["title"],$row[$i]["source"]);
-                    if( strcmp($currentCat, "FDC Compliance") == 0) {
-                        $cat1 = $cat1 . $link;
-                    } elseif(strcmp($currentCat, "Frameworks") == 0) {
-                        $cat2 = $cat2 . $link;
-                    }elseif(strcmp($currentCat, "Newsletters") == 0) {
-                        $cat3 = $cat3 . $link;
-                    }elseif(strcmp($currentCat, "Fact Sheets") == 0) {
-                        $cat4 = $cat4 . $link;
-                    }elseif(strcmp($currentCat, "FDC Insurance") == 0) {
-                        $cat5 = $cat5 . $link;
-                    }elseif(strcmp($currentCat, "Child Safe Standards") == 0) {
-                        $cat6 = $cat6 . $link;
-                    }elseif(strcmp($currentCat, "Online Safety") == 0) {
-                        $cat7 = $cat7 . $link;
-                    }elseif(strcmp($currentCat, "Educator Resources") == 0 || strcmp($currentCat, "General and Legal Forms") == 0) {
-                        $cat8 = $cat8 . $link;
-                    }elseif(strcmp($currentCat, "Educational Resources") == 0) {
-                        $cat9 = $cat9 . $link;
-                    }elseif(strcmp($currentCat, "COVID-19") == 0) {
-                        $cat10 = $cat10 . $link;
-                    }elseif(strcmp($currentCat, "Resources in other languages") == 0) {
-                        $cat11 = $cat11 . $link;
-                    }elseif(strcmp($currentCat, "Reportable Conduct Scheme") == 0) {
-                        $cat12 = $cat12 . $link;
-                    }elseif(strcmp($currentCat, "Safety Data") == 0) {
-                        $cat13 = $cat13 . $link;
-                    }
-
-                } else{
-                    $file=fileGeneration($row[$i]["title"],$row[$i]["version"],$row[$i]["source"],$row[$i]["category"]);
-                    if(strcmp($currentCat, "FDC Compliance") == 0) {
-                        $cat1 = $cat1 . $file;
-                    } elseif(strcmp($currentCat, "Frameworks") == 0) {
-                        $cat2 = $cat2 . $file;
-                    }elseif(strcmp($currentCat, "Newsletters") == 0) {
-                        $cat3 = $cat3 . $file;
-                    }elseif(strcmp($currentCat, "Fact Sheets") == 0) {
-                        $cat4 = $cat4 . $file;
-                    }elseif(strcmp($currentCat, "FDC Insurance") == 0) {
-                        $cat5 = $cat5 . $file;
-                    }elseif(strcmp($currentCat, "Child Safe Standards") == 0) {
-                        $cat6 = $cat6 . $file;
-                    }elseif(strcmp($currentCat, "Online Safety") == 0) {
-                        $cat7 = $cat7 . $file;
-                    }elseif(strcmp($currentCat, "Educator Resources") == 0 || strcmp($currentCat, "General and Legal Forms") == 0) {
-                        $cat8 = $cat8 . $file;
-                    }elseif(strcmp($currentCat, "Educational Resources") == 0) {
-                        $cat9 = $cat9 . $file;
-                    }elseif(strcmp($currentCat, "COVID-19") == 0) {
-                        $cat10 = $cat10 . $file;
-                    }elseif(strcmp($currentCat, "Resources in other languages") == 0) {
-                        $cat11 = $cat11 . $file;
-                    }elseif(strcmp($currentCat, "Reportable Conduct Scheme") == 0) {
-                        $cat12 = $cat12 . $file;
-                    }elseif(strcmp($currentCat, "Safety Data") == 0) {
-                        $cat13 = $cat13 . $file;
-                    }
-                }
-
+            for ($i=0; $i <$resCount ; $i++) {
+                $currentCat=$row[$i]["type"];
             }
 
         }
