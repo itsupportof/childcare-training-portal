@@ -733,7 +733,24 @@ class LearningHubResources{
     //////////View All Resources//////////////
     /////////////////////////////////////////
     public function viewAllHubResources(){
+        $row=getAllResources();
+        $currentRole=$_SESSION['role'];
+        var_dump($row);
+        $resCount=count($row);
+        //exit(0);
+        ?>
+        <style>
+            label{
+                padding: 20px;
+                background: #fff;
+                color: #999;
+                border-bottom: 2px solid #f0f0f0;
+            }
+        </style>
+        <h1 class="h3 mb-4 text-gray-800" style="text-align: center !important;"><i class="fa fa-window-restore"></i> Learning Hub Resources</h1>
+            
 
+    <?php
     }
 
     ///////////////////////////////////////////
