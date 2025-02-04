@@ -774,9 +774,8 @@ class LearningHubResources{
         <div class="row">
             <div class="col-lg-2">
                 <div class="card" style="">
-                    <img class="card-img-top" src="img.youtube.com/watch?v=HS9Ec4_PcU0" alt="Card image" style="width:100%">
+                    <img class="card-img-top" src="https://coreldrawdesign.com/resources/previews/preview-versus-youtube-thumbnail-blue-red-comic-style-creative-1713014070.jpg" alt="Card image" style="width:100%">
                     <div class="card-body">
-                        
                         <div class="row">
                             <div class="col-lg-8">
                                 <h6 class="card-title" style="font-size:16px;">John Doe</h6>
