@@ -735,7 +735,7 @@ class LearningHubResources{
     public function viewAllHubResources(){
         $row=getAllResources();
         $currentRole=$_SESSION['role'];
-        var_dump($row);
+        //var_dump($row);
         $resCount=count($row);
         //exit(0);
         ?>
