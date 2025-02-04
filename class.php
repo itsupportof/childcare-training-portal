@@ -774,9 +774,7 @@ class LearningHubResources{
         <div class="row">
             <div class="col-lg-2">
                 <div class="card" style="">
-                    <div class="card-img-top" alt="Card image" style="width:100%">
-                    <iframe src="https://www.youtube.com/embed/HS9Ec4_PcU0?si=jGrAEfsWU861Gy90" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
+                    <img class="card-img-top" src="img.youtube.com/watch?v=HS9Ec4_PcU0" alt="Card image" style="width:100%">
                     <div class="card-body">
                         
                         <div class="row">
