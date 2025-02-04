@@ -737,7 +737,7 @@ class LearningHubResources{
         $currentRole=$_SESSION['role'];
         //var_dump($row);
         $resCount=count($row);
-        //exit(0);
+        exit(0);
         ?>
         
         <style>
