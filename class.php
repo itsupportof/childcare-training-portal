@@ -735,7 +735,7 @@ class LearningHubResources{
     public function viewAllHubResources(){
         $row=getAllResources();
         $currentRole=$_SESSION['role'];
-        //var_dump($row);
+        var_dump($row);
         $resCount=count($row);
         ?>
         
@@ -813,7 +813,9 @@ class LearningHubResources{
             </div>
         </div>
     </div>
-        <?php if($resCount==0){
+        <?php 
+        exit(0);
+        if($resCount==0){
 
             ?>
             <div class="card mb-4 py-3 border-left-danger" style="padding-top:0px !important;padding-bottom:0px !important; ">
