@@ -738,7 +738,7 @@ class LearningHubResources{
         //var_dump($row);
         $resCount=count($row);
         ?>
-        <!-- Page Heading -->
+        
         <style>
             label{
                 padding: 20px;
@@ -748,6 +748,7 @@ class LearningHubResources{
             }
         </style>
         <h1 class="h3 mb-4 text-gray-800" style="text-align: center !important;"><i class="fa fa-window-restore"></i> Learning Hub Resources</h1>
+        <!-- LINKSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS -->
         <div class="row">
             <div class="col-lg-2">
                 <div class="card" style="">
@@ -762,15 +763,59 @@ class LearningHubResources{
                                 <h6 class="badge badge-success">Link</h6>
                             </div>
                         </div>
-
                         <p class="card-text" style="font-size:14px;">Some example text some example text. John Doe is an architect and engineer</p>
                         <a href="#" class="btn btn-primary">☝️ click here</a>
                             
-                        
                     </div>
                 </div>
             </div>
         </div>
+        <!-- VIDEOSSSSSSSSSSSSSSSSSS -->
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="card" style="">
+                    <div class="card-img-top" alt="Card image" style="width:100%">
+                    <iframe src="https://www.youtube.com/embed/HS9Ec4_PcU0?si=jGrAEfsWU861Gy90" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <h6 class="card-title" style="font-size:16px;">John Doe</h6>
+                            </div>
+                            <div class="col-lg-4">
+                                <h6 class="badge badge-success">Link</h6>
+                            </div>
+                        </div>
+                        <p class="card-text" style="font-size:14px;">Some example text some example text. John Doe is an architect and engineer</p>
+                        <a href="#" class="btn btn-primary">☝️ click here</a>
+                            
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- PDFFFFFSsss -->
+        <div class="row">
+        <div class="col-lg-2">
+            <div class="card" style="">
+                <img class="card-img-top" src="https://www.w3schools.com/bootstrap4/img_avatar3.png" alt="Card image" style="width:100%">
+                <div class="card-body">
+                    
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h6 class="card-title" style="font-size:16px;">John Doe</h6>
+                        </div>
+                        <div class="col-lg-4">
+                            <h6 class="badge badge-success">Link</h6>
+                        </div>
+                    </div>
+                    <p class="card-text" style="font-size:14px;">Some example text some example text. John Doe is an architect and engineer</p>
+                    <a href="#" class="btn btn-primary">☝️ click here</a>
+                        
+                </div>
+            </div>
+        </div>
+    </div>
         <?php if($resCount==0){
 
             ?>
