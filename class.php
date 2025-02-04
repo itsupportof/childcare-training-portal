@@ -771,18 +771,18 @@ class LearningHubResources{
             
                 <div class="col-lg-2">
                     <div class="card" style="">
-                        <img class="card-img-top" src="<?php echo $row["thumbnail"]?>" alt="Card image" style="width:100%">
+                        <img class="card-img-top" src="<?php echo $record["thumbnail"]?>" alt="Card image" style="width:100%">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <h6 class="card-title" style="font-size:16px;"><?php echo $row["thumbnail"]?></h6>
+                                    <h6 class="card-title" style="font-size:16px;"><?php echo $record["thumbnail"]?></h6>
                                 </div>
                                 <div class="col-lg-4">
-                                    <h6 class="badge badge-warning"><?php echo $row["thumbnail"]?></h6>
+                                    <h6 class="badge badge-warning"><?php echo $record["thumbnail"]?></h6>
                                 </div>
                             </div>
-                            <p class="card-text" style="font-size:14px;"><?php echo $row["thumbnail"]?></p>
-                            <a href="./<?php echo $row["type"]."?id=".$row["rid"];?>" class="btn btn-primary">☝️ click here</a>
+                            <p class="card-text" style="font-size:14px;"><?php echo $record["thumbnail"]?></p>
+                            <a href="./<?php echo $record["type"]."?id=".$record["type"];?>" class="btn btn-primary">☝️ click here</a>
                                 
                         </div>
                     </div>
