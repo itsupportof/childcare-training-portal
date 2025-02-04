@@ -748,7 +748,28 @@ class LearningHubResources{
             }
         </style>
         <h1 class="h3 mb-4 text-gray-800" style="text-align: center !important;"><i class="fa fa-window-restore"></i> Learning Hub Resources</h1>
-            
+        <?php 
+        
+        if($resCount==0){
+            ?>
+            <div class="card mb-4 py-3 border-left-danger" style="padding-top:0px !important;padding-bottom:0px !important; ">
+                <div class="card-body" id="msg">
+                    Resources are not available!
+                </div>
+            </div>
+            <?php
+        }else{
+            $cat1=$cat2=$cat3='';
+            echo "<pre>";
+            print_r($row);
+            echo "</pre>";
+
+            for ($i=0; $i <$resCount ; $i++) {
+                $currentCat=$row[$i]["type"];
+            }
+
+        }
+        ?>
 
     <?php
     }
