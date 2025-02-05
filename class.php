@@ -854,10 +854,11 @@ class LearningHubResources{
         </p>
         <?php
         }elseif($row[0]["type"]=="video"){
-        ?>
-        <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="<?php echo $row[0]["source"];?>?rel=0" allowfullscreen></iframe>
-        </div>    
+        ?> 
+        <!-- 1:1 aspect ratio -->
+        <div class="embed-responsive embed-responsive-1by1">
+        <iframe class="embed-responsive-item" src="<?php echo $row[0]["source"];?>"></iframe>
+        </div>
         <?php
         }else{
 
