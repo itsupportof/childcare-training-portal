@@ -864,8 +864,7 @@ class LearningHubResources{
         }else{
                 $updatedString = str_replace("https://forms.monday.com/forms/", "https://forms.monday.com/forms/embed/", $row[0]["source"]);
             ?>
-            <iframe src="<?php echo $row[0]["updatedString"];?>" width="650" height="500" style="border: 0; box-shadow: 5px 5px 56px 0px rgba(0,0,0,0.25);"></iframe>
-            <iframe src="https://forms.monday.com/forms/embed/814c75b8f019dfcd3f202016f81d0b65?r=apse2"  width="100%" height="100%" ></iframe>
+            <iframe src="<?php echo $row["updatedString"];?>" width="100%" height="200%"style="border: 0; box-shadow: 5px 5px 56px 0px rgba(0,0,0,0.25);"></iframe>
             <?php
 
         }
