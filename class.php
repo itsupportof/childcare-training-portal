@@ -801,7 +801,6 @@ class LearningHubResources{
     //////////Read Resources//////////////
     /////////////////////////////////////////
     public function readHubResource($hrid){
-        echo"welcome";
         global $pdo;
         try {
             $query = "select * from `HubResources` where `hrid`=:hrid";
@@ -812,7 +811,7 @@ class LearningHubResources{
         } catch (PDOException $e) {
             echo "Error : ".$e->getMessage();
         }
-        //var_dump($row);
+        var_dump($row);
         //exit(0);
             echo '<a href="./?page=viewAllHubResources" class="btn btn-secondary btn-icon-split">
                                         <span class="icon text-white-50">
@@ -848,7 +847,7 @@ class LearningHubResources{
         </style>
         <p>
         <div class="containerIframe">
-            <iframe class="responsive-iframe" style="" src="./books/index.php?location=<?php echo trim($row[0] ['res'])?>&amp;res=ARCCC" seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true"></iframe>
+            <iframe class="responsive-iframe" style="" src="./books/index.php?location=<?php echo trim($_GET['res'])?>&amp;res=ARCCC" seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true"></iframe>
         </div>
         </p>
         <?php
