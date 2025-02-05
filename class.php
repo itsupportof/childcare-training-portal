@@ -778,11 +778,12 @@ class LearningHubResources{
                                     <h6 class="card-title" style="font-size:16px;"><?php echo $record["title"]?></h6>
                                 </div>
                                 <div class="col-lg-4">
-                                    <h6 class="badge badge-warning"><?php echo $record["type"]?></h6>
+                                    
+                                    <h6 class="badge <?php if($record["type"]=="link"){echo'badge-warning';}elseif(($record["type"]=="video"){echo'badge-warning';}else{echo'badge-danger';}?>"><?php echo $record["type"]?></h6>
                                 </div>
                             </div>
                             <p class="card-text" style="font-size:14px;"><?php echo $record["summary"]?></p>
-                            <a href="./<?php echo $record["type"]."?id=".$record["type"];?>" class="btn btn-primary">☝️ click here</a>
+                            <a href="./<?php echo $record["type"]."?id=".$record["rid"];?>" class="btn btn-primary">☝️ click here</a>
                                 
                         </div>
                     </div>
