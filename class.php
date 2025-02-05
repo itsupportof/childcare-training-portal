@@ -888,9 +888,9 @@ class LearningHubResources{
         <div class="row">
             <div class="col-md-6">
                 <div class="jumbotron bg-gray-200 border-bottom-success">
-                        <h3 class="display-6">Upload File</h3>
-                        <form id="addFile" action="lib.php" method="post" enctype="multipart/form-data">
-                            <input type="text" class="form-control" name="page" value="addNewHubResource" style="display:none;">
+                <h3 class="display-6">Add VIDEO/Monday Form / PDF Link</h3>
+                        <form id="addResourceFile" action="lib.php" method="post" enctype="multipart/form-data">
+                            <input type="text" class="form-control" name="page" value="addResourceFile" style="display:none;">
                             <input type="text" class="form-control" name="type" value="file" style="display:none;">
                             <div class="form-group">
                                 <label for="exampleFormControlFile1">Thumbnail</label>
@@ -903,10 +903,15 @@ class LearningHubResources{
                                 <input type="text" class="form-control" id="fileTitle" placeholder="Enter title" name="resTitle">
                                 <small id="emailHelp" class="form-text text-muted">This title will be shown to all of the users</small>
                             </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlFile1">Link</label>
+                                <input type="text" class="form-control" id="fileTitle" placeholder="https://andersonroadchildcare.com.au/" name="resource">
+                                <small id="emailHelp" class="form-text text-muted">You can add link here</small>
+                            </div>
 
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Summary</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="summary"></textarea>
                             </div>
                             
 
@@ -922,61 +927,6 @@ class LearningHubResources{
                         </form>
                     </div>
                 </div>
-            <div class="col-md-6">
-                <div class="jumbotron bg-gray-200 border-bottom-success">
-                    <h3 class="display-6">Add Resource Link</h3>
-                    <form id="addResource" action="lib.php" method="post">
-                        <input type="text" class="form-control" name="page" value="addNewResource" style="display:none;">
-                        <input type="text" class="form-control" name="type" value="link" style="display:none;">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Resource Title</label>
-                            <input type="text" class="form-control" placeholder="Enter title" name="resTitle">
-                            <small id="emailHelp" class="form-text text-muted">e.g. article,news, blog post etc. This type will be shown to all of the users</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlFile1">Link</label>
-                            <input type="text" class="form-control" id="fileTitle" placeholder="https://andersonroadchildcare.com.au/" name="resource">
-                            <small id="emailHelp" class="form-text text-muted">You can add link here</small>
-                        </div>
-                        <div class="form-group">
-
-                            <select name="category" class="dropdown mb-4 btn btn-primary dropdown-toggle">
-
-                                <option>Select the Category</option>
-                                <option value="FDC Compliance">FDC Compliance</option>
-                                <option value="Frameworks">Frameworks</option>
-                                <option value="Educational Resources">Educational Resources</option>
-                                <option value="Safety Data">Safety Data</option>
-                                <option value="Newsletters">Newsletters</option>
-                                <option value="Fact Sheets">Fact Sheets</option>
-                                <option value="FDC Insurance">FDC Insurance</option>
-                                <option value="Child Safe Standards">Child Safe Standards</option>
-                                <option value="Reportable Conduct Scheme">Reportable Conduct Scheme</option>
-                                <option value="Online Safety">Online Safety</option>
-                                <option value="General and Legal Forms">General and Legal Forms</option>
-                                <option value="COVID-19">COVID-19</option>
-                                <option value="Resources in other languages">Resources in other languages</option>
-                            </select>
-
-                        </div>
-                        <div class="form-group">
-
-                            <select name="addResourceRole" class="dropdown mb-4 btn btn-primary dropdown-toggle">
-
-                                <option>Who can view the resource?</option>
-                                <option value="2">Educator only</option>
-                                <option value="3">Parents only</option>
-                                <option value="23">Both</option>
-                            </select>
-
-                        </div>
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-success mb-2 btn-lg" class=".bg-gradient-success
-        ">Submit</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
         <?php
     }
