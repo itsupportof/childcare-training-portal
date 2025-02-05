@@ -120,7 +120,7 @@ if(!isset($_GET['page']) && isset($_SESSION['currentSession'])){
                     }else{
                         echo '<h1>Unauthorised access</h1>';
                     }
-                }else if($page == 'pdf' ||$page == 'vdieo' ||$page == 'link'){
+                }else if($page == 'pdf' ||$page == 'video' ||$page == 'link'){
                     if($role==1 || $role==2){
                         $hrid=$_GET["hrid"];
                         $hubresources=new LearningHubResources();
