@@ -889,8 +889,18 @@ class LearningHubResources{
             <div class="col-md-6">
                 <div class="jumbotron bg-gray-200 border-bottom-success">
                 <h3 class="display-6">Add VIDEO/Monday Form / PDF Link</h3>
-                        <form id="addResourceFile" action="lib.php" method="post" enctype="multipart/form-data">
-                            <input type="text" class="form-control" name="page" value="addResourceFile" style="display:none;">
+                        <form id="addHubResource" action="lib.php" method="post" enctype="multipart/form-data">
+                            <input type="text" class="form-control" name="page" value="addHubResource" style="display:none;">
+                            <div class="form-group">
+
+                                <select name="filetype" class="dropdown mb-4 btn btn-primary dropdown-toggle">
+                                    <option>select upload type?</option>
+                                    <option value="pdf">PDF File</option>
+                                    <option value="video">Youtube Video Link</option>
+                                    <option value="link">Monday.com Link</option>
+                                </select>
+
+                            </div>
                             <input type="text" class="form-control" name="type" value="file" style="display:none;">
                             <div class="form-group">
                                 <label for="exampleFormControlFile1">Thumbnail</label>
@@ -904,18 +914,14 @@ class LearningHubResources{
                                 <small id="emailHelp" class="form-text text-muted">This title will be shown to all of the users</small>
                             </div>
                             <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Summary</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="summary"></textarea>
+                            </div>
+                            <div class="form-group">
                                 <label for="exampleFormControlFile1">Link</label>
                                 <input type="text" class="form-control" id="fileTitle" placeholder="https://andersonroadchildcare.com.au/" name="resource">
                                 <small id="emailHelp" class="form-text text-muted">You can add link here</small>
                             </div>
-
-                            <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Summary</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="summary"></textarea>
-                            </div>
-                            
-
-
                             <div class="form-group">
                                 <label for="exampleFormControlFile1">Upload Resource</label>
                                 <input type="file" class="form-control-file" id="exampleFormControlFile1" name="resource">
