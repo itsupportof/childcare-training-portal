@@ -6,6 +6,7 @@
 
 /*--////////////////---------v1.0 changes for calender-----------------*/
 if(isset($_POST['addHubResource'])){
+    echo "called";
     var_dump($_POST);
     exit(0);
 }
