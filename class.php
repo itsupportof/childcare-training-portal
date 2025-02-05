@@ -759,10 +759,9 @@ class LearningHubResources{
             </div>
             <?php
         }else{
-
-            echo "<pre>";
-            print_r($row);
-            echo "</pre>";
+            // echo "<pre>";
+            // print_r($row);
+            // echo "</pre>";
             ?>
             <div class="row">
             <?php
@@ -779,7 +778,7 @@ class LearningHubResources{
                                 </div>
                                 <div class="col-lg-4">
                                     
-                                    <h6 class="badge <?php if($record["type"]=="link"){echo'badge-warning';}elseif($record["type"]=="video"){echo'badge-warning';}else{echo'badge-danger';}?>"><?php echo $record["type"]?></h6>
+                                    <h6 class="badge <?php if($record["type"]=="link"){echo'badge-success';}elseif($record["type"]=="video"){echo'badge-warning';}else{echo'badge-danger';}?>"><?php echo $record["type"]?></h6>
                                 </div>
                             </div>
                             <p class="card-text" style="font-size:14px;"><?php echo $record["summary"]?></p>
