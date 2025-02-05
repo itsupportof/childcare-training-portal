@@ -808,6 +808,7 @@ class LearningHubResources{
             $stmt->bindParam('hrid', $hrid, PDO::PARAM_STR);
             $stmt->execute();
             $row   = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            echo $row[0]["source"];
         } catch (PDOException $e) {
             echo "Error : ".$e->getMessage();
         }
