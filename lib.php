@@ -410,6 +410,16 @@ function getAllHubResources(){
  */
 function addNewHubResources(){
     global $pdo;
+    var_dump($_FILES['thumbnail']);
+    exit(0);
+    // $target_dir = "img/thumbnails/";
+    // $fileNameFinal = basename($_FILES['thumbnail']["name"]);
+    // $sourceA= $_FILES['thumbnail']["tmp_name"];
+    // $date = new DateTime();
+    // $dest=$target_dir.$date->getTimestamp().'.pdf';
+    // move_uploaded_file($sourceA, $dest);
+    // $thumbsource= trim($dest,"img/");
+
     $filetype= $_POST ["filetype"];
     if($filetype=="pdf"){
             $title=$_POST['resTitle'];
