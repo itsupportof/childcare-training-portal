@@ -808,7 +808,6 @@ class LearningHubResources{
             $stmt->bindParam('hrid', $hrid, PDO::PARAM_STR);
             $stmt->execute();
             $row   = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            echo $row[0]["source"];
         } catch (PDOException $e) {
             echo "Error : ".$e->getMessage();
         }
@@ -848,7 +847,7 @@ class LearningHubResources{
         </style>
         <p>
         <div class="containerIframe">
-            <iframe class="responsive-iframe" style="" src="./books/index.php?location=<?php echo trim($_GET['res'])?>&amp;res=ARCCC" seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true"></iframe>
+            <iframe class="responsive-iframe" style="" src="./books/index.php?location=<?php echo $row[0]["source"];?>&amp;res=ARCCC" seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true"></iframe>
         </div>
         </p>
         <?php
