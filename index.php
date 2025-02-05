@@ -122,7 +122,7 @@ if(!isset($_GET['page']) && isset($_SESSION['currentSession'])){
                     }
                 }else if($page == 'pdf'){
                     if($role==1 || $role==2){
-                        $rid=$_GET["rid"];
+                        $hrid=$_GET["hrid"];
                         $hubresources=new LearningHubResources();
                         $hubresources->readHubResource($hrid);
                     }else{

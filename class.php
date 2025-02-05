@@ -782,7 +782,7 @@ class LearningHubResources{
                                 </div>
                             </div>
                             <p class="card-text" style="font-size:14px;"><?php echo $record["summary"]?></p>
-                            <a href="./?page=<?php echo $record["type"]."&rid=".$record["hrid"];?>" class="btn btn-primary">☝️ click here</a>
+                            <a href="./?page=<?php echo $record["type"]."&hrid=".$record["hrid"];?>" class="btn btn-primary">☝️ click here</a>
                                 
                         </div>
                     </div>
