@@ -8,7 +8,6 @@
 if(isset($_POST['addHubResource'])){
     echo "called";
     var_dump($_POST);
-    exit(0);
 }
 
 include "config.php";

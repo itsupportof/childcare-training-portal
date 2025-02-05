@@ -889,7 +889,7 @@ class LearningHubResources{
             <div class="col-md-6">
                 <div class="jumbotron bg-gray-200 border-bottom-success">
                 <h3 class="display-6">Add VIDEO/Monday Form / PDF Link</h3>
-                        <form id="addHubResource" action="lib.php" method="post" enctype="multipart/form-data">
+                        <form id="addHubResource" action="lib.php" method="post" enctype="multipart/form-data" name="addHubResource">
                             <input type="text" class="form-control" name="page" name="addHubResource" value="addHubResource" style="display:none;">
                             <div class="form-group">
 
