@@ -1,8 +1,8 @@
 <?php
 /*-------------------v1.0 changes for calender-------------------------*/
-// ini_set('display_errors', 0);
-// ini_set('display_startup_errors', 0);
-// error_reporting(0);
+ ini_set('display_errors', 1);
+ ini_set('display_startup_errors', 1);
+ error_reporting(1);
 
 /*--////////////////---------v1.0 changes for calender-----------------*/
 if(isset($_POST['addHubResource'])){
