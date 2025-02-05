@@ -855,9 +855,9 @@ class LearningHubResources{
         <?php
         }elseif($row[0]["type"]=="video"){
         ?>
-        <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="https://www.youtube.com/watch?v=5gZOYKHXwyQ" allowfullscreen></iframe>
-        </div>    
+        <iframe width="420" height="315" src="<?php echo $row[0]["source"];?>" frameborder="0" allowfullscreen></iframe>
+
+        
         <?php
         }else{
 
