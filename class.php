@@ -759,9 +759,9 @@ class LearningHubResources{
             </div>
             <?php
         }else{
-            // echo "<pre>";
-            // print_r($row);
-            // echo "</pre>";
+            echo "<pre>";
+            print_r($row);
+            echo "</pre>";
             ?>
             <div class="row">
             <?php
