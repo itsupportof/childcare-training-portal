@@ -428,14 +428,13 @@ function addNewHubResources(){
         
     }
     try {
-        $query  = "INSERT INTO `Resources`(  `title`, `summary`, `type`, `thumbnail`, `source`, `role`) VALUES (:title,:summary, :type, :thumbnail, :source,:role)";
+        $query  = "INSERT INTO `Resources`(  `title`, `summary`, `type`, `thumbnail`, `source`, `role`) VALUES (:title,:summary, :type, :thumbnail, :source,12)";
         $stmt = $pdo->prepare($query);
         $stmt->bindParam('title', $title, PDO::PARAM_STR);
         $stmt->bindParam('summary', $_POST['summary'], PDO::PARAM_STR);
         $stmt->bindParam('type', $_POST['type'], PDO::PARAM_STR);
         $stmt->bindParam('thumbnail', $_POST['thumbnail'], PDO::PARAM_STR);
         $stmt->bindParam('source', $_POST['source'], PDO::PARAM_STR);
-        $stmt->bindParam('role', 12, PDO::PARAM_STR);
         $stmt->execute();
         $response['message'] = 'Form data submitted successfully!';
         header('Location: ,/?page=addNewHubResource&message=success');
