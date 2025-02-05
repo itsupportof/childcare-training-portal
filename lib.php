@@ -5,7 +5,10 @@
 // error_reporting(0);
 
 /*--////////////////---------v1.0 changes for calender-----------------*/
-
+if(isset($_POST['addHubResource'])){
+    var_dump($_POST);
+    exit(0);
+}
 
 include "config.php";
 global $pdo;
