@@ -855,7 +855,7 @@ class LearningHubResources{
         <?php
         }elseif($row[0]["type"]=="video"){
         ?>
-        <iframe width="420" height="315" src="<?php echo $row[0]["source"];?>" frameborder="0" allowfullscreen></iframe>
+        <iframe width="420" height="315" src="https://www.youtube.com/embed/A6XUVjK9W4o" frameborder="0" allowfullscreen></iframe>
 
         
         <?php
