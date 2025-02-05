@@ -811,7 +811,7 @@ class LearningHubResources{
         } catch (PDOException $e) {
             echo "Error : ".$e->getMessage();
         }
-        var_dump($row);
+        //var_dump($row);
         //exit(0);
             echo '<a href="./?page=viewAllHubResources" class="btn btn-secondary btn-icon-split">
                                         <span class="icon text-white-50">
@@ -819,7 +819,9 @@ class LearningHubResources{
                                         </span>
                                         <span class="text">Go back</span>
                                     </a>';
+            if($row[0]["type"]=="pdf"){
         ?>
+
         <style>
             @media only screen and (max-width: 480px) {
                 .containerIframe {
@@ -851,6 +853,17 @@ class LearningHubResources{
         </div>
         </p>
         <?php
+        }elseif($row[0]["type"]=="video"){
+        ?>
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="<?php echo $row[0]["source"];?>?rel=0" allowfullscreen></iframe>
+        </div>    
+        <?php
+        }else{
+
+        }
+
+
     }
     ///////////////////////////////////////////
     ///////////Add new Resources//////////////
