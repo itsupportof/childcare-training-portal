@@ -6,8 +6,11 @@
 
 /*--////////////////---------v1.0 changes for calender-----------------*/
 
-var_dump($_POST);
-exit(0);
+if(isset($_POST)){
+    var_dump($_POST);
+    exit(0);
+}
+
 
 include "config.php";
 global $pdo;
