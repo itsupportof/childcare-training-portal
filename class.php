@@ -859,10 +859,12 @@ class LearningHubResources{
         <div class="embed-responsive embed-responsive-16by9">
             <iframe class="embed-responsive-item" src="<?php echo $updatedString;?>?rel=0" allowfullscreen></iframe>
         </div>
-
         
         <?php
         }else{
+            ?>
+            <iframe src="<?php echo $row[0]["source"];?>" width="650" height="500" style="border: 0; box-shadow: 5px 5px 56px 0px rgba(0,0,0,0.25);"></iframe>
+            <?php
 
         }
 
