@@ -5,7 +5,7 @@
  error_reporting(1);
 
 /*--////////////////---------v1.0 changes for calender-----------------*/
-if($_POST['addHubResource']){
+if($_POST["addHubResource"]){
     echo "called";
     var_dump($_POST);
 }
