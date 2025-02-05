@@ -782,7 +782,7 @@ class LearningHubResources{
                                 </div>
                             </div>
                             <p class="card-text" style="font-size:14px;"><?php echo $record["summary"]?></p>
-                            <a href="./?page=<?php echo $record["type"]."?id=".$record["hrid"];?>" class="btn btn-primary">☝️ click here</a>
+                            <a href="./?page=<?php echo $record["type"]."&rid=".$record["hrid"];?>" class="btn btn-primary">☝️ click here</a>
                                 
                         </div>
                     </div>
@@ -800,8 +800,19 @@ class LearningHubResources{
     ///////////////////////////////////////////
     //////////Read Resources//////////////
     /////////////////////////////////////////
-    public function readHubResource(){
+    public function readHubResource($hrid){
         echo"welcome";
+        global $pdo;
+        try {
+            $query = "select * from `HubResources` where `hrid`=:hrid";
+            $stmt = $pdo->prepare($query);
+            $stmt->bindParam('hrid', $hrid, PDO::PARAM_STR);
+            $stmt->execute();
+            $row   = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error : ".$e->getMessage();
+        }
+        var_dump($row);
         exit(0);
             echo '<a href="./?page=viewAllHubResources" class="btn btn-secondary btn-icon-split">
                                         <span class="icon text-white-50">
