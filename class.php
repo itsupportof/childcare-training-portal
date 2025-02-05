@@ -890,7 +890,7 @@ class LearningHubResources{
                 <div class="jumbotron bg-gray-200 border-bottom-success">
                 <h3 class="display-6">Add VIDEO/Monday Form / PDF Link</h3>
                         <form id="addHubResource" action="lib.php" method="post" enctype="multipart/form-data">
-                            <input type="text" class="form-control" name="page" value="addHubResource" style="display:none;">
+                            <input type="text" class="form-control" name="page" name="addHubResource" value="addHubResource" style="display:none;">
                             <div class="form-group">
 
                                 <select name="filetype" class="dropdown mb-4 btn btn-primary dropdown-toggle">
