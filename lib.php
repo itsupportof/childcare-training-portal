@@ -384,6 +384,24 @@ function userOption(){
 
     return $a.' '.$_SESSION['name'].' '.$b;
 }
+
+/*****************************************
+ * 'Get all Hub resources'
+ * ****************************************
+ */
+function getAllHubResources(){
+    global $pdo;
+    try {
+        $query = "select * from `HubResources`";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute();
+        $row   = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo "Error : ".$e->getMessage();
+    }
+    return $row;
+}
+
 /*****************************************
  * 'Get all resources'
  * ****************************************

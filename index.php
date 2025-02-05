@@ -120,6 +120,14 @@ if(!isset($_GET['page']) && isset($_SESSION['currentSession'])){
                     }else{
                         echo '<h1>Unauthorised access</h1>';
                     }
+                }else if($page == 'pdf'){
+                    if($role==1 || $role==2){
+                        $rid=$_GET["rid"];
+                        $hubresources=new LearningHubResources();
+                        $hubresources->readHubResource();
+                    }else{
+                        echo '<h1>Unauthorised access</h1>';
+                    }
                 }else if($page == 'addNewHubResource'){
                     if($role==1 || $role==2 || $role==3){
                         $hubresources=new LearningHubResources();

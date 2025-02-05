@@ -733,7 +733,7 @@ class LearningHubResources{
     //////////View All Resources//////////////
     /////////////////////////////////////////
     public function viewAllHubResources(){
-        $row=getAllResources();
+        $row=getAllHubResources();
         $currentRole=$_SESSION['role'];
         //var_dump($row);
         $resCount=count($row);
@@ -782,7 +782,7 @@ class LearningHubResources{
                                 </div>
                             </div>
                             <p class="card-text" style="font-size:14px;"><?php echo $record["summary"]?></p>
-                            <a href="./<?php echo $record["type"]."?id=".$record["rid"];?>" class="btn btn-primary">☝️ click here</a>
+                            <a href="./?page=<?php echo $record["type"]."?id=".$record["hrid"];?>" class="btn btn-primary">☝️ click here</a>
                                 
                         </div>
                     </div>
@@ -800,15 +800,15 @@ class LearningHubResources{
     ///////////////////////////////////////////
     //////////Read Resources//////////////
     /////////////////////////////////////////
-    public function readResource(){
-        if (isset($_GET['source'])=='home'){
-            echo '<a href="?page=home" class="btn btn-secondary btn-icon-split">
+    public function readHubResource(){
+        echo"welcome";
+        exit(0);
+            echo '<a href="./?page=viewAllHubResources" class="btn btn-secondary btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-arrow-left"></i>
                                         </span>
                                         <span class="text">Go back</span>
                                     </a>';
-        }
         ?>
         <style>
             @media only screen and (max-width: 480px) {
