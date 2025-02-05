@@ -5,10 +5,6 @@
  error_reporting(1);
 
 /*--////////////////---------v1.0 changes for calender-----------------*/
-if($_POST["addHubResource"]){
-    echo "called";
-    var_dump($_POST);
-}
 
 include "config.php";
 global $pdo;
@@ -17,6 +13,12 @@ global $pdo;
  * Calling function according to the requirement to speed up
  * ****************************************
  */
+
+ if($_POST["addHubResource"]){
+    addNewHubResources();
+}
+
+
 if(isset($_POST['loginProcess'])) {
     loginlogic();
 }elseif(isset($_POST['registerationProcess'])){
@@ -240,10 +242,10 @@ function getAResetLink() {
                 '.$url.'/reset-password.php?key='.$token.'&email='.$_POST['email'].'&action=reset</a></p>';
                 $txt.='<p>-------------------------------------------------------------</p>';
                 $txt.='<p>Please be sure to copy the entire link into your browser.
-The link will expire after 1 day for security reason.</p>';
+        The link will expire after 1 day for security reason.</p>';
                 $txt.='<p>If you did not request this forgotten password email, no action
-is needed, your password will not be reset. However, you may want to log into
-your account and change your security password as someone may have guessed it.</p>';
+    is needed, your password will not be reset. However, you may want to log into
+    your account and change your security password as someone may have guessed it.</p>';
                 $txt.='<p>Thanks,</p>';
                 $txt.='<p>Bright Beginnings Family Day Care Team</p>';
                 $txt .= '</body></html>';
@@ -298,9 +300,8 @@ function resetPasword(){
  * 'Notification Bar'
  * ****************************************
  */
-function notificationBar(){
-?>
-<li class="nav-item dropdown no-arrow mx-1">
+function notificationBar(){?>
+    <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <?php if($_SESSION['newusers']!=0){?>
@@ -344,7 +345,7 @@ function notificationBar(){
                             </div>
                     </li>
 
-<?php
+    <?php
 }
 /*****************************************
  * 'User Option'
@@ -402,6 +403,47 @@ function getAllHubResources(){
         echo "Error : ".$e->getMessage();
     }
     return $row;
+}
+/*****************************************
+ * 'Add New Hub resources'
+ * ****************************************
+ */
+function addNewHubResources(){
+    global $pdo;
+    $filetype= $_POST ["filetype"];
+    if($filetype=="pdf"){
+            $title=$_POST['resTitle'];
+            $summary=$_POST['summary'];
+            $type="pdf";
+            $target_dir = "books/resources/";
+            $fileNameFinal = basename($_FILES['resource']["name"]);
+            $sourceA= $_FILES['resource']["tmp_name"];
+            $date = new DateTime();
+            $dest=$target_dir.$date->getTimestamp().'.pdf';
+            move_uploaded_file($sourceA, $dest);
+            $source= trim($dest,"books/");
+    }elseif($filetype=="video"){
+
+    }else{
+        
+    }
+    try {
+        $query  = "INSERT INTO `Resources`(  `title`, `summary`, `type`, `thumbnail`, `source`, `role`) VALUES (:title,:summary, :type, :thumbnail, :source,:role)";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam('title', $title, PDO::PARAM_STR);
+        $stmt->bindParam('summary', $_POST['summary'], PDO::PARAM_STR);
+        $stmt->bindParam('type', $_POST['type'], PDO::PARAM_STR);
+        $stmt->bindParam('thumbnail', $_POST['thumbnail'], PDO::PARAM_STR);
+        $stmt->bindParam('source', $_POST['source'], PDO::PARAM_STR);
+        $stmt->bindParam('role', 12, PDO::PARAM_STR);
+        $stmt->execute();
+        $response['message'] = 'Form data submitted successfully!';
+        header('Location: ,/?page=addNewHubResource&message=success');
+        exit;
+    }catch (Exception $e) {
+        echo $e;
+    }
+
 }
 
 /*****************************************
