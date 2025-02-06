@@ -415,17 +415,17 @@ function addNewHubResources(){
     $target_dir = "img/thumbnails/";
     $fileNameFinal = basename($_FILES['thumbnail']["name"]);
     $extension=end((explode(".", $name)));
-    $type = mime_content_type($filename);
+    $type = mime_content_type($fileNameFinal);
 
     $image_size = $_FILES['thumbnail']["size"];
     $max_size = 700 * 1024;
     
     if (!strstr($type, 'image/') || $image_size > $max_size)
-    {
-        $response['message'] = 'Please try to submit an image';
-        header('Location: ./?page=addNewHubResource&notvalid=image');
-        exit;
-    }
+    // {
+    //     $response['message'] = 'Please try to submit an image';
+    //     header('Location: ./?page=addNewHubResource&notvalid=image');
+    //     exit;
+    // }
     $sourceA= $_FILES['thumbnail']["tmp_name"];
     $date = new DateTime();
     $dest=$target_dir.$date->getTimestamp().$_FILES['thumbnail']["name"];
