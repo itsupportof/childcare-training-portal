@@ -459,7 +459,7 @@ function addNewHubResources(){
         $stmt->bindParam('source', $source, PDO::PARAM_STR);
         $stmt->execute();
         $response['message'] = 'Form data submitted successfully!';
-        header('Location: ,/?page=addNewHubResource&message=success');
+        header('Location: ./?page=addNewHubResource&message=success');
         exit;
     }catch (Exception $e) {
         echo $e;
