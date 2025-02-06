@@ -881,7 +881,15 @@ class LearningHubResources{
                     New Resource is added successfully!
                 </div>
             </div>
-        <?php }
+        <?php }elseif(isset($_GET['message'])){
+            ?>
+            <div class="card mb-4 py-3 border-left-danger" style="padding-top:0px !important;padding-bottom:0px !important; ">
+                <div class="card-body" id="msg">
+                    Please upload image with instruction provided.
+                </div>
+            </div>
+            <?php
+        }
         ?>
         <!-- Page Heading -->
         <h1 class="h3 mb-4 text-gray-800" style="text-align: center; padding-top: 30px;">Add New Resources</h1>
