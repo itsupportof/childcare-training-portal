@@ -429,8 +429,11 @@ function addNewHubResources(){
     $sourceA= $_FILES['thumbnail']["tmp_name"];
     $date = new DateTime();
     $dest=$target_dir.$date->getTimestamp().$_FILES['thumbnail']["name"];
+    echo $dest;
+    exit(0);
     move_uploaded_file($sourceA, $dest);
     $thumbsource= trim($dest,"img/");
+    $thumbnailSource=$target_dir.
 
     $filetype= $_POST ["filetype"];
     if($filetype=="pdf"){
