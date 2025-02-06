@@ -410,8 +410,8 @@ function getAllHubResources(){
  */
 function addNewHubResources(){
     global $pdo;
-    var_dump($_FILES['thumbnail']);
-    exit(0);
+    //var_dump($_FILES['thumbnail']);
+    //exit(0);
     $target_dir = "img/thumbnails/";
     $fileNameFinal = basename($_FILES['thumbnail']["name"]);
     $extension=end((explode(".", $name)));
