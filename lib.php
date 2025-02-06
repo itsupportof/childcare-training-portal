@@ -450,7 +450,7 @@ function addNewHubResources(){
         
     }
     try {
-        $query  = "INSERT INTO `Resources`(  `title`, `summary`, `type`, `thumbnail`, `source`, `role`) VALUES (:title,:summary, :type, :thumbnail, :source,12)";
+        $query  = "INSERT INTO `HubResources`(  `title`, `summary`, `type`, `thumbnail`, `source`, `role`) VALUES (:title,:summary, :type, :thumbnail, :source,12)";
         $stmt = $pdo->prepare($query);
         $stmt->bindParam('title', $title, PDO::PARAM_STR);
         $stmt->bindParam('summary', $_POST['summary'], PDO::PARAM_STR);
