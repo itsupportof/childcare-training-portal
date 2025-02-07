@@ -419,13 +419,7 @@ function addNewHubResources(){
 
     $image_size = $_FILES['thumbnail']["size"];
     $max_size = 700 * 1024;
-    
-    if (!strstr($fileNameFinal, 'image/'))
-    {
-        $response['message'] = 'Please try to submit an image';
-        header('Location: ./?page=addNewHubResource&notvalid=image');
-        exit;
-    }
+
     $sourceA= $_FILES['thumbnail']["tmp_name"];
     $date = new DateTime();
     $dest=$target_dir.$date->getTimestamp().$_FILES['thumbnail']["name"];
@@ -445,10 +439,8 @@ function addNewHubResources(){
             $dest=$target_dir.$date->getTimestamp().'.pdf';
             move_uploaded_file($sourceA, $dest);
             $source= trim($dest,"books/");
-    }elseif($filetype=="video"){
-
-    }else{
-        
+    }elseif($filetype=="video" ||$filetype=="link"){
+        $source=$_POST["resource"];
     }
     try {
         $query  = "INSERT INTO `HubResources`(  `title`, `summary`, `type`, `thumbnail`, `source`, `role`) VALUES (:title,:summary, :type, :thumbnail, :source,12)";
