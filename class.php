@@ -1163,37 +1163,22 @@ class LearningHubResources{
                         </div>
 
                         <div class="form-group">
-                                <select name="filetype" class="dropdown mb-4 btn btn-primary dropdown-toggle" id="filetype">
-                                    <option value="default">select upload type?</option>
-                                    <option value="pdf">PDF File</option>
-                                    <option value="video">Youtube Video Link</option>
-                                    <option value="link">Monday.com Link</option>
-                                </select>
-                            <div>
+                            <select name="filetype" class="dropdown mb-4 btn btn-primary dropdown-toggle" id="filetype">
+                                <option value="default">select upload type?</option>
+                                <option value="pdf">PDF File</option>
+                                <option value="video">Youtube Video Link</option>
+                                <option value="link">Monday.com Link</option>
+                            </select>
+                        <div>
                                 <?php echo "<span><b>Currently Selected Category:</b> </span> ".$row["type"];?>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Link</label>
+                            <input type="text" class="form-control" id="source" placeholder="link" name="source" value="<?php echo $row["source"];?>">
+                        </div>
                             </div>
+
                         </div>
 
-                        <div class="form-group">
-
-                            <select name="addResourceRole" class="dropdown mb-4 btn btn-primary dropdown-toggle">
-
-                                <option>Who can view the resource?</option>
-                                <option value="2">Educator only</option>
-                                <option value="3">Parents only</option>
-                                <option value="23">Both</option>
-                            </select>
-                            <div>
-                            <?php echo "<span><b>Currently Selected Role:</b> </span> ";
-                            if($row["role"]==2){
-                                echo 'Educator';
-                            }elseif ($row["role"]==3){
-                                echo 'Parent';
-                            }elseif ($row["role"]==23){
-                                echo 'Educators and parents';
-                            }else{
-                                echo 'role not assigned yet';
-                            }?>
                             </div>
                         </div>
 
