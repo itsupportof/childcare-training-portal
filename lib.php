@@ -420,6 +420,12 @@ function addNewHubResources(){
     $image_size = $_FILES['thumbnail']["size"];
     $max_size = 700 * 1024;
 
+    list($width, $height) = getimagesize($_FILES['thumbnail']["tmp_name"]);
+    if($width!=251 || $height!=220){
+        header('Location: ./?page=addNewHubResource&notvalid=imageca');
+        exit;
+    }
+
     $sourceA= $_FILES['thumbnail']["tmp_name"];
     $date = new DateTime();
     $dest=$target_dir.$date->getTimestamp().$_FILES['thumbnail']["name"];

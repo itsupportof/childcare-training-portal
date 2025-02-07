@@ -885,7 +885,7 @@ class LearningHubResources{
             ?>
             <div class="card mb-4 py-3 border-left-danger" style="padding-top:0px !important;padding-bottom:0px !important; ">
                 <div class="card-body" id="msg">
-                    Please upload image with instruction provided!
+                    Please upload image with instructions provided!
                 </div>
             </div>
             <?php
