@@ -455,7 +455,7 @@ function addNewHubResources(){
         $stmt = $pdo->prepare($query);
         $stmt->bindParam('title', $title, PDO::PARAM_STR);
         $stmt->bindParam('summary', $_POST['summary'], PDO::PARAM_STR);
-        $stmt->bindParam('type', $_POST['type'], PDO::PARAM_STR);
+        $stmt->bindParam('type', $_POST['filetype'], PDO::PARAM_STR);
         $stmt->bindParam('thumbnail', $thumbsource, PDO::PARAM_STR);
         $stmt->bindParam('source', $source, PDO::PARAM_STR);
         $stmt->execute();
