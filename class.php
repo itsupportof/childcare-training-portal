@@ -913,7 +913,8 @@ class LearningHubResources{
                             <div class="form-group">
                                 <label for="exampleFormControlFile1">Thumbnail</label>
                                 <input type="file" class="form-control-file" id="exampleFormControlFile1" name="thumbnail">
-                                <small id="emailHelp" class="form-text text-muted">Make sure to upload only png/jpg file. Size must be 251x220. System will not accpet any other file type.</small>
+                                <small id="emailHelp" class="form-text text-muted">Make sure to upload only png/jpg file. Size must be 251x220.Also, image memory size cannot be more than
+                                    700KB. System will not accpet any other file type.</small>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1" style="display: inline-block;
@@ -925,12 +926,12 @@ class LearningHubResources{
                                 <label for="exampleFormControlTextarea1">Summary</label>
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="summary"></textarea>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="link" style="display:none;">
                                 <label for="exampleFormControlFile1">Link</label>
                                 <input type="text" class="form-control" id="fileTitle" placeholder="https://andersonroadchildcare.com.au/" name="resource">
                                 <small id="emailHelp" class="form-text text-muted">You can add link here</small>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="res" style="display:none;">
                                 <label for="exampleFormControlFile1">Upload Resource</label>
                                 <input type="file" class="form-control-file" id="exampleFormControlFile1" name="resource">
                                 <small id="emailHelp" class="form-text text-muted">Make sure to upload only PDF file. System will not accpet any file other than .pdf</small>
