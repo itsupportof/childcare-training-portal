@@ -420,7 +420,7 @@ function addNewHubResources(){
     $image_size = $_FILES['thumbnail']["size"];
     $max_size = 700 * 1024;
     
-    if (!strstr($type, 'image/'))
+    if (!strstr($fileNameFinal, 'image/'))
     {
         $response['message'] = 'Please try to submit an image';
         header('Location: ./?page=addNewHubResource&notvalid=image');
