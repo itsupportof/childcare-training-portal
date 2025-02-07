@@ -418,10 +418,13 @@ function addNewHubResources(){
     $type = mime_content_type($fileNameFinal);
 
     $image_size = $_FILES['thumbnail']["size"];
+
     $max_size = 700 * 1024;
+    $file_size = filesize($_FILES['thumbnail']["tmp_name"]); // Get file size in bytes
+    $file_size = $file_size / 1024; // Get file size in KB
 
     list($width, $height) = getimagesize($_FILES['thumbnail']["tmp_name"]);
-    if($width!=251 || $height!=220){
+    if($width!=251 || $height!=220 || $file_size>700){
         header('Location: ./?page=addNewHubResource&notvalid=imageca');
         exit;
     }

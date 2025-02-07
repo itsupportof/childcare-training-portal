@@ -913,7 +913,7 @@ class LearningHubResources{
                             <div class="form-group">
                                 <label for="exampleFormControlFile1">Thumbnail</label>
                                 <input type="file" class="form-control-file" id="exampleFormControlFile1" name="thumbnail">
-                                <small id="emailHelp" class="form-text text-muted">Make sure to upload only png/jpg file. System will not accpet any other file type.</small>
+                                <small id="emailHelp" class="form-text text-muted">Make sure to upload only png/jpg file. Size must be 251x220. System will not accpet any other file type.</small>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1" style="display: inline-block;
