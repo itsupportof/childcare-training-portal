@@ -1043,7 +1043,7 @@ class LearningHubResources{
                                         <td><?php echo $row[$i]["source"];?></td>
                                         <td>
                                             <!--look in lib file for implementation of if isset($_GET['action']=='editResouce'){}-->
-                                            <a href="?page=editingResource&id=<?php echo $row[$i]["hrid"];?>" class="btn btn-primary btn-circle btn-md">
+                                            <a href="?page=editingResource&hrid=<?php echo $row[$i]["hrid"];?>" class="btn btn-primary btn-circle btn-md">
                                                 <i class="fas fa-edit"></i>
                                             </a>
 
@@ -1069,7 +1069,7 @@ class LearningHubResources{
                                     }).then((result) => {
                                         if (result.isConfirmed) {
                                             // Redirect to the deletion URL
-                                            window.location.href = `?page=deleteAResource&id=${sourceID}`;
+                                            window.location.href = `?page=deleteHubResource&hrid=${sourceID}`;
                                         }
                                     });
                                 }
@@ -1246,28 +1246,31 @@ class LearningHubResources{
     public function deleteHubResources($resId){
         global $pdo;
         try {
-            $query = "SELECT * FROM `Resources` where `rid`=:rId";
+            $query = "SELECT * FROM `HubResources` where `hrid`=:rId";
             $stmt = $pdo->prepare($query);
-            $stmt->bindParam('rId', $resId, PDO::PARAM_STR);
+            $stmt->bindParam('hrId', $resId, PDO::PARAM_STR);
             $stmt->execute();
             $row   = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             echo "Error : ".$e->getMessage();
         }
-        if($row["type"]=="file"){
+        $thumbnail=$row["thumbnail"];
+        unlink($thumbnail);
+
+        if($row["type"]=="pdf"){
             $file=$row["source"];
             unlink("books/".$file);
         }
 
         try {
-            $sql = "Delete from `Resources` WHERE rid=?";
+            $sql = "Delete from `HubResources` WHERE hrid=?";
             $stmt= $pdo->prepare($sql);
             $stmt->execute([$resId]);
 
         } catch (PDOException $e) {
             echo "Error : ".$e->getMessage();
         }
-        $URL="?page=deleteResources&status=deleted";
+        $URL="?page=deleteHubResources&status=deleted";
         echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
         echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
     }

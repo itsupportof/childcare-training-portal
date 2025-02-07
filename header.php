@@ -46,7 +46,7 @@ if(isset($_SESSION['role'])){
                 ?>
                 <a class="collapse-item" href="?page=addNewHubResource">Add New Hub Resources</a>
                 <a class="collapse-item" href="?page=editHubResource">Update Hub Resources</a>
-                <a class="collapse-item" href="?page=deleteHubResources">Delete Hub Resources</a>
+                <a class="collapse-item" href="?page=editHubResource">Delete Hub Resources</a>
                 <?php
             }
             ?>
