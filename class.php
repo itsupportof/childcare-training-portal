@@ -1149,7 +1149,7 @@ class LearningHubResources{
                         <input type="text" class="form-control" name="page" value="updateResource" style="display:none;">
                         <input type="text" class="form-control" name="id" value="<?php echo $row["hrid"];?>" style="display:none;">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Thumbnail</label>
+                            <label for="exampleInputEmail1">Thumbnail</label><br>
                             <img src="<?php echo $row["thumbnail"];?>" class="img-thumbnail">
                         </div>
                         <div class="form-group">
