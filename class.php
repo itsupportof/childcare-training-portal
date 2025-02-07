@@ -875,6 +875,24 @@ class LearningHubResources{
     ///////////Add new Resources//////////////
     /////////////////////////////////////////
     public function addNewHubResource(){?>
+             <script>
+            $(document).ready(function(){
+                $('#filetype').change(function(){
+                    var getOption=$("#filetype option:selected").text();
+                    //link //res
+                    if(getOption=="select upload type?"){
+                        $('#link').css('display','none');
+                        $('#res').css('display','none');
+                    } elseif(getOption=="PDF File"){
+                        $('#link').css('display','none');
+                        $('#res').css('display','block');
+                    }elseif(getOption=="Youtube Video Link" || getOption=="Monday.com Link"){
+                        $('#link').css('display','block');
+                        $('#res').css('display','none');
+                    }
+                });
+            });
+        </script>
         <?php if(isset($_GET['message'])){?>
             <div class="card mb-4 py-3 border-left-success" style="padding-top:0px !important;padding-bottom:0px !important; ">
                 <div class="card-body" id="msg">
@@ -891,6 +909,7 @@ class LearningHubResources{
             <?php
         }
         ?>
+
         <!-- Page Heading -->
         <h1 class="h3 mb-4 text-gray-800" style="text-align: center; padding-top: 30px;">Add New Resources</h1>
         <div class="row">
@@ -901,8 +920,8 @@ class LearningHubResources{
                             <input type="text" class="form-control" name="addHubResource" value="addHubResource" style="display:none;">
                             <div class="form-group">
 
-                                <select name="filetype" class="dropdown mb-4 btn btn-primary dropdown-toggle">
-                                    <option>select upload type?</option>
+                                <select name="filetype" class="dropdown mb-4 btn btn-primary dropdown-toggle" id="filetype">
+                                    <option value="default">select upload type?</option>
                                     <option value="pdf">PDF File</option>
                                     <option value="video">Youtube Video Link</option>
                                     <option value="link">Monday.com Link</option>
