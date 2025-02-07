@@ -1150,7 +1150,7 @@ class LearningHubResources{
                         <input type="text" class="form-control" name="id" value="<?php echo $row["hrid"];?>" style="display:none;">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Thumbnail</label>
-                            <img src="<?php echo $row["thumbnail"];?>">
+                            <img src="<?php echo $row["thumbnail"];?>" class="img-thumbnail">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Resource Title</label>
@@ -1163,24 +1163,12 @@ class LearningHubResources{
                         </div>
 
                         <div class="form-group">
-
-                            <select name="category" class="dropdown mb-4 btn btn-primary dropdown-toggle">
-
-                                <option>Select the Category</option>
-                                <option value="FDC Compliance">FDC Compliance</option>
-                                <option value="Frameworks">Frameworks</option>
-                                <option value="Educational Resources">Educational Resources</option>
-                                <option value="Safety Data">Safety Data</option>
-                                <option value="Newsletters">Newsletters</option>
-                                <option value="Fact Sheets">Fact Sheets</option>
-                                <option value="FDC Insurance">FDC Insurance</option>
-                                <option value="Child Safe Standards">Child Safe Standards</option>
-                                <option value="Reportable Conduct Scheme">Reportable Conduct Scheme</option>
-                                <option value="Online Safety">Online Safety</option>
-                                <option value="General and Legal Forms">General and Legal Forms</option>
-                                <option value="COVID-19">COVID-19</option>
-                                <option value="Resources in other languages">Resources in other languages</option>
-                            </select>
+                                <select name="filetype" class="dropdown mb-4 btn btn-primary dropdown-toggle" id="filetype">
+                                    <option value="default">select upload type?</option>
+                                    <option value="pdf">PDF File</option>
+                                    <option value="video">Youtube Video Link</option>
+                                    <option value="link">Monday.com Link</option>
+                                </select>
                             <div>
                                 <?php echo "<span><b>Currently Selected Category:</b> </span> ".$row["type"];?>
                             </div>
