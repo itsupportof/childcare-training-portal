@@ -142,6 +142,13 @@ if(!isset($_GET['page']) && isset($_SESSION['currentSession'])){
                     }else{
                         echo '<h1>Unauthorised access</h1>';
                     }
+                }else if($page == 'editingHubResource'){
+                    if($role==1 || $role==2 || $role==3){
+                        $hubresources=new LearningHubResources();
+                        $hubresources->editHubResource();
+                    }else{
+                        echo '<h1>Unauthorised access</h1>';
+                    }
                 }else if($page == 'deleteHubResource'){
                     if($role==1 || $role==2 || $role==3){
                         $hubresources=new LearningHubResources();

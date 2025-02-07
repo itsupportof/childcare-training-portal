@@ -1096,9 +1096,9 @@ class LearningHubResources{
             </div>
         <?php }
 
-        $resId=$_GET['id'];
+        $resId=$_GET['hrid'];
         try {
-            $query = "select * from `Resources` where `rid`=:Id";
+            $query = "select * from `HubResources` where `hrid`=:Id";
             $stmt = $pdo->prepare($query);
             $stmt->bindParam('Id', $resId, PDO::PARAM_STR);
             $stmt->execute();
