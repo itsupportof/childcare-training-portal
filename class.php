@@ -881,11 +881,14 @@ class LearningHubResources{
                     var getOption=$("#filetype option:selected").text();
                     //link //res
                     if(getOption=="select upload type?"){
-                       alert('sa');
+                        $('#link').css('display','none');
+                        $('#res').css('display','none');
                     } else if(getOption=="PDF File"){
-                        alert('sas32a');
+                        $('#link').css('display','none');
+                        $('#res').css('display','block');
                     }else if(getOption=="Youtube Video Link" || getOption=="Monday.com Link"){
-                        alert('sd246643a');
+                        $('#link').css('display','block');
+                        $('#res').css('display','none');
                     }
                 });
             });
