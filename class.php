@@ -1176,10 +1176,6 @@ class LearningHubResources{
                             <input type="text" class="form-control" id="source" placeholder="link" name="source" value="<?php echo $row["source"];?>">
                         </div>
                             </div>
-
-                        </div>
-
-                            </div>
                         </div>
 
                         <div class="form-group" id="keepItButtons">
