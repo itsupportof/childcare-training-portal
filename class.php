@@ -1043,7 +1043,7 @@ class LearningHubResources{
                                         <td><?php echo $row[$i]["source"];?></td>
                                         <td>
                                             <!--look in lib file for implementation of if isset($_GET['action']=='editResouce'){}-->
-                                            <a href="?page=editingResource&hrid=<?php echo $row[$i]["hrid"];?>" class="btn btn-primary btn-circle btn-md">
+                                            <a href="?page=editingHubResource&hrid=<?php echo $row[$i]["hrid"];?>" class="btn btn-primary btn-circle btn-md">
                                                 <i class="fas fa-edit"></i>
                                             </a>
 
@@ -1149,6 +1149,10 @@ class LearningHubResources{
                         <input type="text" class="form-control" name="page" value="updateResource" style="display:none;">
                         <input type="text" class="form-control" name="id" value="<?php echo $row["hrid"];?>" style="display:none;">
                         <div class="form-group">
+                            <label for="exampleInputEmail1">Thumbnail</label>
+                            <img src="<?php echo $row["thumbnail"];?>">
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputEmail1">Resource Title</label>
                             <input type="text" class="form-control" id="fileTitle" placeholder="Enter title" name="resTitle" value="<?php echo $row["title"];?>">
                             <small id="emailHelp" class="form-text text-muted">This title will be shown to all of the users</small>
@@ -1178,7 +1182,7 @@ class LearningHubResources{
                                 <option value="Resources in other languages">Resources in other languages</option>
                             </select>
                             <div>
-                                <?php echo "<span><b>Currently Selected Category:</b> </span> ".$row["category"];?>
+                                <?php echo "<span><b>Currently Selected Category:</b> </span> ".$row["type"];?>
                             </div>
                         </div>
 
