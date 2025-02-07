@@ -970,7 +970,7 @@ class LearningHubResources{
     public function editordeleteHubResource(){
         global $pdo;
         try {
-            $query = "SELECT * FROM `Resources` ORDER BY `Resources`.`rid` DESC";
+            $query = "SELECT * FROM `HubResources` ORDER BY `HubResources`.`hrid` DESC";
             $stmt = $pdo->prepare($query);
             $stmt->execute();
             $row   = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -993,14 +993,14 @@ class LearningHubResources{
             </div>
         <?php }
         ?>
-        <h1 class="h3 mb-4 text-gray-800" style="text-align: center; padding-top: 30px;">Change Resources</h1>
+        <h1 class="h3 mb-4 text-gray-800" style="text-align: center; padding-top: 30px;">Change Hub Resources</h1>
 
         <!-- Page Heading -->
         <div class="row">
             <div class="col-sm-12">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">You can edit,update and delete resources through this panel</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">You can edit,update and delete hub resources through this panel</h6>
                     </div>
                     <div class="card-body border-bottom-success">
                         <div class="table-responsive">
@@ -1010,10 +1010,10 @@ class LearningHubResources{
                                     <th style="">Id</th>
                                     <th>Type</th>
                                     <th>Title</th>
-                                    <th>Version</th>
-                                    <th>Category</th>
-                                    <th>Permission</th>
-                                    <th>File Name/Link</th>
+                                    <th>Summary</th>
+                                    <th>Type</th>
+                                    <th>Thumbnail</th>
+                                    <th>Source</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -1022,10 +1022,10 @@ class LearningHubResources{
                                     <th style="">Id</th>
                                     <th>Type</th>
                                     <th>Title</th>
-                                    <th>Version</th>
-                                    <th>Category</th>
-                                    <th>Permission</th>
-                                    <th>File Name/Link</th>
+                                    <th>Summary</th>
+                                    <th>Type</th>
+                                    <th>Thumbnail</th>
+                                    <th>Source</th>
                                     <th>Action</th>
                                 </tr>
                                 </tfoot>
@@ -1034,31 +1034,20 @@ class LearningHubResources{
                                 for ($i=0; $i <$resCount ; $i++) {
                                     ?>
                                     <tr>
-                                        <td style=""><?php echo $row[$i]["rid"];?></td>
+                                        <td style=""><?php echo $row[$i]["hrid"];?></td>
                                         <td><?php echo $row[$i]["type"];?></td>
                                         <td><?php echo $row[$i]["title"];?></td>
-                                        <td><?php echo $row[$i]["version"];?></td>
-                                        <td><?php echo $row[$i]["category"];?></td>
-                                        <td>
-                                            <?php if($row[$i]["role"]==2){
-                                                echo 'Educator';
-                                            }elseif ($row[$i]["role"]==3){
-                                                echo 'Parent';
-                                            }elseif ($row[$i]["role"]==23){
-                                                echo 'Educators and parents';
-                                            }else{
-                                                echo 'role not assigned yet';
-                                            }?>
-
-                                        </td>
+                                        <td><?php echo $row[$i]["summary"];?></td>
+                                        <td><?php echo $row[$i]["type"];?></td>
+                                        <td><img src="<?php echo $row[$i]["thumbnail"];?>" alt="..." class="img-thumbnail"></td>
                                         <td><?php echo $row[$i]["source"];?></td>
                                         <td>
                                             <!--look in lib file for implementation of if isset($_GET['action']=='editResouce'){}-->
-                                            <a href="?page=editingResource&id=<?php echo $row[$i]["rid"];?>" class="btn btn-primary btn-circle btn-md">
+                                            <a href="?page=editingResource&id=<?php echo $row[$i]["hrid"];?>" class="btn btn-primary btn-circle btn-md">
                                                 <i class="fas fa-edit"></i>
                                             </a>
 
-                                            <a href="javascript:void(0);" onclick="confirmDelete(<?php echo $row[$i]['rid']; ?>)" class="btn btn-danger btn-circle btn-md">
+                                            <a href="javascript:void(0);" onclick="confirmDelete(<?php echo $row[$i]['hrid']; ?>)" class="btn btn-danger btn-circle btn-md">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </td>
