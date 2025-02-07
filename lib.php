@@ -424,7 +424,7 @@ function addNewHubResources(){
     $file_size = $file_size / 1024; // Get file size in KB
 
     list($width, $height) = getimagesize($_FILES['thumbnail']["tmp_name"]);
-    if($width!=251 || $height!=220 || $file_size>700){
+    if( $file_size>700){
         header('Location: ./?page=addNewHubResource&notvalid=imageca');
         exit;
     }
