@@ -138,7 +138,7 @@ if(!isset($_GET['page']) && isset($_SESSION['currentSession'])){
                 }else if($page == 'editHubResource'){
                     if($role==1 || $role==2 || $role==3){
                         $hubresources=new LearningHubResources();
-                        $hubresources->editHubResource();
+                        $hubresources->editordeleteHubResource();
                     }else{
                         echo '<h1>Unauthorised access</h1>';
                     }
