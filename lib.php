@@ -426,11 +426,11 @@ function addNewHubResources(){
    
     move_uploaded_file($sourceA, $dest);
     $thumbsource= "./".$dest;
+    $title=$_POST['resTitle'];
+    $summary=$_POST['summary'];
 
     $filetype= $_POST ["filetype"];
     if($filetype=="pdf"){
-            $title=$_POST['resTitle'];
-            $summary=$_POST['summary'];
             $type="pdf";
             $target_dir = "books/resources/";
             $fileNameFinal = basename($_FILES['resource']["name"]);
