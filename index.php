@@ -142,10 +142,10 @@ if(!isset($_GET['page']) && isset($_SESSION['currentSession'])){
                     }else{
                         echo '<h1>Unauthorised access</h1>';
                     }
-                }else if($page == 'deleteHubResources'){
+                }else if($page == 'deleteHubResource'){
                     if($role==1 || $role==2 || $role==3){
                         $hubresources=new LearningHubResources();
-                        $hubresources->deleteHubResources();
+                        $hubresources->deleteHubResources($_GET['hrid']);
                     }else{
                         echo '<h1>Unauthorised access</h1>';
                     }
