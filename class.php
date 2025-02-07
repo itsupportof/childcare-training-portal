@@ -1169,13 +1169,11 @@ class LearningHubResources{
                                 <option value="video">Youtube Video Link</option>
                                 <option value="link">Monday.com Link</option>
                             </select>
-                        <div>
-                                <?php echo "<span><b>Currently Selected Category:</b> </span> ".$row["type"];?>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Link</label>
                             <input type="text" class="form-control" id="source" placeholder="link" name="source" value="<?php echo $row["source"];?>">
                         </div>
-                            </div>
+                        <?php echo "<span><b>Currently Selected Category:</b> </span> ".$row["type"];?>
                         </div>
 
                         <div class="form-group" id="keepItButtons">
