@@ -878,18 +878,7 @@ class LearningHubResources{
              <script>
             $(document).ready(function(){
                 $('#filetype').change(function(){
-                    var getOption=$("#filetype option:selected").text();
-                    //link //res
-                    if(getOption=="select upload type?"){
-                        $('#link').css('display','none');
-                        $('#res').css('display','none');
-                    } elseif(getOption=="PDF File"){
-                        $('#link').css('display','none');
-                        $('#res').css('display','block');
-                    }elseif(getOption=="Youtube Video Link" || getOption=="Monday.com Link"){
-                        $('#link').css('display','block');
-                        $('#res').css('display','none');
-                    }
+                    alert('changed');
                 });
             });
         </script>
