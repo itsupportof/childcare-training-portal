@@ -882,9 +882,9 @@ class LearningHubResources{
                     //link //res
                     if(getOption=="select upload type?"){
                        alert('sa');
-                    } elseif(getOption=="PDF File"){
+                    } else if(getOption=="PDF File"){
                         alert('sas32a');
-                    }elseif(getOption=="Youtube Video Link" || getOption=="Monday.com Link"){
+                    }else if(getOption=="Youtube Video Link" || getOption=="Monday.com Link"){
                         alert('sd246643a');
                     }
                 });
