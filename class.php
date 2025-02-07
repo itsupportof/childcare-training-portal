@@ -878,7 +878,15 @@ class LearningHubResources{
              <script>
             $(document).ready(function(){
                 $('#filetype').change(function(){
-                    alert('changed');
+                    var getOption=$("#filetype option:selected").text();
+                    //link //res
+                    if(getOption=="select upload type?"){
+                       alert('sa');
+                    } elseif(getOption=="PDF File"){
+                        alert('sas32a');
+                    }elseif(getOption=="Youtube Video Link" || getOption=="Monday.com Link"){
+                        alert('sd246643a');
+                    }
                 });
             });
         </script>
