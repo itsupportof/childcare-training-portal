@@ -982,7 +982,7 @@ class LearningHubResources{
         if(isset($_GET['status']) && $_GET['status']=="deleted"){?>
             <div class="card mb-4 py-3 border-left-danger" style="padding-top:0px !important;padding-bottom:0px !important; ">
                 <div class="card-body" id="msg">
-                    Resource is deleted!
+                    Hub Resource is deleted successfully!
                 </div>
             </div>
         <?php }elseif(isset($_GET['status'])&& $_GET['status']=="edited"){?>
@@ -1270,7 +1270,7 @@ class LearningHubResources{
         } catch (PDOException $e) {
             echo "Error : ".$e->getMessage();
         }
-        $URL="?page=deleteHubResources&status=deleted";
+        $URL="?page=editHubResource&status=deleted";
         echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
         echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
     }
