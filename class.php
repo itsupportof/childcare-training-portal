@@ -1163,18 +1163,10 @@ class LearningHubResources{
                         </div>
 
                         <div class="form-group">
-                            <select name="filetype" class="dropdown mb-4 btn btn-primary dropdown-toggle" id="filetype">
-                                <option value="default">select upload type?</option>
-                                <option value="pdf">PDF File</option>
-                                <option value="video">Youtube Video Link</option>
-                                <option value="link">Monday.com Link</option>
-                            </select>
-                        <div class="form-group">
                             <label for="exampleInputEmail1">Link</label>
                             <input type="text" class="form-control" id="source" placeholder="link" name="source" value="<?php echo $row["source"];?>">
                         </div>
                         <?php echo "<span><b>Currently Selected Category:</b> </span> ".$row["type"];?>
-                        </div>
 
                         <div class="form-group" id="keepItButtons">
                             <div class="btn btn-success btn-icon-split" id="keepIt">
