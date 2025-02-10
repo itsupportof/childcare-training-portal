@@ -603,56 +603,42 @@ function updateHubResource(){
     var_dump($_POST);
     exit(0);
     global $pdo;
-    if($_POST["category"]!="nothing"){
-        $category=$_POST["category"];
-    }
-    $id=$_POST["id"];
+    $hrid=$_POST["hrid"];
     $title=$_POST['resTitle'];
-    $version= $_POST['version'];
-    $type="file";
-    $role= $_POST['addResourceRole'];
-    $mystring='resources/';
-    if($_POST["fileChanged"]==1){
-        unlink("books/".$_POST["keepResource"]);
-        $target_dir = "books/resources/";
-        $fileNameFinal = basename($_FILES['resource']["name"]);
-        $sourceA= $_FILES['resource']["tmp_name"];
-        $date = new DateTime();
-        $dest=$target_dir.$date->getTimestamp().$fileNameFinal;
-        move_uploaded_file($sourceA, $dest);
-        $source= trim($dest,"books/");
+    $summary= $_POST['summary'];
+    //$thumbnail=thumbnail;
+    $type=$row["type"];
+    if($row["type"]=="pdf"){
+        $mystring='resources/';
+        if($_POST["fileChanged"]==1){
+            unlink("books/".$_POST["keepResource"]);
+            $target_dir = "books/resources/";
+            $fileNameFinal = basename($_FILES['resource']["name"]);
+            $sourceA= $_FILES['resource']["tmp_name"];
+            $date = new DateTime();
+            $dest=$target_dir.$date->getTimestamp().$fileNameFinal;
+            move_uploaded_file($sourceA, $dest);
+            $source= trim($dest,"books/");
+        }else{
+            $source=$_POST["keepResource"];
+        }
     }else{
-        $source=$_POST["keepResource"];
+        $source=$_POST["source"];
     }
+    
     include('config.php');
     try {
-        if($_POST["category"]!="nothing"){
-            $category=$_POST["category"];
             $query =
-                    "UPDATE `Resources` SET `title`=:title,`category`=:category,`version`=:resVersion,`type`=:resType,`source`=:resSource,`role`=:assignRole WHERE `rid`=:id";
+                    "UPDATE `Resources` SET `title`=:title,`summary`=:summary,`type`=:resType,`thumbnail`=:thumbnail, `source`=:resSource,`role`=12 WHERE `hrid`=:id";
             $stmt = $pdo->prepare($query);
             $stmt->bindParam('title', $title, PDO::PARAM_STR);
-            $stmt->bindParam('category', $category, PDO::PARAM_STR);
-            $stmt->bindParam('resVersion', $version, PDO::PARAM_STR);
+            $stmt->bindParam('summary', $summary, PDO::PARAM_STR);
             $stmt->bindParam('resType', $type, PDO::PARAM_STR);
+            $stmt->bindParam('thumbnail', $thumbnail, PDO::PARAM_STR);
             $stmt->bindParam('resSource', $source, PDO::PARAM_STR);
-            $stmt->bindParam('id', $id, PDO::PARAM_STR);
-            $stmt->bindParam('assignRole', $role, PDO::PARAM_STR);
+            $stmt->bindParam('id', $hrid, PDO::PARAM_STR);
             $stmt->execute();
-
-        }else {
-            $query =
-                    "UPDATE `Resources` SET `title`=:title,`version`=:resVersion,`type`=:resType,`source`=:resSource,`role`=:assignRole WHERE `rid`=:id";
-            $stmt = $pdo->prepare($query);
-            $stmt->bindParam('title', $title, PDO::PARAM_STR);
-            $stmt->bindParam('resVersion', $version, PDO::PARAM_STR);
-            $stmt->bindParam('resType', $type, PDO::PARAM_STR);
-            $stmt->bindParam('resSource', $source, PDO::PARAM_STR);
-            $stmt->bindParam('assignRole', $role, PDO::PARAM_STR);
-            $stmt->bindParam('id', $id, PDO::PARAM_STR);
-            $stmt->execute();
-        }
-        $URL="/portal?page=editResource&status=edited";
+        $URL="/portal?page=editHubResource&status=edited";
         echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
         echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
     }catch (Exception $e) {

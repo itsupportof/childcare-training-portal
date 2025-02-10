@@ -1152,6 +1152,33 @@ class LearningHubResources{
                             <label for="exampleInputEmail1">Thumbnail</label><br>
                             <img src="<?php echo $row["thumbnail"];?>" class="img-thumbnail">
                         </div>
+                        <div class="form-group" id="keepItButtonsThumb">
+                            <div class="btn btn-success btn-icon-split" id="keepItThumb">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-check"></i>
+                                            </span>
+                                <span class="text">Keep Current Resource</span>
+                            </div>
+                            <div class="btn btn-danger btn-icon-split" id="deleteNowResThumb">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                <span class="text">Add New Resource Instead</span>
+                            </div>
+                        </div>
+
+                        <input type="text" class="form-control-file" id="fileChangeThumb" name="fileChangedThumb" value="0" style="display:none;">
+                        <div class="form-group" id="keepResourceThumb" style=" display:none;">
+                            <input type="text" class="form-control-file" id="exampleFormControlFile1" name="keepResourceThumb" value="<?php echo $row["source"];?>">
+                        </div>
+                        <div class="form-group" id="uploadResourceThumb" style="display:none;">
+                            <label for="exampleFormControlFile1">Upload Resource</label>
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="resourceThumb">
+                            <small id="emailHelpThumb" class="form-text text-muted">Make sure to upload only png/jpg file. Size must be 251x220.Also, image memory size cannot be more than 700KB. System will not accpet any other file type.</small>
+                        </div>
+
+
+
                         <div class="form-group">
                             <label for="exampleInputEmail1">Resource Title</label>
                             <input type="text" class="form-control" id="fileTitle" placeholder="Enter title" name="resTitle" value="<?php echo $row["title"];?>">
@@ -1162,6 +1189,7 @@ class LearningHubResources{
                             <input type="text" class="form-control" id="fileTitle" placeholder="Enter Version e.g. v1.0, v2.1" name="summary" value="<?php echo $row["summary"];?>">
                         </div>
                         <div class="form-group">
+                        <input type="text" class="form-control" name="type" value="<?php echo $row["type"];?>" style="display:none;">
                             <?php echo "<span><b>Currently Selected Category:</b> </span> ".$row["type"];?>
                         </div>
                         <?php if($row["type"]!="pdf"){ ?>
