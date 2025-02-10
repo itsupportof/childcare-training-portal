@@ -610,7 +610,7 @@ function updateHubResource(){
     $title=$_POST['resTitle'];
     $summary= $_POST['summary'];
     //$thumbnail=thumbnail;
-    $type=$row["type"];
+    $realtype=$row["type"];
     if($row["type"]=="pdf"){
         $mystring='resources/';
         if($_POST["fileChanged"]==1){
@@ -664,7 +664,7 @@ function updateHubResource(){
             $stmt = $pdo->prepare($query);
             $stmt->bindParam('title', $title, PDO::PARAM_STR);
             $stmt->bindParam('summary', $summary, PDO::PARAM_STR);
-            $stmt->bindParam('resType', $type, PDO::PARAM_STR);
+            $stmt->bindParam('resType', $realtype, PDO::PARAM_STR);
             $stmt->bindParam('thumbnail', $thumbsource, PDO::PARAM_STR);
             $stmt->bindParam('resSource', $source, PDO::PARAM_STR);
             $stmt->bindParam('id', $hrid, PDO::PARAM_STR);
