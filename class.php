@@ -1286,7 +1286,7 @@ class LearningHubResources{
     public function deleteHubResources($resId){
         global $pdo;
         try {
-            $query = "SELECT * FROM `HubResources` where `hrid`=:rId";
+            $query = "SELECT * FROM `HubResources` where `hrid`=:hrId";
             $stmt = $pdo->prepare($query);
             $stmt->bindParam('hrId', $resId, PDO::PARAM_STR);
             $stmt->execute();
