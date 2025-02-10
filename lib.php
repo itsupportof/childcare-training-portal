@@ -642,7 +642,7 @@ function updateHubResource(){
 
             list($width, $height) = getimagesize($_FILES['thumbnail']["tmp_name"]);
             if($width!=251 || $height!=220 || $file_size>700){
-                header('Location: ./?page=editingHubResource&hrid='.$hrid=$_POST["hrid"];.'&notvalid=imageca');
+                header('Location: ./?page=editingHubResource&hrid='.$hrid=$_POST["hrid"].'&notvalid=imageca');
                 exit;
             }
 
