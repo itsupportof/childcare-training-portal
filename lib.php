@@ -603,8 +603,8 @@ function addNewResource(){
  * ****************************************
  */
 function updateHubResource(){
-     var_dump($_FILES);
-     exit(0);
+    //  var_dump($_FILES);
+    //  exit(0);
     global $pdo;
     $hrid=$_POST["hrid"];
     $title=$_POST['resTitle'];
@@ -633,25 +633,25 @@ function updateHubResource(){
     try {
         if($_POST["fileChangedThumb"]=="1"){
             $target_dir = "img/thumbnails/";
-            $fileNameFinal = basename($_FILES['thumbnail']["name"]);
+            $fileNameFinal = basename($_FILES ["resourceThumb"]["name"]);
             $extension=end((explode(".", $name)));
             $type = mime_content_type($fileNameFinal);
 
-            $image_size = $_FILES['thumbnail']["size"];
+            $image_size = $_FILES ["resourceThumb"]["size"];
 
             $max_size = 700 * 1024;
-            $file_size = filesize($_FILES['thumbnail']["tmp_name"]); // Get file size in bytes
+            $file_size = filesize($_FILES ["resourceThumb"]["tmp_name"]); // Get file size in bytes
             $file_size = $file_size / 1024; // Get file size in KB
 
-            list($width, $height) = getimagesize($_FILES['thumbnail']["tmp_name"]);
+            list($width, $height) = getimagesize($_FILES ["resourceThumb"]["tmp_name"]);
             if($width!=251 || $height!=220 || $file_size>700){
                 header('Location: ./?page=editingHubResource&hrid='.$hrid=$_POST["hrid"].'&notvalid=imageca');
                 exit;
             }
 
-            $sourceA= $_FILES['thumbnail']["tmp_name"];
+            $sourceA= $_FILES ["resourceThumb"]["tmp_name"];
             $date = new DateTime();
-            $dest=$target_dir.$date->getTimestamp().$_FILES['thumbnail']["name"];
+            $dest=$target_dir.$date->getTimestamp().$_FILES ["resourceThumb"]["name"];
         
             move_uploaded_file($sourceA, $dest);
             $thumbsource= "./".$dest;
@@ -670,6 +670,8 @@ function updateHubResource(){
             $stmt->bindParam('id', $hrid, PDO::PARAM_STR);
             $stmt->execute();
         var_dump($_POST);
+        echo"<br>";
+        var_dump($_FILES);
         exit(0);
         $URL="/portal?page=editHubResource&status=edited";
         echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
