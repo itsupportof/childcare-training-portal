@@ -628,6 +628,16 @@ function updateHubResource(){
     
     include('config.php');
     try {
+        if($row["fileChangedThumb"]=="1"){
+            unlink("books/".$_POST["keepResourceThumb"]);
+            $target_dir = "books/resources/";
+            $fileNameFinal = basename($_FILES['resource']["name"]);
+            $sourceA= $_FILES['resource']["tmp_name"];
+            $date = new DateTime();
+            $dest=$target_dir.$date->getTimestamp().$fileNameFinal;
+            move_uploaded_file($sourceA, $dest);
+            $source= trim($dest,"books/");
+        }
             $query =
                     "UPDATE `Resources` SET `title`=:title,`summary`=:summary,`type`=:resType,`thumbnail`=:thumbnail, `source`=:resSource,`role`=12 WHERE `hrid`=:id";
             $stmt = $pdo->prepare($query);

@@ -1115,14 +1115,14 @@ class LearningHubResources{
                 $('#keepItThumb').click(function(e) {
                     $("#keepItThumb").css('display','none');
                     $("#deleteNowResThumb").css('display','none');
-                    $("#keepItButtonsThumb").append('<p id="keepItTextThumb">Your current file will be kept. If you want to change then <span id="clickButtonThumb" onClick="ButtonClickThumb()" style="color:blue;cursor:pointer;">click here</span></p>');
+                    $("#keepItButtonsThumb").append('<p id="keepItTextThumb">Your current thumbnail will be kept. If you want to change then <span id="clickButtonThumb" onClick="ButtonClickThumb()" style="color:blue;cursor:pointer;">click here</span></p>');
                 });
                 $('#deleteNowResThumb').click(function(e) {
                     $("#fileChangeThumb").attr('value', '1');
                     $("#uploadResourceThumb").css('display','block');
                     $("#keepItThumb").css('display','none');
                     $("#deleteNowResThumb").css('display','none');
-                    $("#keepItButtonsThumb").append('<p id="getMyResBackThumb">Change of mind, Want resource back? <span id="getMyResBackButThumb" onClick="getMyResBackThumb()" style="color:blue;cursor:pointer;">click here</span></p>');
+                    $("#keepItButtonsThumb").append('<p id="getMyResBackThumb">Change of mind, Want thumbnail back? <span id="getMyResBackButThumb" onClick="getMyResBackThumb()" style="color:blue;cursor:pointer;">click here</span></p>');
 
                 });
             });
@@ -1181,6 +1181,7 @@ class LearningHubResources{
                     <form id="addFile" action="lib.php" method="post" enctype="multipart/form-data">
                         <input type="text" class="form-control" name="page" value="updateHubResource" style="display:none;">
                         <input type="text" class="form-control" name="hrid" value="<?php echo $row["hrid"];?>" style="display:none;">
+
                         <div class="form-group">
                             <label for="exampleInputEmail1">Thumbnail</label><br>
                             <img src="<?php echo $row["thumbnail"];?>" class="img-thumbnail">
@@ -1202,7 +1203,7 @@ class LearningHubResources{
 
                         <input type="text" class="form-control-file" id="fileChangeThumb" name="fileChangedThumb" value="0" style="display:none;">
                         <div class="form-group" id="keepResourceThumb" style=" display:none;">
-                            <input type="text" class="form-control-file" id="exampleFormControlFile1" name="keepResourceThumb" value="<?php echo $row["source"];?>">
+                            <input type="text" class="form-control-file" id="exampleFormControlFile1" name="keepResourceThumb" value="<?php echo $row["thumbnail"];?>">
                         </div>
                         <div class="form-group" id="uploadResourceThumb" style="display:none;">
                             <label for="exampleFormControlFile1">Upload Resource</label>
