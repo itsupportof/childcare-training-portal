@@ -660,7 +660,7 @@ function updateHubResource(){
             $thumbsource=$_POST["keepResourceThumb"];
         }
             $query =
-                    "UPDATE `Resources` SET `title`=:title,`summary`=:summary,`type`=:resType,`thumbnail`=:thumbnail, `source`=:resSource,`role`=12 WHERE `hrid`=:id";
+                    "UPDATE `HubResources` SET `title`=:title,`summary`=:summary,`type`=:resType,`thumbnail`=:thumbnail, `source`=:resSource,`role`=12 WHERE `hrid`=:id";
             $stmt = $pdo->prepare($query);
             $stmt->bindParam('title', $title, PDO::PARAM_STR);
             $stmt->bindParam('summary', $summary, PDO::PARAM_STR);
