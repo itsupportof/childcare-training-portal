@@ -1133,7 +1133,7 @@ class LearningHubResources{
                 $("#uploadResourceThumb").css('display','block');
                 $("#keepItButtonsThumb").append('<p id="getMyResBackThumb">Change of mind, Want resource back? <span id="getMyResBackButThumb" onClick="getMyResBackThumb()" style="color:blue;cursor:pointer;">click here</span></p>');
             }
-            function getMyResBack(){
+            function getMyResBackThumb(){
                 $("#fileChangeThumb").attr('value', '0');
                 $('#getMyResBackThumb').css('display','none');
                 $("#uploadResourceThumb").css('display','none');
