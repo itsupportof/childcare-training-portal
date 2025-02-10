@@ -1109,6 +1109,39 @@ class LearningHubResources{
         }
         ?>
         <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('#keepItThumb').click(function(e) {
+                    $("#keepItThumb").css('display','none');
+                    $("#deleteNowResThumb").css('display','none');
+                    $("#keepItButtonsThumb").append('<p id="keepItTextThumb">Your current file will be kept. If you want to change then <span id="clickButtonThumb" onClick="ButtonClickThumb()" style="color:blue;cursor:pointer;">click here</span></p>');
+                });
+                $('#deleteNowResThumb').click(function(e) {
+                    $("#fileChangeThumb").attr('value', '1');
+                    $("#uploadResourceThumb").css('display','block');
+                    $("#keepItThumb").css('display','none');
+                    $("#deleteNowResThumb").css('display','none');
+                    $("#keepItButtonsThumb").append('<p id="getMyResBackThumb">Change of mind, Want resource back? <span id="getMyResBackButThumb" onClick="getMyResBackThumb()" style="color:blue;cursor:pointer;">click here</span></p>');
+
+                });
+            });
+            function ButtonClickThumb(){
+                $("#fileChangeThumb").attr('value', '1');
+                $('#keepItTextThumb').remove();
+                $("#getMyResBackThumb").remove();
+                $("#uploadResourceThumb").css('display','block');
+                $("#keepItButtonsThumb").append('<p id="getMyResBackThumb">Change of mind, Want resource back? <span id="getMyResBackButThumb" onClick="getMyResBackThumb()" style="color:blue;cursor:pointer;">click here</span></p>');
+            }
+            function getMyResBack(){
+                $("#fileChangeThumb").attr('value', '0');
+                $('#getMyResBackThumb').css('display','none');
+                $("#uploadResourceThumb").css('display','none');
+                $("keepItTextThumb").remove();
+                $("#keepItButtonsThumb").append('<p id="keepItTextThumb">Your current file will be kept. If you want to change then <span id="clickButtonThumb" onClick="ButtonClickThumb()" style="color:blue;cursor:pointer;">click here</span></p>');
+            }
+        </script>
+
         <script>
             $(document).ready(function() {
                 $('#keepIt').click(function(e) {
@@ -1157,13 +1190,13 @@ class LearningHubResources{
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-check"></i>
                                             </span>
-                                <span class="text">Keep Current Resource</span>
+                                <span class="text">Keep Current Thumbnail</span>
                             </div>
                             <div class="btn btn-danger btn-icon-split" id="deleteNowResThumb">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-trash"></i>
                                             </span>
-                                <span class="text">Add New Resource Instead</span>
+                                <span class="text">Add New Resource Thumbnail</span>
                             </div>
                         </div>
 
