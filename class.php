@@ -1147,7 +1147,7 @@ class LearningHubResources{
                     <h3 class="display-6" style="font-size:18px !important;"><span style="color:red;">Caution:</span> <p style="font-size:16px !important;">Any change made on file will result in permanent deletion.Also, System will keep current resoruce if you will not choose any of the file options.</p></h3>
                     <form id="addFile" action="lib.php" method="post" enctype="multipart/form-data">
                         <input type="text" class="form-control" name="page" value="updateHubResource" style="display:none;">
-                        <input type="text" class="form-control" name="id" value="<?php echo $row["hrid"];?>" style="display:none;">
+                        <input type="text" class="form-control" name="hrid" value="<?php echo $row["hrid"];?>" style="display:none;">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Thumbnail</label><br>
                             <img src="<?php echo $row["thumbnail"];?>" class="img-thumbnail">
@@ -1159,7 +1159,7 @@ class LearningHubResources{
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Summary</label>
-                            <input type="text" class="form-control" id="fileTitle" placeholder="Enter Version e.g. v1.0, v2.1" name="version" value="<?php echo $row["summary"];?>">
+                            <input type="text" class="form-control" id="fileTitle" placeholder="Enter Version e.g. v1.0, v2.1" name="summary" value="<?php echo $row["summary"];?>">
                         </div>
                         <div class="form-group">
                             <?php echo "<span><b>Currently Selected Category:</b> </span> ".$row["type"];?>
