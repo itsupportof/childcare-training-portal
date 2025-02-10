@@ -669,6 +669,8 @@ function updateHubResource(){
             $stmt->bindParam('resSource', $source, PDO::PARAM_STR);
             $stmt->bindParam('id', $hrid, PDO::PARAM_STR);
             $stmt->execute();
+        var_dump($_POST);
+        exit(0);
         $URL="/portal?page=editHubResource&status=edited";
         echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
         echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
