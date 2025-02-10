@@ -1161,13 +1161,17 @@ class LearningHubResources{
                             <label for="exampleInputEmail1">Summary</label>
                             <input type="text" class="form-control" id="fileTitle" placeholder="Enter Version e.g. v1.0, v2.1" name="version" value="<?php echo $row["summary"];?>">
                         </div>
-
+                        <div class="form-group">
+                            <?php echo "<span><b>Currently Selected Category:</b> </span> ".$row["type"];?>
+                        </div>
+                        <?php if($row["type"]!="PDF"){ ?>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Link</label>
                             <input type="text" class="form-control" id="source" placeholder="link" name="source" value="<?php echo $row["source"];?>">
                         </div>
-                        <?php echo "<span><b>Currently Selected Category:</b> </span> ".$row["type"];?>
-
+                        <?php } 
+                        else{
+                        ?>
                         <div class="form-group" id="keepItButtons">
                             <div class="btn btn-success btn-icon-split" id="keepIt">
                                             <span class="icon text-white-50">
@@ -1192,6 +1196,9 @@ class LearningHubResources{
                             <input type="file" class="form-control-file" id="exampleFormControlFile1" name="resource">
                             <small id="emailHelp" class="form-text text-muted">Make sure to upload only PDF file. System will not accpet any file other than .pdf</small>
                         </div>
+                        <?php
+                        }
+                        ?>
                         <div class="col-auto">
                             <button type="submit" class="btn btn-success mb-2 btn-lg" class=".bg-gradient-success">Submit</button>
                         </div>
