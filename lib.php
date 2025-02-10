@@ -447,7 +447,7 @@ function addNewHubResources(){
             $fileNameFinal = basename($_FILES['resource']["name"]);
             $sourceA= $_FILES['resource']["tmp_name"];
             $date = new DateTime();
-            $dest=$target_dir.$date->getTimestamp().'.pdf';
+            $dest=$target_dir.$date->getTimestamp().$fileNameFinal.'.pdf';
             move_uploaded_file($sourceA, $dest);
             $source= trim($dest,"books/");
     }elseif($filetype=="video" ||$filetype=="link"){
