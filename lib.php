@@ -672,7 +672,7 @@ function updateHubResource(){
         // echo"<br>";
         // var_dump($_FILES);
         // exit(0);
-        $URL="/portal?page=editHubResource&status=edited&".$hrid=$_POST["hrid"];
+        $URL="/andersonportal?page=editHubResource&status=edited&".$hrid=$_POST["hrid"];
         echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
         echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
     }catch (Exception $e) {
