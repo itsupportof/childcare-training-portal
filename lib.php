@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 /*-------------------v1.0 changes for calender-------------------------*/
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -600,8 +603,8 @@ function addNewResource(){
  * ****************************************
  */
 function updateHubResource(){
-    var_dump($_POST);
-    exit(0);
+    // var_dump($_POST);
+    // exit(0);
     global $pdo;
     $hrid=$_POST["hrid"];
     $title=$_POST['resTitle'];
