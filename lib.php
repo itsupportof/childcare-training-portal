@@ -596,12 +596,12 @@ function addNewResource(){
 }
 
 /*****************************************
- * 'update or Edit a resource'
+ * 'update or Edit a Hub resource'
  * ****************************************
  */
 function updateHubResource(){
-    var_dump($_POST);
-    exit(0);
+    // var_dump($_POST);
+    // exit(0);
     global $pdo;
     $hrid=$_POST["hrid"];
     $title=$_POST['resTitle'];
@@ -629,14 +629,32 @@ function updateHubResource(){
     include('config.php');
     try {
         if($row["fileChangedThumb"]=="1"){
-            unlink("books/".$_POST["keepResourceThumb"]);
-            $target_dir = "books/resources/";
-            $fileNameFinal = basename($_FILES['resource']["name"]);
-            $sourceA= $_FILES['resource']["tmp_name"];
+            $target_dir = "img/thumbnails/";
+            $fileNameFinal = basename($_FILES['thumbnail']["name"]);
+            $extension=end((explode(".", $name)));
+            $type = mime_content_type($fileNameFinal);
+
+            $image_size = $_FILES['thumbnail']["size"];
+
+            $max_size = 700 * 1024;
+            $file_size = filesize($_FILES['thumbnail']["tmp_name"]); // Get file size in bytes
+            $file_size = $file_size / 1024; // Get file size in KB
+
+            list($width, $height) = getimagesize($_FILES['thumbnail']["tmp_name"]);
+            if($width!=251 || $height!=220 || $file_size>700){
+                header('Location: ./?page=editingHubResource&hrid='.$hrid=$_POST["hrid"];.'&notvalid=imageca');
+                exit;
+            }
+
+            $sourceA= $_FILES['thumbnail']["tmp_name"];
             $date = new DateTime();
-            $dest=$target_dir.$date->getTimestamp().$fileNameFinal;
+            $dest=$target_dir.$date->getTimestamp().$_FILES['thumbnail']["name"];
+        
             move_uploaded_file($sourceA, $dest);
-            $source= trim($dest,"books/");
+            $thumbsource= "./".$dest;
+            unlink($_POST["keepResourceThumb"]);
+        }else{
+            $thumbsource=$_POST["keepResourceThumb"];
         }
             $query =
                     "UPDATE `Resources` SET `title`=:title,`summary`=:summary,`type`=:resType,`thumbnail`=:thumbnail, `source`=:resSource,`role`=12 WHERE `hrid`=:id";
@@ -644,7 +662,7 @@ function updateHubResource(){
             $stmt->bindParam('title', $title, PDO::PARAM_STR);
             $stmt->bindParam('summary', $summary, PDO::PARAM_STR);
             $stmt->bindParam('resType', $type, PDO::PARAM_STR);
-            $stmt->bindParam('thumbnail', $thumbnail, PDO::PARAM_STR);
+            $stmt->bindParam('thumbnail', $thumbsource, PDO::PARAM_STR);
             $stmt->bindParam('resSource', $source, PDO::PARAM_STR);
             $stmt->bindParam('id', $hrid, PDO::PARAM_STR);
             $stmt->execute();
