@@ -14,7 +14,7 @@ global $pdo;
  * ****************************************
  */
 
- if($_POST["addHubResource"]){
+ if(isset($_POST["addHubResource"])){
     addNewHubResources();
 }else if(isset($_POST['page']) && $_POST['page']=='updateHubResource'){
     updateHubResource();
