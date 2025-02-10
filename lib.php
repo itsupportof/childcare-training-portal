@@ -16,10 +16,9 @@ global $pdo;
 
  if($_POST["addHubResource"]){
     addNewHubResources();
-}
-
-
-if(isset($_POST['loginProcess'])) {
+}else if(isset($_POST['page']) && $_POST['page']=='updateHubResource'){
+    updateHubResource();
+}else if(isset($_POST['loginProcess'])) {
     loginlogic();
 }elseif(isset($_POST['registerationProcess'])){
     registerationlogic();
@@ -600,7 +599,7 @@ function addNewResource(){
  * 'update or Edit a resource'
  * ****************************************
  */
-function updateResouce(){
+function updateHubResource(){
     global $pdo;
     if($_POST["category"]!="nothing"){
         $category=$_POST["category"];
