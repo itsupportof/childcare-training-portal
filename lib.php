@@ -603,8 +603,8 @@ function addNewResource(){
  * ****************************************
  */
 function updateHubResource(){
-    // var_dump($_POST);
-    // exit(0);
+     var_dump($_FILES);
+     exit(0);
     global $pdo;
     $hrid=$_POST["hrid"];
     $title=$_POST['resTitle'];
@@ -614,7 +614,7 @@ function updateHubResource(){
     if($_POST["type"]=="pdf"){
         $mystring='resources/';
         if($_POST["fileChanged"]==1){
-            unlink("books/".$_POST["keepResource"]);
+            unlink("./books/".$_POST["keepResource"]);
             $target_dir = "books/resources/";
             $fileNameFinal = basename($_FILES['resource']["name"]);
             $sourceA= $_FILES['resource']["tmp_name"];
