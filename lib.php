@@ -600,6 +600,8 @@ function addNewResource(){
  * ****************************************
  */
 function updateHubResource(){
+    var_dump($_POST);
+    exit(0);
     global $pdo;
     if($_POST["category"]!="nothing"){
         $category=$_POST["category"];
