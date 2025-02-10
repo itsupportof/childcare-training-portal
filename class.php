@@ -1164,7 +1164,7 @@ class LearningHubResources{
                         <div class="form-group">
                             <?php echo "<span><b>Currently Selected Category:</b> </span> ".$row["type"];?>
                         </div>
-                        <?php if($row["type"]!="PDF"){ ?>
+                        <?php if($row["type"]!="pdf"){ ?>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Link</label>
                             <input type="text" class="form-control" id="source" placeholder="link" name="source" value="<?php echo $row["source"];?>">
