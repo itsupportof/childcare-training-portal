@@ -600,8 +600,8 @@ function addNewResource(){
  * ****************************************
  */
 function updateHubResource(){
-    // var_dump($_POST);
-    // exit(0);
+    var_dump($_POST);
+    exit(0);
     global $pdo;
     $hrid=$_POST["hrid"];
     $title=$_POST['resTitle'];
