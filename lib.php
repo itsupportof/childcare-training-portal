@@ -417,7 +417,7 @@ function addNewHubResources(){
     $target_dir = "img/thumbnails/";
     $fileNameFinal = basename($_FILES['thumbnail']["name"]);
     $extension=end((explode(".", $name)));
-    $type = mime_content_type($fileNameFinal);
+    //$type = mime_content_type($fileNameFinal);
 
     $image_size = $_FILES['thumbnail']["size"];
 

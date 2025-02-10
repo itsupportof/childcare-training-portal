@@ -1296,10 +1296,9 @@ class LearningHubResources{
         }
         $thumbnail=$row["thumbnail"];
         unlink($thumbnail);
-
         if($row["type"]=="pdf"){
             $file=$row["source"];
-            unlink("books/".$file);
+            unlink("./books/".$file);
         }
 
         try {
