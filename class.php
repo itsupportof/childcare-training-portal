@@ -1111,7 +1111,7 @@ class LearningHubResources{
             $stmt->bindParam('Id', $resId, PDO::PARAM_STR);
             $stmt->execute();
             $row   = $stmt->fetch(PDO::FETCH_ASSOC);
-            var_dump($row);
+            //var_dump($row);
         } catch (PDOException $e) {
             echo "Error : ".$e->getMessage();
         }
