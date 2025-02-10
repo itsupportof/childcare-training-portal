@@ -610,8 +610,8 @@ function updateHubResource(){
     $title=$_POST['resTitle'];
     $summary= $_POST['summary'];
     //$thumbnail=thumbnail;
-    $realtype=$row["type"];
-    if($row["type"]=="pdf"){
+    $realtype=$_POST["type"];
+    if($_POST["type"]=="pdf"){
         $mystring='resources/';
         if($_POST["fileChanged"]==1){
             unlink("books/".$_POST["keepResource"]);
@@ -631,7 +631,7 @@ function updateHubResource(){
     
     include('config.php');
     try {
-        if($row["fileChangedThumb"]=="1"){
+        if($_POST["fileChangedThumb"]=="1"){
             $target_dir = "img/thumbnails/";
             $fileNameFinal = basename($_FILES['thumbnail']["name"]);
             $extension=end((explode(".", $name)));
