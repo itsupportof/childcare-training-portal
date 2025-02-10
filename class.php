@@ -1309,7 +1309,7 @@ class LearningHubResources{
         } catch (PDOException $e) {
             echo "Error : ".$e->getMessage();
         }
-        exit(0);
+        //exit(0);
         $URL="?page=editHubResource&status=deleted";
         echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
         echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
