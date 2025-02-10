@@ -1008,7 +1008,6 @@ class LearningHubResources{
                                 <thead>
                                 <tr>
                                     <th style="">Id</th>
-                                    <th>Type</th>
                                     <th>Title</th>
                                     <th>Summary</th>
                                     <th>Type</th>
@@ -1020,7 +1019,6 @@ class LearningHubResources{
                                 <tfoot>
                                 <tr>
                                     <th style="">Id</th>
-                                    <th>Type</th>
                                     <th>Title</th>
                                     <th>Summary</th>
                                     <th>Type</th>
@@ -1035,7 +1033,6 @@ class LearningHubResources{
                                     ?>
                                     <tr>
                                         <td style=""><?php echo $row[$i]["hrid"];?></td>
-                                        <td><?php echo $row[$i]["type"];?></td>
                                         <td><?php echo $row[$i]["title"];?></td>
                                         <td><?php echo $row[$i]["summary"];?></td>
                                         <td><?php echo $row[$i]["type"];?></td>
@@ -1124,6 +1121,7 @@ class LearningHubResources{
                     $("#keepItThumb").css('display','none');
                     $("#deleteNowResThumb").css('display','none');
                     $("#keepItButtonsThumb").append('<p id="keepItTextThumb">Your current thumbnail will be kept. If you want to change then <span id="clickButtonThumb" onClick="ButtonClickThumb()" style="color:blue;cursor:pointer;">click here</span></p>');
+                    
                 });
                 $('#deleteNowResThumb').click(function(e) {
                     $("#fileChangeThumb").attr('value', '1');
@@ -1131,7 +1129,6 @@ class LearningHubResources{
                     $("#keepItThumb").css('display','none');
                     $("#deleteNowResThumb").css('display','none');
                     $("#keepItButtonsThumb").append('<p id="getMyResBackThumb">Change of mind, Want thumbnail back? <span id="getMyResBackButThumb" onClick="getMyResBackThumb()" style="color:blue;cursor:pointer;">click here</span></p>');
-
                 });
             });
             function ButtonClickThumb(){
@@ -1140,6 +1137,12 @@ class LearningHubResources{
                 $("#getMyResBackThumb").remove();
                 $("#uploadResourceThumb").css('display','block');
                 $("#keepItButtonsThumb").append('<p id="getMyResBackThumb">Change of mind, Want resource back? <span id="getMyResBackButThumb" onClick="getMyResBackThumb()" style="color:blue;cursor:pointer;">click here</span></p>');
+                // imgInp.onchange = evt => {
+                //     const [file] = imgInp.files
+                //     if (file) {
+                //         thethumb.src = URL.createObjectURL(file)
+                //     }
+                // }
             }
             function getMyResBackThumb(){
                 $("#fileChangeThumb").attr('value', '0');
@@ -1147,6 +1150,7 @@ class LearningHubResources{
                 $("#uploadResourceThumb").css('display','none');
                 $("keepItTextThumb").remove();
                 $("#keepItButtonsThumb").append('<p id="keepItTextThumb">Your current file will be kept. If you want to change then <span id="clickButtonThumb" onClick="ButtonClickThumb()" style="color:blue;cursor:pointer;">click here</span></p>');
+                //$("#thethumb").attr("src","second.jpg");
             }
         </script>
 
@@ -1192,7 +1196,7 @@ class LearningHubResources{
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">Thumbnail</label><br>
-                            <img src="<?php echo $row["thumbnail"];?>" class="img-thumbnail">
+                            <img src="<?php echo $row["thumbnail"];?>" class="img-thumbnail" id="thethumb">
                         </div>
                         <div class="form-group" id="keepItButtonsThumb">
                             <div class="btn btn-success btn-icon-split" id="keepItThumb">
