@@ -634,7 +634,6 @@ function updateHubResource(){
         if($_POST["fileChangedThumb"]=="1"){
             $target_dir = "img/thumbnails/";
             $fileNameFinal = basename($_FILES ["resourceThumb"]["name"]);
-            $extension=end((explode(".", $name)));
             $type = mime_content_type($fileNameFinal);
 
             $image_size = $_FILES ["resourceThumb"]["size"];
@@ -669,11 +668,11 @@ function updateHubResource(){
             $stmt->bindParam('resSource', $source, PDO::PARAM_STR);
             $stmt->bindParam('id', $hrid, PDO::PARAM_STR);
             $stmt->execute();
-        var_dump($_POST);
-        echo"<br>";
-        var_dump($_FILES);
-        exit(0);
-        $URL="/portal?page=editHubResource&status=edited";
+        // var_dump($_POST);
+        // echo"<br>";
+        // var_dump($_FILES);
+        // exit(0);
+        $URL="/portal?page=editHubResource&status=edited&".$hrid=$_POST["hrid"];
         echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
         echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
     }catch (Exception $e) {
