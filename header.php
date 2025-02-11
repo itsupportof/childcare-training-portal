@@ -149,7 +149,7 @@ if($role==1){
             </div>
         </div>
     </li>
-    <hr class="sidebar-divider my-0">
+    <!-- <hr class="sidebar-divider my-0">
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForms"
            aria-expanded="true" aria-controls="collapseUtilities">
@@ -165,7 +165,7 @@ if($role==1){
                 <a class="collapse-item" href="?page=assignSubmissions">Assign Submission</a>
             </div>
         </div>
-    </li>
+    </li> -->
     <?php
 }
 ?>
