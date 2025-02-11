@@ -54,7 +54,7 @@ if(isset($_SESSION['role'])){
     </div>
 </li>
 
-<li class="nav-item">
+<!-- <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#resourcesSubMenu"
        aria-expanded="true" aria-controls="collapseUtilities">
         <i class="fas fa-fw fa-folder"></i>
@@ -64,20 +64,20 @@ if(isset($_SESSION['role'])){
          data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Resources options:</h6>
-            <?php if($role==1 || $role==2 || $role==3){ ?>
+            <?php //if($role==1 || $role==2 || $role==3){ ?>
                 <a class="collapse-item" href="?page=viewAllResources">View All Resources</a>
-            <?php }
-            if($role==1){
+            <?php //}
+            //if($role==1){
                 ?>
                 <a class="collapse-item" href="?page=addNewResource">Add New Resources</a>
                 <a class="collapse-item" href="?page=editResource">Update Resources</a>
                 <a class="collapse-item" href="?page=deleteResources">Delete Resources</a>
                 <?php
-            }
+            //}
             ?>
         </div>
     </div>
-</li>
+</li> -->
     <?php if($role==1 || $role==2 ){ ?>
 <hr class="sidebar-divider my-0">
 <li class="nav-item">
