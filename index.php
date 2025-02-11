@@ -165,50 +165,51 @@ if(!isset($_GET['page']) && isset($_SESSION['currentSession'])){
 
 
                 /*-/////////////////-----v1.0 changes for calender//////////----*/
-                elseif($page == 'viewResource'){
-                    if($role==1 || $role==2 || $role==3){
-                        $resources=new Resources();
-                        $resources->readResource();
-                    }else{
-                        echo '<h1>Unauthorised access</h1>';
-                    }
+                // elseif($page == 'viewResource'){
+                //     if($role==1 || $role==2 || $role==3){
+                //         $resources=new Resources();
+                //         $resources->readResource();
+                //     }else{
+                //         echo '<h1>Unauthorised access</h1>';
+                //     }
 
-                }elseif($page == 'addNewResource'){
-                    if($role==1){
-                        $resources=new Resources();
-                        $resources->addNewResource();
-                    }else{
-                        echo '<h1>Unauthorised access</h1>';
-                    }
+                // }elseif($page == 'addNewResource'){
+                //     if($role==1){
+                //         $resources=new Resources();
+                //         $resources->addNewResource();
+                //     }else{
+                //         echo '<h1>Unauthorised access</h1>';
+                //     }
 
-                }elseif($page == 'editResource' || $page=='deleteResources'){
-                    if($role==1){
-                        $resources=new Resources();
-                        $resources->editordeleteResource();
-                    }else{
-                        echo '<h1>Unauthorised access</h1>';
-                    }
+                // }elseif($page == 'editResource' || $page=='deleteResources'){
+                //     if($role==1){
+                //         $resources=new Resources();
+                //         $resources->editordeleteResource();
+                //     }else{
+                //         echo '<h1>Unauthorised access</h1>';
+                //     }
 
-                }elseif($page== 'editingResource'){
-                    if($role==1){
-                        $resources=new Resources();
-                        $resources->editAResource();
-                    }else{
-                        echo '<h1>Unauthorised access</h1>';
-                    }
+                // }elseif($page== 'editingResource'){
+                //     if($role==1){
+                //         $resources=new Resources();
+                //         $resources->editAResource();
+                //     }else{
+                //         echo '<h1>Unauthorised access</h1>';
+                //     }
 
-                }elseif($page== 'deleteAResource'){
-                    if($role==1){
-                        if (isset($_GET['id'])){
-                            $resId=$_GET['id'];
-                        }
-                        $resources=new Resources();
-                        $resources->deleteAResource($resId);
-                    }else{
-                        echo '<h1>Unauthorised access</h1>';
-                    }
+                // }elseif($page== 'deleteAResource'){
+                //     if($role==1){
+                //         if (isset($_GET['id'])){
+                //             $resId=$_GET['id'];
+                //         }
+                //         $resources=new Resources();
+                //         $resources->deleteAResource($resId);
+                //     }else{
+                //         echo '<h1>Unauthorised access</h1>';
+                //     }
 
-                }elseif($page == 'viewMeetings'){
+                // }
+                elseif($page == 'viewMeetings'){
                     if($role==1  || $role==2){
                         $meeting= new Meeting();
                         $meeting->viewAllMeetings();
