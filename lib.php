@@ -650,7 +650,7 @@ function updateResource(){
     
     include('config.php');
     try {
-        if(isset($_FILES ["resourceThumb"]["name"])){
+        if(!$_FILES ["resourceThumb"]['error'] == UPLOAD_ERR_NO_FILE){
             $target_dir = "img/thumbnails/";
             $fileNameFinal = basename($_FILES ["resourceThumb"]["name"]);
             $image_size = $_FILES ["resourceThumb"]["size"];
