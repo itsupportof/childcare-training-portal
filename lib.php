@@ -617,6 +617,87 @@ function addNewResource(){
     }
 
 }
+/*****************************************
+ * 'update or Edit a resource'
+ * ****************************************
+ */
+function updateResource(){
+    //  var_dump($_FILES);
+    //  exit(0);
+    global $pdo;
+    $hrid=$_POST["hrid"];
+    $title=$_POST['resTitle'];
+    $summary= $_POST['summary'];
+    //$thumbnail=thumbnail;
+    $realtype=$_POST["type"];
+    if($_POST["type"]=="pdf"){
+        $mystring='resources/';
+        if($_POST["fileChanged"]==1){
+            unlink("./books/".$_POST["keepResource"]);
+            $target_dir = "books/resources/";
+            $fileNameFinal = basename($_FILES['resource']["name"]);
+            $sourceA= $_FILES['resource']["tmp_name"];
+            $date = new DateTime();
+            $dest=$target_dir.$date->getTimestamp().$fileNameFinal;
+            move_uploaded_file($sourceA, $dest);
+            $source= trim($dest,"books/");
+        }else{
+            $source=$_POST["keepResource"];
+        }
+    }else{
+        $source=$_POST["source"];
+    }
+    
+    include('config.php');
+    try {
+        if($_POST["fileChangedThumb"]=="1"){
+            $target_dir = "img/thumbnails/";
+            $fileNameFinal = basename($_FILES ["resourceThumb"]["name"]);
+            $type = mime_content_type($fileNameFinal);
+
+            $image_size = $_FILES ["resourceThumb"]["size"];
+
+            $max_size = 700 * 1024;
+            $file_size = filesize($_FILES ["resourceThumb"]["tmp_name"]); // Get file size in bytes
+            $file_size = $file_size / 1024; // Get file size in KB
+
+            list($width, $height) = getimagesize($_FILES ["resourceThumb"]["tmp_name"]);
+            if($width!=251 || $height!=220 || $file_size>700){
+                header('Location: ./?page=editingResource&hrid='.$hrid=$_POST["hrid"].'&notvalid=imageca');
+                exit;
+            }
+
+            $sourceA= $_FILES ["resourceThumb"]["tmp_name"];
+            $date = new DateTime();
+            $dest=$target_dir.$date->getTimestamp().$_FILES ["resourceThumb"]["name"];
+        
+            move_uploaded_file($sourceA, $dest);
+            $thumbsource= "./".$dest;
+            unlink($_POST["keepResourceThumb"]);
+        }else{
+            $thumbsource=$_POST["keepResourceThumb"];
+        }
+            $query =
+                    "UPDATE `Resources` SET `title`=:title,`summary`=:summary,`type`=:resType,`thumbnail`=:thumbnail, `source`=:resSource,`role`=12 WHERE `hrid`=:id";
+            $stmt = $pdo->prepare($query);
+            $stmt->bindParam('title', $title, PDO::PARAM_STR);
+            $stmt->bindParam('summary', $summary, PDO::PARAM_STR);
+            $stmt->bindParam('resType', $realtype, PDO::PARAM_STR);
+            $stmt->bindParam('thumbnail', $thumbsource, PDO::PARAM_STR);
+            $stmt->bindParam('resSource', $source, PDO::PARAM_STR);
+            $stmt->bindParam('id', $hrid, PDO::PARAM_STR);
+            $stmt->execute();
+        // var_dump($_POST);
+        // echo"<br>";
+        // var_dump($_FILES);
+        // exit(0);
+        $URL="/andersonportal?page=editResource&status=edited&".$hrid=$_POST['hrid'];
+        echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+        echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
+    }catch (Exception $e) {
+        echo $e;
+    }
+}
 
 /*****************************************
  * 'update or Edit a Hub resource'

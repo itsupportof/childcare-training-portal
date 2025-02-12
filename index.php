@@ -201,7 +201,7 @@ if(!isset($_GET['page']) && isset($_SESSION['currentSession'])){
                 }elseif($page== 'editingResource'){
                     if($role==1){
                         $resources=new Resources();
-                        $resources->editAResource();
+                        $resources->editAResource($_GET['hrid']);
                     }else{
                         echo '<h1>Unauthorised access</h1>';
                     }

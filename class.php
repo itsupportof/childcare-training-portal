@@ -1682,7 +1682,7 @@ class Resources{
     ///////////////////////////////////
     /// edit a resouce///////////
     /// ///////////////////////////
-    function editHubResource(){
+    function editAResource(){
         global $pdo;
         if(isset($_GET['message'])){?>
             <div class="card mb-4 py-3 border-left-success" style="padding-top:0px !important;padding-bottom:0px !important; ">
@@ -1702,7 +1702,7 @@ class Resources{
 
         $resId=$_GET['hrid'];
         try {
-            $query = "select * from `HubResources` where `hrid`=:Id";
+            $query = "select * from `Resources` where `hrid`=:Id";
             $stmt = $pdo->prepare($query);
             $stmt->bindParam('Id', $resId, PDO::PARAM_STR);
             $stmt->execute();
@@ -1790,7 +1790,7 @@ class Resources{
                 <div class="jumbotron bg-gray-200 border-bottom-success">
                     <h3 class="display-6" style="font-size:18px !important;"><span style="color:red;">Caution:</span> <p style="font-size:16px !important;">Any change made on file will result in permanent deletion.Also, System will keep current resoruce if you will not choose any of the file options.</p></h3>
                     <form id="addFile" action="lib.php" method="post" enctype="multipart/form-data">
-                        <input type="text" class="form-control" name="page" value="updateHubResource" style="display:none;">
+                        <input type="text" class="form-control" name="page" value="updateResource" style="display:none;">
                         <input type="text" class="form-control" name="hrid" value="<?php echo $row["hrid"];?>" style="display:none;">
 
                         <div class="form-group">
