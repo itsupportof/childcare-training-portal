@@ -1566,10 +1566,10 @@ class Resources{
     ///////////////////////////////////////////
     //////////Edit or delete resources //////////////
     /////////////////////////////////////////
-    public function editordeleteHubResource(){
+    public function editordeleteResource(){
         global $pdo;
         try {
-            $query = "SELECT * FROM `HubResources` ORDER BY `HubResources`.`hrid` DESC";
+            $query = "SELECT * FROM `Resources` ORDER BY `Resources`.`hrid` DESC";
             $stmt = $pdo->prepare($query);
             $stmt->execute();
             $row   = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -1581,7 +1581,7 @@ class Resources{
         if(isset($_GET['status']) && $_GET['status']=="deleted"){?>
             <div class="card mb-4 py-3 border-left-danger" style="padding-top:0px !important;padding-bottom:0px !important; ">
                 <div class="card-body" id="msg">
-                    Hub Resource is deleted successfully!
+                    Resource is deleted successfully!
                 </div>
             </div>
         <?php }elseif(isset($_GET['status'])&& $_GET['status']=="edited"){?>
@@ -1592,7 +1592,7 @@ class Resources{
             </div>
         <?php }
         ?>
-        <h1 class="h3 mb-4 text-gray-800" style="text-align: center; padding-top: 30px;">Change Hub Resources</h1>
+        <h1 class="h3 mb-4 text-gray-800" style="text-align: center; padding-top: 30px;">Change Resources</h1>
 
         <!-- Page Heading -->
         <div class="row">
@@ -1639,7 +1639,7 @@ class Resources{
                                         <td><?php echo $row[$i]["source"];?></td>
                                         <td>
                                             <!--look in lib file for implementation of if isset($_GET['action']=='editResouce'){}-->
-                                            <a href="?page=editingHubResource&hrid=<?php echo $row[$i]["hrid"];?>" class="btn btn-primary btn-circle btn-md">
+                                            <a href="?page=editingResource&hrid=<?php echo $row[$i]["hrid"];?>" class="btn btn-primary btn-circle btn-md">
                                                 <i class="fas fa-edit"></i>
                                             </a>
 
@@ -1665,7 +1665,7 @@ class Resources{
                                     }).then((result) => {
                                         if (result.isConfirmed) {
                                             // Redirect to the deletion URL
-                                            window.location.href = `?page=deleteHubResource&hrid=${sourceID}`;
+                                            window.location.href = `?page=deleteResource&hrid=${sourceID}`;
                                         }
                                     });
                                 }
