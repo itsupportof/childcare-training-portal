@@ -444,7 +444,7 @@ function addNewHubResources(){
             $fileNameFinal = basename($_FILES['resource']["name"]);
             $sourceA= $_FILES['resource']["tmp_name"];
             $date = new DateTime();
-            $dest=$target_dir.$date->getTimestamp().$fileNameFinal.'.pdf';
+            $dest=$target_dir.$date->getTimestamp().$fileNameFinal;
             move_uploaded_file($sourceA, $dest);
             $source= trim($dest,"books/");
     }elseif($filetype=="video" ||$filetype=="link"){
@@ -630,7 +630,7 @@ function updateResource(){
     $summary= $_POST['summary'];
     //$thumbnail=thumbnail;
     $realtype=$_POST["type"];
-    if($_POST["type"]=="pdf"){
+    if(isset($_FILES['resource']["name"])){
         $mystring='resources/';
         if($_POST["fileChanged"]==1){
             unlink("./books/".$_POST["keepResource"]);
@@ -650,11 +650,9 @@ function updateResource(){
     
     include('config.php');
     try {
-        if($_POST["fileChangedThumb"]=="1"){
+        if(isset($_FILES ["resourceThumb"]["name"])){
             $target_dir = "img/thumbnails/";
             $fileNameFinal = basename($_FILES ["resourceThumb"]["name"]);
-            $type = mime_content_type($fileNameFinal);
-
             $image_size = $_FILES ["resourceThumb"]["size"];
 
             $max_size = 700 * 1024;
@@ -708,13 +706,23 @@ function updateHubResource(){
     //  exit(0);
     global $pdo;
     $hrid=$_POST["hrid"];
+    try{
+        $query = "SELECT * FROM `HubResources` where `hrid`=:id";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam('id', $meetingId, PDO::PARAM_STR);
+        $stmt->execute();
+        $row   = $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo "Error : ".$e->getMessage();
+    }
+
     $title=$_POST['resTitle'];
     $summary= $_POST['summary'];
     //$thumbnail=thumbnail;
     $realtype=$_POST["type"];
     if($_POST["type"]=="pdf"){
         $mystring='resources/';
-        if($_POST["fileChanged"]==1){
+        if(isset($_FILES['resource']["name"]){
             unlink("./books/".$_POST["keepResource"]);
             $target_dir = "books/resources/";
             $fileNameFinal = basename($_FILES['resource']["name"]);
@@ -732,7 +740,7 @@ function updateHubResource(){
     
     include('config.php');
     try {
-        if($_POST["fileChangedThumb"]=="1"){
+        if(isset($_FILES ["resourceThumb"]["name"])){
             $target_dir = "img/thumbnails/";
             $fileNameFinal = basename($_FILES ["resourceThumb"]["name"]);
             $type = mime_content_type($fileNameFinal);
