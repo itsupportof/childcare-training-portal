@@ -782,7 +782,7 @@ class LearningHubResources{
                                 </div>
                             </div>
                             <p class="card-text" style="font-size:14px;"><?php echo $record["summary"]?></p>
-                            <a href="./?page=<?php echo $record["type"]."&hrid=".$record["hrid"];?>" class="btn btn-primary">☝️ click here</a>
+                            <a href="./?page=readHubRes&hrid=".$record["hrid"];?>" class="btn btn-primary">☝️ click here</a>
                                 
                         </div>
                     </div>
@@ -1381,7 +1381,7 @@ class Resources{
                                 </div>
                             </div>
                             <p class="card-text" style="font-size:14px;"><?php echo $record["summary"]?></p>
-                            <a href="./?page=<?php echo $record["type"]."&hrid=".$record["hrid"];?>" class="btn btn-primary">☝️ click here</a>
+                            <a href="./?page=viewResource&hrid=".$record["hrid"];?>" class="btn btn-primary">☝️ click here</a>
                                 
                         </div>
                     </div>
@@ -1399,7 +1399,7 @@ class Resources{
     ///////////////////////////////////////////
     //////////Read Resources//////////////
     /////////////////////////////////////////
-    public function readHubResource($hrid){
+    public function viewResource($hrid){
         global $pdo;
         try {
             $query = "select * from `HubResources` where `hrid`=:hrid";

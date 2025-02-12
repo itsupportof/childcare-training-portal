@@ -123,7 +123,7 @@ if(!isset($_GET['page']) && isset($_SESSION['currentSession'])){
                     }else{
                         echo '<h1>Unauthorised access</h1>';
                     }
-                }else if($page == 'pdf' ||$page == 'video' ||$page == 'link'){
+                }else if($page='readHubRes'){
                     if($role==1 || $role==2){
                         $hrid=$_GET["hrid"];
                         $hubresources=new LearningHubResources();
@@ -167,8 +167,9 @@ if(!isset($_GET['page']) && isset($_SESSION['currentSession'])){
                 /*-/////////////////-----v1.0 changes for calender//////////----*/
                 elseif($page == 'viewResource'){
                     if($role==1 || $role==2 || $role==3){
+                        $hrid=$_GET["hrid"];
                         $resources=new Resources();
-                        $resources->readResource();
+                        $resources->readResource($hrid);
                     }else{
                         echo '<h1>Unauthorised access</h1>';
                     }
