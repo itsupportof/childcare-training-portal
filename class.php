@@ -1381,7 +1381,7 @@ class Resources{
                                 </div>
                             </div>
                             <p class="card-text" style="font-size:14px;"><?php echo $record["summary"]?></p>
-                            <a href="./?page=readResource<?php "&hrid=".$record["hrid"];?>" class="btn btn-primary">☝️ click here</a>
+                            <a href="./?page=readResource<?php echo "&hrid=".$record["hrid"];?>" class="btn btn-primary">☝️ click here</a>
                                 
                         </div>
                     </div>
