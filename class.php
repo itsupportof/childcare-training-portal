@@ -1473,7 +1473,7 @@ class Resources{
     ///////////////////////////////////////////
     ///////////Add new Resources//////////////
     /////////////////////////////////////////
-    public function addNewHubResource(){?>
+    public function addNewResource(){?>
              <script>
             $(document).ready(function(){
                 $('#filetype').change(function(){
