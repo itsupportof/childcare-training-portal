@@ -622,15 +622,15 @@ function addNewResource(){
  * ****************************************
  */
 function updateResource(){
-     var_dump($_POST);
-     exit(0);
+    //  var_dump($_POST);
+    //  exit(0);
     global $pdo;
     $hrid=$_POST["hrid"];
     $title=$_POST['resTitle'];
     $summary= $_POST['summary'];
     //$thumbnail=thumbnail;
     $realtype=$_POST["type"];
-    if(isset($_FILES['resource']["name"])){
+    if(isset(!$_FILES ["resource"]['error'] == UPLOAD_ERR_NO_FILE)){
         $mystring='resources/';
         if($_POST["fileChanged"]==1){
             unlink("./books/".$_POST["keepResource"]);
@@ -645,7 +645,7 @@ function updateResource(){
             $source=$_POST["keepResource"];
         }
     }else{
-        $source=$_POST["source"];
+        $source=$_POST["keepResource"];
     }
     
     include('config.php');
