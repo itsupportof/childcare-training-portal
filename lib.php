@@ -722,7 +722,7 @@ function updateHubResource(){
     $realtype=$_POST["type"];
     if($_POST["type"]=="pdf"){
         $mystring='resources/';
-        if(isset($_FILES['resource']["name"]){
+        if(isset($_FILES['resource']["name"])){
             unlink("./books/".$_POST["keepResource"]);
             $target_dir = "books/resources/";
             $fileNameFinal = basename($_FILES['resource']["name"]);
