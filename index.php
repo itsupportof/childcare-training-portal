@@ -173,7 +173,7 @@ if(!isset($_GET['page']) && isset($_SESSION['currentSession'])){
                         echo '<h1>Unauthorised access</h1>';
                     }
 
-                }elseif($page == 'readResources'){
+                }elseif($page == 'readResource'){
                     if($role==1 || $role==2 || $role==3){
                         $hrid=$_GET["hrid"];
                         $resources=new Resources();
