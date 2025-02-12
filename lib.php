@@ -562,42 +562,63 @@ function fileGeneration($title,$version,$source,$category){
  */
 function addNewResource(){
     global $pdo;
-    $category= $_POST ["category"];
-    //var_dump($_POST);
-    $role=$_POST['addResourceRole'];
-    if(isset($_FILES['resource'])){
-        $title=$_POST['resTitle'];
-        $version= $_POST['version'];
-        $type="file";
-        $target_dir = "books/resources/";
-        $fileNameFinal = basename($_FILES['resource']["name"]);
-        $sourceA= $_FILES['resource']["tmp_name"];
-        $date = new DateTime();
-        $dest=$target_dir.$date->getTimestamp().'.pdf';
-        move_uploaded_file($sourceA, $dest);
-        $source= trim($dest,"books/");
-    }else{
-        $title=$_POST['resTitle'];
-        $version= "N/A";
-        $type="link";
-        $source=$_POST['resource'];
+    //var_dump($_FILES['thumbnail']);
+    //exit(0);
+    $target_dir = "img/thumbnails/";
+    $fileNameFinal = basename($_FILES['thumbnail']["name"]);
+    $extension=end((explode(".", $name)));
+    //$type = mime_content_type($fileNameFinal);
+
+    $image_size = $_FILES['thumbnail']["size"];
+
+    $max_size = 700 * 1024;
+    $file_size = filesize($_FILES['thumbnail']["tmp_name"]); // Get file size in bytes
+    $file_size = $file_size / 1024; // Get file size in KB
+
+    list($width, $height) = getimagesize($_FILES['thumbnail']["tmp_name"]);
+    if($width!=251 || $height!=220 || $file_size>700){
+        header('Location: ./?page=addNewResource&notvalid=imageca');
+        exit;
+    }
+
+    $sourceA= $_FILES['thumbnail']["tmp_name"];
+    $date = new DateTime();
+    $dest=$target_dir.$date->getTimestamp().$_FILES['thumbnail']["name"];
+   
+    move_uploaded_file($sourceA, $dest);
+    $thumbsource= "./".$dest;
+    $title=$_POST['resTitle'];
+    $summary=$_POST['summary'];
+
+    $filetype= $_POST ["filetype"];
+    if($filetype=="pdf"){
+            $type="pdf";
+            $target_dir = "books/resources/";
+            $fileNameFinal = basename($_FILES['resource']["name"]);
+            $sourceA= $_FILES['resource']["tmp_name"];
+            $date = new DateTime();
+            $dest=$target_dir.$date->getTimestamp().$fileNameFinal.'.pdf';
+            move_uploaded_file($sourceA, $dest);
+            $source= trim($dest,"books/");
+    }elseif($filetype=="video" ||$filetype=="link"){
+        $source=$_POST["resource"];
     }
     try {
-        $query  = "INSERT INTO `Resources`( `title`, `category`, `version`, `type`, `source`,`role`) VALUES (:title,:category, :resversion, :restype, :source,:role)";
+        $query  = "INSERT INTO `Resources`(  `title`, `summary`, `type`, `thumbnail`, `source`, `role`) VALUES (:title,:summary, :type, :thumbnail, :source,12)";
         $stmt = $pdo->prepare($query);
         $stmt->bindParam('title', $title, PDO::PARAM_STR);
-        $stmt->bindParam('category', $category, PDO::PARAM_STR);
-        $stmt->bindParam('resversion', $version, PDO::PARAM_STR);
-        $stmt->bindParam('restype', $type, PDO::PARAM_STR);
+        $stmt->bindParam('summary', $_POST['summary'], PDO::PARAM_STR);
+        $stmt->bindParam('type', $_POST['filetype'], PDO::PARAM_STR);
+        $stmt->bindParam('thumbnail', $thumbsource, PDO::PARAM_STR);
         $stmt->bindParam('source', $source, PDO::PARAM_STR);
-        $stmt->bindParam('role', $role, PDO::PARAM_STR);
         $stmt->execute();
         $response['message'] = 'Form data submitted successfully!';
-        header('Location: /portal/?page=addNewResource&message=success');
+        header('Location: ./?page=addNewResource&message=success');
         exit;
     }catch (Exception $e) {
         echo $e;
     }
+
 }
 
 /*****************************************

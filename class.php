@@ -1515,8 +1515,8 @@ class Resources{
             <div class="col-md-6">
                 <div class="jumbotron bg-gray-200 border-bottom-success">
                 <h3 class="display-6">Add Youtube Video/Monday Form / PDF Link</h3>
-                        <form id="addHubResource" action="lib.php" method="post" enctype="multipart/form-data">
-                            <input type="text" class="form-control" name="addHubResource" value="addHubResource" style="display:none;">
+                        <form id="addResource" action="lib.php" method="post" enctype="multipart/form-data">
+                            <input type="text" class="form-control" name="addResource" value="addResource" style="display:none;">
                             <div class="form-group">
 
                                 <select name="filetype" class="dropdown mb-4 btn btn-primary dropdown-toggle" id="filetype">
