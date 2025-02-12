@@ -208,11 +208,11 @@ if(!isset($_GET['page']) && isset($_SESSION['currentSession'])){
 
                 }elseif($page== 'deleteAResource'){
                     if($role==1){
-                        if (isset($_GET['id'])){
-                            $resId=$_GET['id'];
+                        if (isset($_GET['hrid'])){
+                            $resId=$_GET['hrid'];
                         }
                         $resources=new Resources();
-                        $resources->deleteAResource($resId);
+                        $resources->deleteAResources($resId);
                     }else{
                         echo '<h1>Unauthorised access</h1>';
                     }

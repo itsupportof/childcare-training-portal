@@ -1665,7 +1665,7 @@ class Resources{
                                     }).then((result) => {
                                         if (result.isConfirmed) {
                                             // Redirect to the deletion URL
-                                            window.location.href = `?page=deleteResource&hrid=${sourceID}`;
+                                            window.location.href = `?page=deleteAResource&hrid=${sourceID}`;
                                         }
                                     });
                                 }
@@ -1886,10 +1886,10 @@ class Resources{
     ///////////////////////////////////
     /// delete resouce///////////
     /// ///////////////////////////
-    public function deleteHubResources($resId){
+    public function deleteAResources($resId){
         global $pdo;
         try {
-            $query = "SELECT * FROM `HubResources` where `hrid`=:hrId";
+            $query = "SELECT * FROM `Resources` where `hrid`=:hrId";
             $stmt = $pdo->prepare($query);
             $stmt->bindParam('hrId', $resId, PDO::PARAM_STR);
             $stmt->execute();
@@ -1905,7 +1905,7 @@ class Resources{
         }
 
         try {
-            $sql = "Delete from `HubResources` WHERE hrid=?";
+            $sql = "Delete from `Resources` WHERE hrid=?";
             $stmt= $pdo->prepare($sql);
             $stmt->execute([$resId]);
 
@@ -1913,7 +1913,7 @@ class Resources{
             echo "Error : ".$e->getMessage();
         }
         //exit(0);
-        $URL="?page=editHubResource&status=deleted";
+        $URL="?page=editResource&status=deleted";
         echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
         echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
     }
