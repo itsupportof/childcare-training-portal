@@ -721,9 +721,9 @@ function updateHubResource(){
     $summary= $_POST['summary'];
     //$thumbnail=thumbnail;
     $realtype=$_POST["type"];
-    if($_POST["type"]=="pdf"){
+    if(!$_FILES ["resource"]['error'] == UPLOAD_ERR_NO_FILE){
         $mystring='resources/';
-        if(isset($_FILES['resource']["name"])){
+        if($_POST["fileChanged"]==1){
             unlink("./books/".$_POST["keepResource"]);
             $target_dir = "books/resources/";
             $fileNameFinal = basename($_FILES['resource']["name"]);
@@ -736,15 +736,14 @@ function updateHubResource(){
             $source=$_POST["keepResource"];
         }
     }else{
-        $source=$_POST["source"];
+        $source=$_POST["keepResource"];
     }
     
     include('config.php');
     try {
-        if(isset($_FILES ["resourceThumb"]["name"])){
+        if(!$_FILES ["resourceThumb"]['error'] == UPLOAD_ERR_NO_FILE){
             $target_dir = "img/thumbnails/";
             $fileNameFinal = basename($_FILES ["resourceThumb"]["name"]);
-            $type = mime_content_type($fileNameFinal);
 
             $image_size = $_FILES ["resourceThumb"]["size"];
 
