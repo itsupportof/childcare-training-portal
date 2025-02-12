@@ -1327,7 +1327,600 @@ class LearningHubResources{
  * Resources Class
  * ****************************************
  */
-class Resources{
+class Ressources{
+    ///////////////////////////////////////////
+    //////////View All Resources//////////////
+    /////////////////////////////////////////
+    public function viewAllHubResources(){
+        $row=getAllResources();
+        $currentRole=$_SESSION['role'];
+        //var_dump($row);
+        $resCount=count($row);
+        //exit(0);
+        ?>
+        <style>
+            label{
+                padding: 20px;
+                background: #fff;
+                color: #999;
+                border-bottom: 2px solid #f0f0f0;
+            }
+        </style>
+        <h1 class="h3 mb-4 text-gray-800" style="text-align: center !important;"><i class="fa fa-window-restore"></i> Learning Hub Resources</h1>
+        <?php 
+        
+        if($resCount==0){
+            ?>
+            <div class="card mb-4 py-3 border-left-danger" style="padding-top:0px !important;padding-bottom:0px !important; ">
+                <div class="card-body" id="msg">
+                    Resources are not available!
+                </div>
+            </div>
+            <?php
+        }else{
+            // echo "<pre>";
+            // print_r($row);
+            // echo "</pre>";
+            ?>
+            <div class="row">
+            <?php
+            foreach ($row as $record) {
+            ?>
+            
+                <div class="col-lg-2">
+                    <div class="card" style="">
+                        <img class="card-img-top" src="<?php echo $record["thumbnail"]?>" alt="Card image" style="width:100%">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <h6 class="card-title" style="font-size:16px;"><?php echo $record["title"]?></h6>
+                                </div>
+                                <div class="col-lg-4">
+                                    
+                                    <h6 class="badge <?php if($record["type"]=="link"){echo'badge-success';}elseif($record["type"]=="video"){echo'badge-warning';}else{echo'badge-danger';}?>"><?php echo $record["type"]?></h6>
+                                </div>
+                            </div>
+                            <p class="card-text" style="font-size:14px;"><?php echo $record["summary"]?></p>
+                            <a href="./?page=<?php echo $record["type"]."&hrid=".$record["hrid"];?>" class="btn btn-primary">☝️ click here</a>
+                                
+                        </div>
+                    </div>
+                </div>
+            <?php
+            }?>
+            </div>
+            <?php
+        }
+        ?>
+
+    <?php
+    }
+
+    ///////////////////////////////////////////
+    //////////Read Resources//////////////
+    /////////////////////////////////////////
+    public function readHubResource($hrid){
+        global $pdo;
+        try {
+            $query = "select * from `HubResources` where `hrid`=:hrid";
+            $stmt = $pdo->prepare($query);
+            $stmt->bindParam('hrid', $hrid, PDO::PARAM_STR);
+            $stmt->execute();
+            $row   = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error : ".$e->getMessage();
+        }
+        //var_dump($row);
+        //exit(0);
+            echo '<a href="./?page=viewAllHubResources" class="btn btn-secondary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </span>
+                                        <span class="text">Go back</span>
+                                    </a>';
+            if($row[0]["type"]=="pdf"){
+        ?>
+
+        <style>
+            @media only screen and (max-width: 480px) {
+                .containerIframe {
+                //position: relative !important;
+                    overflow: hidden !important;
+                    width: 100% !important;
+                    padding-top: 56.25% !important; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+                }
+
+                /* Then style the iframe to fit in the container div with full height and width */
+                .responsive-iframe {
+                    position: absolute !important;
+                    top: 0 !important;
+                    left: 0 !important;
+                    bottom: 0 !important;
+                    right: 0 !important;
+                    width: 100% !important;
+                    height: 100% !important;
+                }
+            }
+            .responsive-iframe{
+                height: 1000px;
+                width: 1200px;
+            }
+        </style>
+        <p>
+        <div class="containerIframe">
+            <iframe class="responsive-iframe" style="" src="./books/index.php?location=<?php echo $row[0]["source"];?>&amp;res=ARCCC" seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true"></iframe>
+        </div>
+        </p>
+        <?php
+        }elseif($row[0]["type"]=="video"){
+            $updatedString = str_replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/", $row[0]["source"]);
+        ?>
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="<?php echo $updatedString;?>?rel=0" allowfullscreen></iframe>
+        </div>
+        
+        <?php
+        }else{
+                $updatedString = str_replace("https://forms.monday.com/forms/", "https://forms.monday.com/forms/embed/", $row[0]["source"]);
+            ?>
+            <iframe src="<?php echo $updatedString;?>" width="100%" height="800"style="border: 0; box-shadow: 5px 5px 56px 0px rgba(0,0,0,0.25);"></iframe>
+            <?php
+
+        }
+
+
+    }
+    ///////////////////////////////////////////
+    ///////////Add new Resources//////////////
+    /////////////////////////////////////////
+    public function addNewHubResource(){?>
+             <script>
+            $(document).ready(function(){
+                $('#filetype').change(function(){
+                    var getOption=$("#filetype option:selected").text();
+                    //link //res
+                    if(getOption=="select upload type?"){
+                        $('#link').css('display','none');
+                        $('#res').css('display','none');
+                    } else if(getOption=="PDF File"){
+                        $('#link').css('display','none');
+                        $('#res').css('display','block');
+                    }else if(getOption=="Youtube Video Link" || getOption=="Monday.com Link"){
+                        $('#link').css('display','block');
+                        $('#res').css('display','none');
+                    }
+                });
+            });
+        </script>
+        <?php if(isset($_GET['message'])){?>
+            <div class="card mb-4 py-3 border-left-success" style="padding-top:0px !important;padding-bottom:0px !important; ">
+                <div class="card-body" id="msg">
+                    New Resource is added successfully!
+                </div>
+            </div>
+        <?php }elseif(isset($_GET['notvalid'])){
+            ?>
+            <div class="card mb-4 py-3 border-left-danger" style="padding-top:0px !important;padding-bottom:0px !important; ">
+                <div class="card-body" id="msg">
+                    Please upload image with instructions provided!
+                </div>
+            </div>
+            <?php
+        }
+        ?>
+
+        <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800" style="text-align: center; padding-top: 30px;">Add New Resources</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="jumbotron bg-gray-200 border-bottom-success">
+                <h3 class="display-6">Add Youtube Video/Monday Form / PDF Link</h3>
+                        <form id="addHubResource" action="lib.php" method="post" enctype="multipart/form-data">
+                            <input type="text" class="form-control" name="addHubResource" value="addHubResource" style="display:none;">
+                            <div class="form-group">
+
+                                <select name="filetype" class="dropdown mb-4 btn btn-primary dropdown-toggle" id="filetype">
+                                    <option value="default">select upload type?</option>
+                                    <option value="pdf">PDF File</option>
+                                    <option value="video">Youtube Video Link</option>
+                                    <option value="link">Monday.com Link</option>
+                                </select>
+
+                            </div>
+                            <input type="text" class="form-control" name="type" value="file" style="display:none;">
+                            <div class="form-group">
+                                <label for="exampleFormControlFile1">Thumbnail</label>
+                                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="thumbnail">
+                                <small id="emailHelp" class="form-text text-muted">Make sure to upload only png/jpg file. Size must be 251x220.Also, image memory size cannot be more than
+                                    700KB. System will not accpet any other file type.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" style="display: inline-block;
+                    margin-bottom: 0.5rem;box-sizing: border-box;">Title</label>
+                                <input type="text" class="form-control" id="fileTitle" placeholder="Enter title" name="resTitle">
+                                <small id="emailHelp" class="form-text text-muted">This title will be shown to all of the users</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Summary</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="summary"></textarea>
+                            </div>
+                            <div class="form-group" id="link" style="display:none;">
+                                <label for="exampleFormControlFile1">Link</label>
+                                <input type="text" class="form-control" id="fileTitle" placeholder="https://andersonroadchildcare.com.au/" name="resource">
+                                <small id="emailHelp" class="form-text text-muted">You can add link here</small>
+                            </div>
+                            <div class="form-group" id="res" style="display:none;">
+                                <label for="exampleFormControlFile1">Upload Resource</label>
+                                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="resource">
+                                <small id="emailHelp" class="form-text text-muted">Make sure to upload only PDF file. System will not accpet any file other than .pdf</small>
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-success mb-2 btn-lg">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+        </div>
+        <?php
+    }
+    ///////////////////////////////////////////
+    //////////Edit or delete resources //////////////
+    /////////////////////////////////////////
+    public function editordeleteHubResource(){
+        global $pdo;
+        try {
+            $query = "SELECT * FROM `HubResources` ORDER BY `HubResources`.`hrid` DESC";
+            $stmt = $pdo->prepare($query);
+            $stmt->execute();
+            $row   = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $resCount=count($row);
+            //var_dump($row);
+        } catch (PDOException $e) {
+            echo "Error : ".$e->getMessage();
+        }
+        if(isset($_GET['status']) && $_GET['status']=="deleted"){?>
+            <div class="card mb-4 py-3 border-left-danger" style="padding-top:0px !important;padding-bottom:0px !important; ">
+                <div class="card-body" id="msg">
+                    Hub Resource is deleted successfully!
+                </div>
+            </div>
+        <?php }elseif(isset($_GET['status'])&& $_GET['status']=="edited"){?>
+            <div class="card mb-4 py-3 border-left-success" style="padding-top:0px !important;padding-bottom:0px !important; ">
+                <div class="card-body" id="msg">
+                    Resource is edited successfully!
+                </div>
+            </div>
+        <?php }
+        ?>
+        <h1 class="h3 mb-4 text-gray-800" style="text-align: center; padding-top: 30px;">Change Hub Resources</h1>
+
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">You can edit,update and delete hub resources through this panel</h6>
+                    </div>
+                    <div class="card-body border-bottom-success">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th style="">Id</th>
+                                    <th>Title</th>
+                                    <th>Summary</th>
+                                    <th>Type</th>
+                                    <th>Thumbnail</th>
+                                    <th>Source</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th style="">Id</th>
+                                    <th>Title</th>
+                                    <th>Summary</th>
+                                    <th>Type</th>
+                                    <th>Thumbnail</th>
+                                    <th>Source</th>
+                                    <th>Action</th>
+                                </tr>
+                                </tfoot>
+                                <tbody>
+        <?php
+                                for ($i=0; $i <$resCount ; $i++) {
+                                    ?>
+                                    <tr>
+                                        <td style=""><?php echo $row[$i]["hrid"];?></td>
+                                        <td><?php echo $row[$i]["title"];?></td>
+                                        <td><?php echo $row[$i]["summary"];?></td>
+                                        <td><?php echo $row[$i]["type"];?></td>
+                                        <td><img src="<?php echo $row[$i]["thumbnail"];?>" alt="..." class="img-thumbnail"></td>
+                                        <td><?php echo $row[$i]["source"];?></td>
+                                        <td>
+                                            <!--look in lib file for implementation of if isset($_GET['action']=='editResouce'){}-->
+                                            <a href="?page=editingHubResource&hrid=<?php echo $row[$i]["hrid"];?>" class="btn btn-primary btn-circle btn-md">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+
+                                            <a href="javascript:void(0);" onclick="confirmDelete(<?php echo $row[$i]['hrid']; ?>)" class="btn btn-danger btn-circle btn-md">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php }?>
+
+                                </tbody>
+                            </table>
+                            <script>
+                                function confirmDelete(sourceID) {
+                                    Swal.fire({
+                                        title: 'Are you sure?',
+                                        text: "You won't be able to revert this!",
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#d33',
+                                        cancelButtonColor: '#3085d6',
+                                        confirmButtonText: 'Yes, delete it!'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            // Redirect to the deletion URL
+                                            window.location.href = `?page=deleteHubResource&hrid=${sourceID}`;
+                                        }
+                                    });
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+                <?php
+
+    }
+    ///////////////////////////////////
+    /// edit a resouce///////////
+    /// ///////////////////////////
+    function editHubResource(){
+        global $pdo;
+        if(isset($_GET['message'])){?>
+            <div class="card mb-4 py-3 border-left-success" style="padding-top:0px !important;padding-bottom:0px !important; ">
+                <div class="card-body" id="msg">
+                    Resource is edited successfully!
+                </div>
+            </div>
+        <?php }elseif(isset($_GET['notvalid'])){
+            ?>
+            <div class="card mb-4 py-3 border-left-danger" style="padding-top:0px !important;padding-bottom:0px !important; ">
+                <div class="card-body" id="msg">
+                    Please upload image with instructions provided!
+                </div>
+            </div>
+            <?php
+        }
+
+        $resId=$_GET['hrid'];
+        try {
+            $query = "select * from `HubResources` where `hrid`=:Id";
+            $stmt = $pdo->prepare($query);
+            $stmt->bindParam('Id', $resId, PDO::PARAM_STR);
+            $stmt->execute();
+            $row   = $stmt->fetch(PDO::FETCH_ASSOC);
+            //var_dump($row);
+        } catch (PDOException $e) {
+            echo "Error : ".$e->getMessage();
+        }
+        ?>
+        <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('#keepItThumb').click(function(e) {
+                    $("#keepItThumb").css('display','none');
+                    $("#deleteNowResThumb").css('display','none');
+                    $("#keepItButtonsThumb").append('<p id="keepItTextThumb">Your current thumbnail will be kept. If you want to change then <span id="clickButtonThumb" onClick="ButtonClickThumb()" style="color:blue;cursor:pointer;">click here</span></p>');
+                    
+                });
+                $('#deleteNowResThumb').click(function(e) {
+                    $("#fileChangeThumb").attr('value', '1');
+                    $("#uploadResourceThumb").css('display','block');
+                    $("#keepItThumb").css('display','none');
+                    $("#deleteNowResThumb").css('display','none');
+                    $("#keepItButtonsThumb").append('<p id="getMyResBackThumb">Change of mind, Want thumbnail back? <span id="getMyResBackButThumb" onClick="getMyResBackThumb()" style="color:blue;cursor:pointer;">click here</span></p>');
+                });
+            });
+            function ButtonClickThumb(){
+                $("#fileChangeThumb").attr('value', '1');
+                $('#keepItTextThumb').remove();
+                $("#getMyResBackThumb").remove();
+                $("#uploadResourceThumb").css('display','block');
+                $("#keepItButtonsThumb").append('<p id="getMyResBackThumb">Change of mind, Want resource back? <span id="getMyResBackButThumb" onClick="getMyResBackThumb()" style="color:blue;cursor:pointer;">click here</span></p>');
+                // imgInp.onchange = evt => {
+                //     const [file] = imgInp.files
+                //     if (file) {
+                //         thethumb.src = URL.createObjectURL(file)
+                //     }
+                // }
+            }
+            function getMyResBackThumb(){
+                $("#fileChangeThumb").attr('value', '0');
+                $('#getMyResBackThumb').css('display','none');
+                $("#uploadResourceThumb").css('display','none');
+                $("keepItTextThumb").remove();
+                $("#keepItButtonsThumb").append('<p id="keepItTextThumb">Your current file will be kept. If you want to change then <span id="clickButtonThumb" onClick="ButtonClickThumb()" style="color:blue;cursor:pointer;">click here</span></p>');
+                //$("#thethumb").attr("src","second.jpg");
+            }
+        </script>
+
+        <script>
+            $(document).ready(function() {
+                $('#keepIt').click(function(e) {
+                    $("#keepIt").css('display','none');
+                    $("#deleteNowRes").css('display','none');
+                    $("#keepItButtons").append('<p id="keepItText">Your current file will be kept. If you want to change then <span id="clickButton" onClick="ButtonClick()" style="color:blue;cursor:pointer;">click here</span></p>');
+                });
+                $('#deleteNowRes').click(function(e) {
+                    $("#fileChange").attr('value', '1');
+                    $("#uploadResource").css('display','block');
+                    $("#keepIt").css('display','none');
+                    $("#deleteNowRes").css('display','none');
+                    $("#keepItButtons").append('<p id="getMyResBack">Change of mind, Want resource back? <span id="getMyResBackBut" onClick="getMyResBack()" style="color:blue;cursor:pointer;">click here</span></p>');
+
+                });
+            });
+            function ButtonClick(){
+                $("#fileChange").attr('value', '1');
+                $('#keepItText').remove();
+                $("#getMyResBack").remove();
+                $("#uploadResource").css('display','block');
+                $("#keepItButtons").append('<p id="getMyResBack">Change of mind, Want resource back? <span id="getMyResBackBut" onClick="getMyResBack()" style="color:blue;cursor:pointer;">click here</span></p>');
+            }
+            function getMyResBack(){
+                $("#fileChange").attr('value', '0');
+                $('#getMyResBack').css('display','none');
+                $("#uploadResource").css('display','none');
+                $("keepItText").remove();
+                $("#keepItButtons").append('<p id="keepItText">Your current file will be kept. If you want to change then <span id="clickButton" onClick="ButtonClick()" style="color:blue;cursor:pointer;">click here</span></p>');
+            }
+        </script>
+        <h1 class="h3 mb-4 text-gray-800" style="text-align: center; padding-top: 30px;">Edit Resource</h1>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="jumbotron bg-gray-200 border-bottom-success">
+                    <h3 class="display-6" style="font-size:18px !important;"><span style="color:red;">Caution:</span> <p style="font-size:16px !important;">Any change made on file will result in permanent deletion.Also, System will keep current resoruce if you will not choose any of the file options.</p></h3>
+                    <form id="addFile" action="lib.php" method="post" enctype="multipart/form-data">
+                        <input type="text" class="form-control" name="page" value="updateHubResource" style="display:none;">
+                        <input type="text" class="form-control" name="hrid" value="<?php echo $row["hrid"];?>" style="display:none;">
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Thumbnail</label><br>
+                            <img src="<?php echo $row["thumbnail"];?>" class="img-thumbnail" id="thethumb">
+                        </div>
+                        <div class="form-group" id="keepItButtonsThumb">
+                            <div class="btn btn-success btn-icon-split" id="keepItThumb">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-check"></i>
+                                            </span>
+                                <span class="text">Keep Current Thumbnail</span>
+                            </div>
+                            <div class="btn btn-danger btn-icon-split" id="deleteNowResThumb">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                <span class="text">Add New Resource Thumbnail</span>
+                            </div>
+                        </div>
+
+                        <input type="text" class="form-control-file" id="fileChangeThumb" name="fileChangedThumb" value="0" style="display:none;">
+                        <div class="form-group" id="keepResourceThumb" style=" display:none;">
+                            <input type="text" class="form-control-file" id="exampleFormControlFile1" name="keepResourceThumb" value="<?php echo $row["thumbnail"];?>">
+                        </div>
+                        <div class="form-group" id="uploadResourceThumb" style="display:none;">
+                            <label for="exampleFormControlFile1">Upload Resource</label>
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="resourceThumb">
+                            <small id="emailHelpThumb" class="form-text text-muted">Make sure to upload only png/jpg file. Size must be 251x220.Also, image memory size cannot be more than 700KB. System will not accpet any other file type.</small>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Resource Title</label>
+                            <input type="text" class="form-control" id="fileTitle" placeholder="Enter title" name="resTitle" value="<?php echo $row["title"];?>">
+                            <small id="emailHelp" class="form-text text-muted">This title will be shown to all of the users</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Summary</label>
+                            <input type="text" class="form-control" id="fileTitle" placeholder="Enter Version e.g. v1.0, v2.1" name="summary" value="<?php echo $row["summary"];?>">
+                        </div>
+                        <div class="form-group">
+                        <input type="text" class="form-control" name="type" value="<?php echo $row["type"];?>" style="display:none;">
+                            <?php echo "<span><b>Currently Selected Category:</b> </span> ".$row["type"];?>
+                        </div>
+                        <?php if($row["type"]!="pdf"){ ?>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Link</label>
+                            <input type="text" class="form-control" id="source" placeholder="link" name="source" value="<?php echo $row["source"];?>">
+                        </div>
+                        <?php } 
+                        else{
+                        ?>
+                        <div class="form-group" id="keepItButtons">
+                            <div class="btn btn-success btn-icon-split" id="keepIt">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-check"></i>
+                                            </span>
+                                <span class="text">Keep Current Resource</span>
+                            </div>
+                            <div class="btn btn-danger btn-icon-split" id="deleteNowRes">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                <span class="text">Add New Resource Instead</span>
+                            </div>
+                        </div>
+
+                        <input type="text" class="form-control-file" id="fileChange" name="fileChanged" value="0" style="display:none;">
+                        <div class="form-group" id="keepResource" style=" display:none;">
+                            <input type="text" class="form-control-file" id="exampleFormControlFile1" name="keepResource" value="<?php echo $row["source"];?>">
+                        </div>
+                        <div class="form-group" id="uploadResource" style="display:none;">
+                            <label for="exampleFormControlFile1">Upload Resource</label>
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="resource">
+                            <small id="emailHelp" class="form-text text-muted">Make sure to upload only PDF file. System will not accpet any file other than .pdf</small>
+                        </div>
+                        <?php
+                        }
+                        ?>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-success mb-2 btn-lg" class=".bg-gradient-success">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <?php
+    }
+
+    ///////////////////////////////////
+    /// delete resouce///////////
+    /// ///////////////////////////
+    public function deleteHubResources($resId){
+        global $pdo;
+        try {
+            $query = "SELECT * FROM `HubResources` where `hrid`=:hrId";
+            $stmt = $pdo->prepare($query);
+            $stmt->bindParam('hrId', $resId, PDO::PARAM_STR);
+            $stmt->execute();
+            $row   = $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error : ".$e->getMessage();
+        }
+        $thumbnail=$row["thumbnail"];
+        unlink($thumbnail);
+        if($row["type"]=="pdf"){
+            $file=$row["source"];
+            unlink("./books/".$file);
+        }
+
+        try {
+            $sql = "Delete from `HubResources` WHERE hrid=?";
+            $stmt= $pdo->prepare($sql);
+            $stmt->execute([$resId]);
+
+        } catch (PDOException $e) {
+            echo "Error : ".$e->getMessage();
+        }
+        //exit(0);
+        $URL="?page=editHubResource&status=deleted";
+        echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+        echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
+    }
+
+}
+
+class Ressources{
     ///////////////////////////////////////////
     //////////View All Resources//////////////
     /////////////////////////////////////////
@@ -2097,8 +2690,7 @@ class Resources{
     ///////////////////////////////////////////
     ///////////Add new Resources//////////////
     /////////////////////////////////////////
-    public function addNewResource(){
-    ?>
+    public function addNewResource(){?>
         <?php if(isset($_GET['message'])){?>
             <div class="card mb-4 py-3 border-left-success" style="padding-top:0px !important;padding-bottom:0px !important; ">
                 <div class="card-body" id="msg">
@@ -2123,7 +2715,7 @@ class Resources{
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1" style="display: inline-block;
-    margin-bottom: 0.5rem;box-sizing: border-box;">Title</label>
+        margin-bottom: 0.5rem;box-sizing: border-box;">Title</label>
                             <input type="text" class="form-control" id="fileTitle" placeholder="Enter title" name="resTitle">
                             <small id="emailHelp" class="form-text text-muted">This title will be shown to all of the users</small>
                         </div>
@@ -2196,19 +2788,18 @@ class Resources{
                         </div>
                         <div class="col-auto">
                             <button type="submit" class="btn btn-success mb-2 btn-lg" class=".bg-gradient-success
-">Submit</button>
+        ">Submit</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-<?php
-    }
+<?php}
     ///////////////////////////////////////////
     //////////Edit or delete resources //////////////
     /////////////////////////////////////////
     public function editordeleteResource(){
-    global $pdo;
+        global $pdo;
         try {
             $query = "SELECT * FROM `Resources` ORDER BY `Resources`.`rid` DESC";
             $stmt = $pdo->prepare($query);
@@ -2219,118 +2810,118 @@ class Resources{
         } catch (PDOException $e) {
             echo "Error : ".$e->getMessage();
         }
-if(isset($_GET['status']) && $_GET['status']=="deleted"){?>
-    <div class="card mb-4 py-3 border-left-danger" style="padding-top:0px !important;padding-bottom:0px !important; ">
-        <div class="card-body" id="msg">
-            Resource is deleted!
-        </div>
-    </div>
-<?php }elseif(isset($_GET['status'])&& $_GET['status']=="edited"){?>
-            <div class="card mb-4 py-3 border-left-success" style="padding-top:0px !important;padding-bottom:0px !important; ">
+        if(isset($_GET['status']) && $_GET['status']=="deleted"){?>
+            <div class="card mb-4 py-3 border-left-danger" style="padding-top:0px !important;padding-bottom:0px !important; ">
                 <div class="card-body" id="msg">
-                    Resource is edited successfully!
+                    Resource is deleted!
                 </div>
             </div>
-        <?php }
-?>
-<h1 class="h3 mb-4 text-gray-800" style="text-align: center; padding-top: 30px;">Change Resources</h1>
+        <?php }elseif(isset($_GET['status'])&& $_GET['status']=="edited"){?>
+                    <div class="card mb-4 py-3 border-left-success" style="padding-top:0px !important;padding-bottom:0px !important; ">
+                        <div class="card-body" id="msg">
+                            Resource is edited successfully!
+                        </div>
+                    </div>
+                <?php }
+        ?>
+        <h1 class="h3 mb-4 text-gray-800" style="text-align: center; padding-top: 30px;">Change Resources</h1>
 
-<!-- Page Heading -->
-<div class="row">
-    <div class="col-sm-12">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">You can edit,update and delete resources through this panel</h6>
-            </div>
-            <div class="card-body border-bottom-success">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                        <tr>
-                            <th style="">Id</th>
-                            <th>Type</th>
-                            <th>Title</th>
-                            <th>Version</th>
-                            <th>Category</th>
-                            <th>Permission</th>
-                            <th>File Name/Link</th>
-                            <th>Action</th>
-                        </tr>
-                        </thead>
-                        <tfoot>
-                        <tr>
-                            <th style="">Id</th>
-                            <th>Type</th>
-                            <th>Title</th>
-                            <th>Version</th>
-                            <th>Category</th>
-                            <th>Permission</th>
-                            <th>File Name/Link</th>
-                            <th>Action</th>
-                        </tr>
-                        </tfoot>
-                        <tbody>
- <?php
-                        for ($i=0; $i <$resCount ; $i++) {
-                            ?>
-                            <tr>
-                                <td style=""><?php echo $row[$i]["rid"];?></td>
-                                <td><?php echo $row[$i]["type"];?></td>
-                                <td><?php echo $row[$i]["title"];?></td>
-                                <td><?php echo $row[$i]["version"];?></td>
-                                <td><?php echo $row[$i]["category"];?></td>
-                                <td>
-                                    <?php if($row[$i]["role"]==2){
-                                        echo 'Educator';
-                                    }elseif ($row[$i]["role"]==3){
-                                        echo 'Parent';
-                                    }elseif ($row[$i]["role"]==23){
-                                        echo 'Educators and parents';
-                                    }else{
-                                        echo 'role not assigned yet';
-                                    }?>
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">You can edit,update and delete resources through this panel</h6>
+                    </div>
+                    <div class="card-body border-bottom-success">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th style="">Id</th>
+                                    <th>Type</th>
+                                    <th>Title</th>
+                                    <th>Version</th>
+                                    <th>Category</th>
+                                    <th>Permission</th>
+                                    <th>File Name/Link</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th style="">Id</th>
+                                    <th>Type</th>
+                                    <th>Title</th>
+                                    <th>Version</th>
+                                    <th>Category</th>
+                                    <th>Permission</th>
+                                    <th>File Name/Link</th>
+                                    <th>Action</th>
+                                </tr>
+                                </tfoot>
+                                <tbody>
+        <?php
+                                for ($i=0; $i <$resCount ; $i++) {
+                                    ?>
+                                    <tr>
+                                        <td style=""><?php echo $row[$i]["rid"];?></td>
+                                        <td><?php echo $row[$i]["type"];?></td>
+                                        <td><?php echo $row[$i]["title"];?></td>
+                                        <td><?php echo $row[$i]["version"];?></td>
+                                        <td><?php echo $row[$i]["category"];?></td>
+                                        <td>
+                                            <?php if($row[$i]["role"]==2){
+                                                echo 'Educator';
+                                            }elseif ($row[$i]["role"]==3){
+                                                echo 'Parent';
+                                            }elseif ($row[$i]["role"]==23){
+                                                echo 'Educators and parents';
+                                            }else{
+                                                echo 'role not assigned yet';
+                                            }?>
 
-                                </td>
-                                <td><?php echo $row[$i]["source"];?></td>
-                                <td>
-                                    <!--look in lib file for implementation of if isset($_GET['action']=='editResouce'){}-->
-                                    <a href="?page=editingResource&id=<?php echo $row[$i]["rid"];?>" class="btn btn-primary btn-circle btn-md">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
+                                        </td>
+                                        <td><?php echo $row[$i]["source"];?></td>
+                                        <td>
+                                            <!--look in lib file for implementation of if isset($_GET['action']=='editResouce'){}-->
+                                            <a href="?page=editingResource&id=<?php echo $row[$i]["rid"];?>" class="btn btn-primary btn-circle btn-md">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
 
-                                    <a href="javascript:void(0);" onclick="confirmDelete(<?php echo $row[$i]['rid']; ?>)" class="btn btn-danger btn-circle btn-md">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        <?php }?>
+                                            <a href="javascript:void(0);" onclick="confirmDelete(<?php echo $row[$i]['rid']; ?>)" class="btn btn-danger btn-circle btn-md">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php }?>
 
-                        </tbody>
-                    </table>
-                    <script>
-                        function confirmDelete(sourceID) {
-                            Swal.fire({
-                                title: 'Are you sure?',
-                                text: "You won't be able to revert this!",
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: '#d33',
-                                cancelButtonColor: '#3085d6',
-                                confirmButtonText: 'Yes, delete it!'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    // Redirect to the deletion URL
-                                    window.location.href = `?page=deleteAResource&id=${sourceID}`;
+                                </tbody>
+                            </table>
+                            <script>
+                                function confirmDelete(sourceID) {
+                                    Swal.fire({
+                                        title: 'Are you sure?',
+                                        text: "You won't be able to revert this!",
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#d33',
+                                        cancelButtonColor: '#3085d6',
+                                        confirmButtonText: 'Yes, delete it!'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            // Redirect to the deletion URL
+                                            window.location.href = `?page=deleteAResource&id=${sourceID}`;
+                                        }
+                                    });
                                 }
-                            });
-                        }
-                    </script>
+                            </script>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-</div>
+        </div>
         <?php
 
     }
