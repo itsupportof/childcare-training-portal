@@ -167,9 +167,8 @@ if(!isset($_GET['page']) && isset($_SESSION['currentSession'])){
                 /*-/////////////////-----v1.0 changes for calender//////////----*/
                 elseif($page == 'viewResource'){
                     if($role==1 || $role==2 || $role==3){
-                        $hrid=$_GET["hrid"];
                         $resources=new Resources();
-                        $resources->readResource($hrid);
+                        $resources->readResource();
                     }else{
                         echo '<h1>Unauthorised access</h1>';
                     }
