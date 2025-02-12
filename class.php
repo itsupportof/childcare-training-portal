@@ -2223,7 +2223,7 @@ class LearningHubResources{
                     Resource is deleted!
                 </div>
             </div>
-        <?php }elseif(isset($_GET['status'])&& $_GET['status']=="edited"){?>
+        <?php }else if(isset($_GET['status'])&& $_GET['status']=="edited"){?>
                     <div class="card mb-4 py-3 border-left-success" style="padding-top:0px !important;padding-bottom:0px !important; ">
                         <div class="card-body" id="msg">
                             Resource is edited successfully!
