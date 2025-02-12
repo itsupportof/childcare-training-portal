@@ -29,7 +29,7 @@ global $pdo;
     getAResetLink();
 }elseif(isset($_POST['resetPassEmail'])){
     resetPasword();
-}else if(isset($_POST['page']) && $_POST['page']=='addNewResource'){
+}else if(isset($_POST['page']) && $_POST['page']=='addResource'){
     addNewResource();
 }if(isset($_POST['page']) && $_POST['page']=='updateResource'){
     updateResouce();
