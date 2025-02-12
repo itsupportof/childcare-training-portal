@@ -622,8 +622,8 @@ function addNewResource(){
  * ****************************************
  */
 function updateResource(){
-    //  var_dump($_FILES);
-    //  exit(0);
+     var_dump($_FILES);
+     exit(0);
     global $pdo;
     $hrid=$_POST["hrid"];
     $title=$_POST['resTitle'];
