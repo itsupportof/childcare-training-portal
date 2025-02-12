@@ -630,7 +630,7 @@ function updateResource(){
     $summary= $_POST['summary'];
     //$thumbnail=thumbnail;
     $realtype=$_POST["type"];
-    if(isset(!$_FILES ["resource"]['error'] == UPLOAD_ERR_NO_FILE)){
+    if(!$_FILES ["resource"]['error'] == UPLOAD_ERR_NO_FILE){
         $mystring='resources/';
         if($_POST["fileChanged"]==1){
             unlink("./books/".$_POST["keepResource"]);
