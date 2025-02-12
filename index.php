@@ -123,7 +123,7 @@ if(!isset($_GET['page']) && isset($_SESSION['currentSession'])){
                     }else{
                         echo '<h1>Unauthorised access</h1>';
                     }
-                }else if($page='readHubRes'){
+                }else if($page=='readHubRes'){
                     if($role==1 || $role==2){
                         $hrid=$_GET["hrid"];
                         $hubresources=new LearningHubResources();
