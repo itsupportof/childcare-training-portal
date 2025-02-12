@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 /*-------------------v1.0 changes for calender-------------------------*/
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -30,6 +27,8 @@ global $pdo;
 }elseif(isset($_POST['resetPassEmail'])){
     resetPasword();
 }else if(isset($_POST['page']) && $_POST['page']=='addResource'){
+    echo "I'm here";
+    exit(0);
     addNewResource();
 }if(isset($_POST['page']) && $_POST['page']=='updateResource'){
     updateResouce();
