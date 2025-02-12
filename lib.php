@@ -27,8 +27,6 @@ global $pdo;
 }elseif(isset($_POST['resetPassEmail'])){
     resetPasword();
 }else if(isset($_POST['page']) && $_POST['page']=='addResource'){
-    echo "I'm here";
-    exit(0);
     addNewResource();
 }if(isset($_POST['page']) && $_POST['page']=='updateResource'){
     updateResouce();
