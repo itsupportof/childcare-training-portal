@@ -1381,7 +1381,7 @@ class Resources{
                                 </div>
                             </div>
                             <p class="card-text" style="font-size:14px;"><?php echo $record["summary"]?></p>
-                            <a href="./?page=<?php echo $record["type"]."&hrid=".$record["hrid"];?>" class="btn btn-primary">☝️ click here</a>
+                            <a href="./?page=readResource<?php "&hrid=".$record["hrid"];?>" class="btn btn-primary">☝️ click here</a>
                                 
                         </div>
                     </div>
@@ -1402,7 +1402,7 @@ class Resources{
     public function readResource($hrid){
         global $pdo;
         try {
-            $query = "select * from `HubResources` where `hrid`=:hrid";
+            $query = "select * from `Resources` where `hrid`=:hrid";
             $stmt = $pdo->prepare($query);
             $stmt->bindParam('hrid', $hrid, PDO::PARAM_STR);
             $stmt->execute();
@@ -1412,7 +1412,7 @@ class Resources{
         }
         //var_dump($row);
         //exit(0);
-            echo '<a href="./?page=viewAllHubResources" class="btn btn-secondary btn-icon-split">
+            echo '<a href="./?page=viewAllResources" class="btn btn-secondary btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-arrow-left"></i>
                                         </span>
