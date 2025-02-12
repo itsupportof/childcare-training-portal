@@ -658,8 +658,8 @@ function updateResource(){
             $max_size = 700 * 1024;
             $file_size = filesize($_FILES ["resourceThumb"]["tmp_name"]); // Get file size in bytes
             $file_size = $file_size / 1024; // Get file size in KB
-            var_dump($_FILES ["resourceThumb"]);
-            exit(0);
+            // var_dump($_FILES ["resourceThumb"]);
+            // exit(0);
             list($width, $height) = getimagesize($_FILES ["resourceThumb"]["tmp_name"]);
             if($width!=251 || $height!=220 || $file_size>700){
                 header('Location: ./?page=editingResource&hrid='.$hrid=$_POST["hrid"].'&notvalid=imageca');
