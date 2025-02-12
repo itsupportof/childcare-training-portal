@@ -29,7 +29,7 @@ global $pdo;
 }else if(isset($_POST['page']) && $_POST['page']=='addResource'){
     addNewResource();
 }if(isset($_POST['page']) && $_POST['page']=='updateResource'){
-    updateResouce();
+    updateResource();
 }else if(isset($_POST['page'])&& $_POST['page']=='addNewUser'){
     addNewUser();
 }else if(isset($_POST['page'])&& $_POST['page']=='updateUser'){
