@@ -165,10 +165,10 @@ if(!isset($_GET['page']) && isset($_SESSION['currentSession'])){
 
 
                 /*-/////////////////-----v1.0 changes for calender//////////----*/
-                elseif($page == 'viewResource'){
+                elseif($page == 'viewAllResources'){
                     if($role==1 || $role==2 || $role==3){
                         $resources=new Resources();
-                        $resources->readResource();
+                        $resources->viewAllResources();
                     }else{
                         echo '<h1>Unauthorised access</h1>';
                     }
@@ -311,7 +311,6 @@ if(!isset($_GET['page']) && isset($_SESSION['currentSession'])){
                     }else{
                         echo '<h1>Unauthorised access</h1>';
                     }
-
                 }
                 /*-----------------v1.0 changes for calender-------------*/
                 elseif($page == 'viewAllEvents'){
